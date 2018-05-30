@@ -107,3 +107,7 @@ homerate_env/
 # IDE-specific
 *.idea
 .idea/
+
+# Mac
+.DS_STORE
+**/.DS_STORE
