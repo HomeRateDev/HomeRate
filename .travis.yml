@@ -13,6 +13,7 @@ after_success:
   -in deploy_rsa.enc -out ~/.ssh/id_rsa -d
 - echo "setting permissions"
 - chmod 600 ~/.ssh/id_rsa
+- cat ~/.ssh/id_rsa
 - echo "deploying"
 - "./deploy.sh"
 - echo "removing key
