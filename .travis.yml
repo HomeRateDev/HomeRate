@@ -9,13 +9,12 @@ install:
 script:
 - python3 exit0.py
 after_success:
-- openssl aes-256-cbc -K $encrypted_e610fedd3ccc_key -iv $encrypted_e610fedd3ccc_iv
-  -in deploy_rsa.enc -out ~/.ssh/id_rsa -d
+- openssl aes-256-cbc -K $encrypted_e610fedd3ccc_key -iv $encrypted_e610fedd3ccc_iv -in deploy_rsa.enc -out ~/.ssh/id_rsa -d
 - echo "setting permissions"
 - chmod 600 ~/.ssh/id_rsa
 - cat ~/.ssh/id_rsa
 - echo "deploying"
-- "./deploy.sh"
+#- "./deploy.sh"
 - echo "removing key
 - rm ~/.ssh/id_rsa
 
