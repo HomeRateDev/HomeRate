@@ -21,6 +21,7 @@ after_success:
 - ll ~/.ssh/id_rsa 
 - cat ~/.ssh/id_rsa
 - echo "deploying"
+- ./deploy.sh
 - echo "removing key"
 - rm ~/.ssh/id_rsa
 
