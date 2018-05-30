@@ -11,5 +11,8 @@ def house(request, number):
     if len(house) == 0:
         return render(request, 'reviews/nohouse.html', {})
 
+    reviews = HouseReport.objects.filter(house_filed = house[0])
+    print(reviews)
+    print(reviews[0].moved_in_date)
     print(house[0])
-    return render(request, 'reviews/house.html', {'house' : house[0]})
+    return render(request, 'reviews/house.html', {'house' : house[0], 'reviews' : reviews})

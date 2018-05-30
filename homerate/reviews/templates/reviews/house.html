@@ -9,5 +9,16 @@
 {{ house.house_id }}<br>
 {{ house.date_created }}<br>
 
+{% for review in reviews %}
+    <div>
+        <h2>{{ review.author }}</h2>
+        <p>{{ review.moved_in_date }}</p>
+        <p>{{ review.description }}</p>
+        <p>{{ review.pros }}</p>
+        <p>{{ review.cons }}</p>
+        <p>£{{ review.monthly_cost }}</p>
+    </div>
+{% endfor %}
+
 </body>
 </html>
