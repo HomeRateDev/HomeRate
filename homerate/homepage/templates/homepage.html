@@ -15,7 +15,7 @@ body {
 
 <ul>
 {% for house in houses %}
-    <li><a href="/reviews/house/{{house.id}}">{{ house }}</a></li>
+    <li><a href="{% url 'house' house.id %}">{{ house }}</a></li>
 {% endfor %}
 </ul>
 
