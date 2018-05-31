@@ -8,9 +8,7 @@ from django.utils import timezone
 
 class House(models.Model):
     addr = models.CharField(max_length=200)
-    house_id = models.IntegerField()
     date_created = models.DateTimeField(default=timezone.now)
-    reports = models.ManyToManyField('reviews.HouseReport', blank=True)
 
     def __str__(self):
         return self.addr
