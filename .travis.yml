@@ -7,11 +7,14 @@ notifications:
   on_success: never
   on_failure: never
 
-install:
-- pip install django
+env:
+- DJANGO="2.0.*"
 
 script:
-- python3 CI-CD/exit0.py
+- cd homerate/
+- python3 manage.py makemigrations
+- python3 manage.py migrate
+- python3 manage.py test
 
 after_success:
 - openssl aes-256-cbc -K $encrypted_e610fedd3ccc_key -iv $encrypted_e610fedd3ccc_iv
