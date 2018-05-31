@@ -21,5 +21,9 @@ def house(request, number):
 
 
 def new_house(request):
-    form = HouseForm()
+    if(request.method == "POST"):
+        form = HouseForm(request.POST)
+        print(request.POST)
+    else:
+        form = HouseForm()
     return render(request, 'reviews/newhouse.html', {'new_house_form' : form})
