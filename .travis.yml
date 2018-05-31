@@ -8,11 +8,9 @@ notifications:
   on_failure: never
 
 install:
-- pip install django
-
-before_script:
-- python3 -v venv HRenv
+- python3 -m venv HRenv
 - source HRenv/bin/activate
+- pip install django
 
 script:
 - cd homerate/
