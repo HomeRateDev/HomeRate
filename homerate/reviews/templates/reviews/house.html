@@ -6,9 +6,9 @@
     <title>{{ house.addr }}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
 </head>
-<body>
+<body class="housePage">
 
-<section>
+<section class="houseInfo">
     <h2>House Information</h2>
     <ul>
     <li><strong>Address:</strong> {{ house.addr }}</li>
@@ -17,11 +17,12 @@
     </ul>
 </section>
 
-<section>
+<section class="reviews">
     <h2>Reviews</h2>
-    <ul>
+    <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
+    <ul class="reviewList">
     {% for review in reviews %}
-        <li>
+        <li class="review">
             <h3>{{ review.author }}'s Review</h3>
             <p>Moved In: {{ review.moved_in_date }}</p>
             <p>{{ review.description }}</p>

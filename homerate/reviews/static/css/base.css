@@ -6,3 +6,21 @@ ul {
 	list-style: none;
 	padding: 0;
 }
+
+.reviews h2 {
+	margin-right: 5px;
+	margin-bottom: 0;
+	display: inline-block;
+}
+
+.addReview.button {
+	display: inline-block;
+}
+
+.review:first-child {
+	border-top: solid 1px #ddd;
+}
+
+.review {
+	border-bottom: solid 1px #ddd;
+}
