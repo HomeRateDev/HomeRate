@@ -38,20 +38,20 @@ ul {
 	border-bottom: solid 1px #ddd;
 }
 
-.reviewForm {
+.form {
 	max-width: 400px;
 }
 
-.reviewForm label {
+.form label {
 	margin-bottom: 10px;
 	font-weight: bold;
 	display: block;
 }
 
-.reviewForm textarea {
+.form textarea {
 	height: 70px;
 }
 
-.reviewForm input[type=number], .reviewForm button {
+.form input[type=text], .form input[type=number], .form button {
 	padding: 10px;
 }

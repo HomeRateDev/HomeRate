@@ -7,7 +7,7 @@ from django.utils import timezone
 # Create your models here.
 
 class House(models.Model):
-    addr = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
     date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):

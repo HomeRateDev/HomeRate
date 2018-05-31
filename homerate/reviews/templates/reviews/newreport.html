@@ -10,7 +10,7 @@
 
 <h1>Add New Review</h1>
 <p class="address">{{ house.addr }}</p>
-<form method="POST" class="reviewForm">{% csrf_token %}
+<form method="POST" class="reviewForm form">{% csrf_token %}
     {{ new_report_form.as_p }}
     <button type="submit" class="save btn btn-default">Submit</button>
 </form>

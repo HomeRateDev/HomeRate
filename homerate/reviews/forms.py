@@ -7,7 +7,7 @@ class HouseForm(forms.ModelForm):
 
     class Meta:
         model = House
-        fields = ('addr',)
+        fields = ('address',)
 
 
 class HouseReportForm(forms.ModelForm):
