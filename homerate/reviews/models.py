@@ -11,7 +11,7 @@ class House(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.addr
+        return self.address
 
 
 class HouseReport(models.Model):
