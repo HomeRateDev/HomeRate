@@ -14,6 +14,8 @@ script:
 - cd homerate/
 - pwd
 - ls
+- python3 manage.py migrate
+- ls
 - python3 manage.py test
 
 after_success:
