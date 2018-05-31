@@ -11,16 +11,9 @@ env:
 - DJANGO="2.0.*"
 
 script:
-- python --version
-- python3 --version
-- pip --version
-- pip list
 - cd homerate/
-- pwd
-- ls
 - python3 manage.py makemigrations
 - python3 manage.py migrate
-- ls
 - python3 manage.py test
 
 after_success:
