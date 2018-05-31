@@ -1,3 +1,4 @@
+/* General Styles */
 body {
 	font-family: Arial;
 }
@@ -6,6 +7,8 @@ ul {
 	list-style: none;
 	padding: 0;
 }
+
+/* House Page */
 
 .reviews h2 {
 	margin-right: 5px;
@@ -23,4 +26,32 @@ ul {
 
 .review {
 	border-bottom: solid 1px #ddd;
+}
+
+/* New Report Page */
+.address {
+	margin-bottom: 20px;
+	padding-bottom: 30px;
+	font-size: 22px;
+	font-weight: bold;
+	color: #444;
+	border-bottom: solid 1px #ddd;
+}
+
+.reviewForm {
+	max-width: 400px;
+}
+
+.reviewForm label {
+	margin-bottom: 10px;
+	font-weight: bold;
+	display: block;
+}
+
+.reviewForm textarea {
+	height: 70px;
+}
+
+.reviewForm input[type=number], .reviewForm button {
+	padding: 10px;
 }

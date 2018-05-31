@@ -6,17 +6,14 @@
     <title>New Report</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
 </head>
-<body>
-<h2> For House: </h2>
-{{ house.addr }}<br>
-{{ house.id }}<br>
-{{ house.date_created }}<br>
+<body class="newReview">
 
-    <h1>New Report</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ new_report_form.as_p }}
-        <button type="submit" class="save btn btn-default">Submit</button>
-    </form>
+<h1>Add New Review</h1>
+<p class="address">{{ house.addr }}</p>
+<form method="POST" class="reviewForm">{% csrf_token %}
+    {{ new_report_form.as_p }}
+    <button type="submit" class="save btn btn-default">Submit</button>
+</form>
 
 </body>
 </html>
