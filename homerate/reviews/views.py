@@ -1,8 +1,10 @@
 from django.shortcuts import render
 
+from .forms import HouseForm
 from .models import House
 from .models import HouseReport
 # Create your views here.
+
 
 def house(request, number):
     print(number)
@@ -16,3 +18,8 @@ def house(request, number):
     print(reviews[0].moved_in_date)
     print(house[0])
     return render(request, 'reviews/house.html', {'house' : house[0], 'reviews' : reviews})
+
+
+def new_house(request):
+    form = HouseForm()
+    return render(request, 'reviews/newhouse.html', {'new_house_form' : form})

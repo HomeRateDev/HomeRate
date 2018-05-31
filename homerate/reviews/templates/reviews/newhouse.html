@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NEW HOUSE</title>
+</head>
+<body>
+    <h1>New House</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ new_house_form.as_p }}
+        <button type="submit" class="save btn btn-default">Submit</button>
+    </form>
+</body>
+</html>
