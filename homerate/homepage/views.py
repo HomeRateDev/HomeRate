@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from reviews.models import House
 
 # Create your views here.
 def homepage(request):
-	return render(request, 'homepage.html')
+	houses = House.objects.order_by('-date_created')
+	return render(request, 'homepage.html', {'houses': houses})

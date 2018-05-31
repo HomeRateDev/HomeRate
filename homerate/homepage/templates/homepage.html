@@ -12,5 +12,12 @@ body {
 <p>Taking the nasty surprises out of renting.</p>
 
 <a href="/reviews/new_house">Add A New House?</a>
+
+<ul>
+{% for house in houses %}
+    <li><a href="/reviews/{{house.id}}">{{ house }}</a></li>
+{% endfor %}
+</ul>
+
 </body>
 </html>
