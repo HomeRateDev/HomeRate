@@ -10,8 +10,9 @@ notifications:
 install:
 - python3 -m venv HRenv
 - source HRenv/bin/activate
-- pip --version
-- pip install django
+- sudo apt install pip3
+- pip3 --version
+- pip3 install django
 
 script:
 - cd homerate/
