@@ -10,6 +10,10 @@ notifications:
 install:
 - pip install django
 
+before_script:
+- python3 -v venv HRenv
+- source HRenv/bin/activate
+
 script:
 - cd homerate/
 - pwd
