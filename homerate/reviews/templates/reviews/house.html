@@ -23,8 +23,7 @@
     <ul class="reviewList">
     {% for review in reviews %}
         <li class="review">
-            <h3>{{ review.author }}'s Review</h3>
-            <p>Moved In: {{ review.moved_in_date }}</p>
+            <h3>Tenant who moved in on {{ review.moved_in_date }}</h3>
             <p>{{ review.description }}</p>
             <h4>Pros</h4>
             <p>{{ review.pros }}</p>
