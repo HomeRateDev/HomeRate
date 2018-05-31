@@ -5,23 +5,33 @@
     <title>House</title>
 </head>
 <body>
-<a href="{% url 'new_house' %}" class="top-menu">Add New House!</a><br>
 
+<section>
+    <h2>House Information</h2>
+    <ul>
+    <li><strong>Address:</strong> {{ house.addr }}</li>
+    <li><strong>House ID:</strong> {{ house.id }}</li>
+    <li><strong>Date Created:</strong> {{ house.date_created }}</li>
+    </ul>
+</section>
 
-{{ house.addr }}<br>
-{{ house.id }}<br>
-{{ house.date_created }}<br>
-
-{% for review in reviews %}
-    <div>
-        <h2>{{ review.author }}</h2>
-        <p>{{ review.moved_in_date }}</p>
-        <p>{{ review.description }}</p>
-        <p>{{ review.pros }}</p>
-        <p>{{ review.cons }}</p>
-        <p>£{{ review.monthly_cost }}</p>
-    </div>
-{% endfor %}
+<section>
+    <h2>Reviews</h2>
+    <ul>
+    {% for review in reviews %}
+        <li>
+            <h3>{{ review.author }}'s Review</h3>
+            <p>Moved In: {{ review.moved_in_date }}</p>
+            <p>{{ review.description }}</p>
+            <h4>Pros</h4>
+            <p>{{ review.pros }}</p>
+            <h4>Cons</h4>
+            <p>{{ review.cons }}</p>
+            <p>Monthly Rent: £{{ review.monthly_cost }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+</section>
 
 </body>
 </html>
