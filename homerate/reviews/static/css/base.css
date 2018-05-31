@@ -8,6 +8,32 @@ ul {
 	padding: 0;
 }
 
+/* Site homepage */
+.searchBox {
+	width: 250px;
+	padding: 10px;
+	font-size: 18px;
+}
+
+.houses {
+	margin-top: 0;
+}
+
+.house {
+	width: 252px;
+	padding: 10px;
+	margin: -1px 0 0 0;
+	background: #f6f6f6;
+	border: solid 1px #eee;
+	border-collapse: collapse;
+	display: none;
+}
+
+.house:hover {
+	background: #fff;
+	color: #2591cf;
+}
+
 /* House Page */
 
 .reviews h2 {

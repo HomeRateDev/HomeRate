@@ -11,23 +11,27 @@
 
 <p>Taking the nasty surprises out of renting.</p>
 
-<a href="/reviews/new_house">Add A New House?</a>
-
 <input type="text" class="searchBox"/>
 
 <ul class="houses">
 {% for house in houses %}
-    <li><a class="house" href="{% url 'house' house.id %}">{{ house }}</a></li>
+    <li class="house"><a href="{% url 'house' house.id %}">{{ house }}</a></li>
 {% endfor %}
 </ul>
+
+<a href="/reviews/new_house">Add A New House?</a>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
 <script>
 (function($) {
 	$(".searchBox").keyup(function() {
 		var query = $(this).val();
-		$("ul li:contains('" + query + "')").css("display","block");
-		$("ul li").not(":contains('" + query + "')").css("display","none");
+		if (query == "") {
+			$(".house").hide();
+		} else {
+			$("ul li:contains('" + query + "')").show();
+			$("ul li").not(":contains('" + query + "')").hide();
+		}
 	});
 })(jQuery);
 </script>
