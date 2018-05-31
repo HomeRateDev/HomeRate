@@ -7,12 +7,8 @@ notifications:
   on_success: never
   on_failure: never
 
-install:
-- python3 -m venv HRenv
-- source HRenv/bin/activate
-- sudo apt install python3-pip
-- pip3 --version
-- pip3 install django
+env:
+- DJANGO="2.0.*"
 
 script:
 - cd homerate/
