@@ -1,0 +1,25 @@
+language: python
+
+python:
+- '3.6'
+
+notifications:
+  on_success: never
+  on_failure: never
+
+env:
+- DJANGO="2.0.*"
+
+script:
+- cd homerate/
+- python3 manage.py makemigrations
+- python3 manage.py migrate
+- python3 manage.py test
+- cd ..
+
+after_success:
+- openssl aes-256-cbc -K $encrypted_e610fedd3ccc_key -iv $encrypted_e610fedd3ccc_iv
+  -in CI-CD/deploy_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- CI-CD/deploy.sh
+- rm ~/.ssh/id_rsa
