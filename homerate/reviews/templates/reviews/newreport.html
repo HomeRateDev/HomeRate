@@ -10,5 +10,11 @@
 {{ house.id }}<br>
 {{ house.date_created }}<br>
 
+    <h1>New Report</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ new_report_form.as_p }}
+        <button type="submit" class="save btn btn-default">Submit</button>
+    </form>
+
 </body>
 </html>
