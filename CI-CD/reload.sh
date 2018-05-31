@@ -1,4 +1,5 @@
 #!/bin/sh
+cd ..
 source ../.env/bin/activate
 cd homerate
 git pull origin master
