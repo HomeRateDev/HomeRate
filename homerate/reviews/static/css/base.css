@@ -11,8 +11,13 @@ ul {
 /* Site homepage */
 .searchBox {
 	width: 250px;
+	margin-bottom: -1px;
 	padding: 10px;
 	font-size: 18px;
+}
+
+.searchBox:focus {
+	outline: none;
 }
 
 .houses {
@@ -26,12 +31,18 @@ ul {
 	background: #f6f6f6;
 	border: solid 1px #eee;
 	border-collapse: collapse;
+	cursor: pointer;
 	display: none;
+}
+
+.house a {
+	color: #333;
+	text-decoration: none;
 }
 
 .house:hover {
 	background: #fff;
-	color: #2591cf;
+	font-weight: bold;
 }
 
 /* House Page */

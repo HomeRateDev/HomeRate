@@ -33,6 +33,9 @@
 			$("ul li").not(":contains('" + query + "')").hide();
 		}
 	});
+	$("li").click(function() {
+		window.location.href = $(this).children("a").attr("href");
+	});
 })(jQuery);
 </script>
 
