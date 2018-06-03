@@ -1,44 +1,38 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django import forms
 from django.db import models
-from django.forms import NumberInput, forms
 from django.utils import timezone
 
 # Create your models here.
 
 
-class IntegerRangeField(models.IntegerField):
-    def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
-        self.min_value, self.max_value = min_value, max_value
-        models.IntegerField.__init__(self, verbose_name, name, **kwargs)
+class RatingField(models.IntegerField):
 
-    def formfield(self, **kwargs):
-        defaults = {'min_value': self.min_value, 'max_value':self.max_value}
-        defaults.update(kwargs)
-        return super(IntegerRangeField, self).formfield(**defaults)
+    description = "A star rating from 1 to 5"
+    min_rating = 1
+    max_rating = 5
+    choices = [(i, i) for i in range(min_rating, max_rating + 1)]
 
-
-class RatingField(IntegerRangeField):
-    def __init__(self, verbose_name=None, name=None, mandatory=False, **kwargs):
+    def __init__(self, mandatory=False, *args, **kwargs):
         self.mandatory = mandatory
-        min_rating, max_rating, default_rating = 1, 5, 3
-        if mandatory:
-            IntegerRangeField.__init__(self, verbose_name, name, min_rating, max_rating, default=default_rating)
+        kwargs['choices'] = self.choices
+        if not self.mandatory:
+            kwargs['null'] = True
         else:
-            IntegerRangeField.__init__(self,
-                                       verbose_name,
-                                       name,
-                                       min_rating, max_rating,
-                                       default=default_rating,
-                                       blank=True,
-                                       null=True
-                                       )
+            kwargs['default'] = (self.max_rating + self.min_rating) / 2
+        super().__init__(*args, **kwargs)
 
-    def formfield(self, **kwargs):
-        defaults = {'widget': NumberInput(attrs={'type': 'range'})}
-        defaults.update(**kwargs)
-        return super().formfield(**defaults)
+    def deconstruct(self):
+        name, path, args, kwargs = super().deconstruct()
+        if self.mandatory:
+            kwargs['mandatory'] = self.mandatory
+        return name, path, args, kwargs
+
+    def formfield(self, form_class=None, choices_form_class=None, **kwargs):
+        kwargs['choices'] = self.choices
+        return forms.ChoiceField(**kwargs)
 
 
 class House(models.Model):

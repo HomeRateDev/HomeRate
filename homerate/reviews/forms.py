@@ -14,6 +14,3 @@ class HouseReportForm(forms.ModelForm):
     class Meta:
         model = HouseReport
         exclude = ['house_filed']
-        widgets = {
-            'landlord_responsiveness': NumberInput(attrs={'type': 'range'})
-        }
