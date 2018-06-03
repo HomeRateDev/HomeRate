@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
 
-from .forms import HouseForm, HouseReportForm
+from .forms import HouseForm, HouseReportForm, HouseDetailsForm
 from .models import House
 from .models import HouseReport
 # Create your views here.
@@ -33,26 +33,39 @@ def new_report(request, id):
         return render(request, 'reviews/nohouse.html', {})
     house = houses[0]
 
-    print(id)
-    print(house)
+    # Check a POST request has been received
+    if request.method == "POST":
+        house_details_form = HouseDetailsForm(request.POST)
+        review_form = HouseReportForm(request.POST)
 
-    if(request.method == "POST"):
-        print("post")
-        print(request.POST)
-        form = HouseReportForm(request.POST)
-        print(form)
-        if(form.is_valid()):
-            print("valid")
-            report = form.save(commit=False)
+        # Ensure both forms are valid
+        if house_details_form.is_valid() and review_form.is_valid():
+
+            # Prepare to save review, but don't commit to database yet
+            report = review_form.save(commit=False)
+
+            # Insert foreign key from House model
             report.house_filed = house
+
+            # Save house details
+            house_details_form.save()
+
+            # Commit review to database
             report.save()
-            print(report)
+
             return redirect('house', id=house.id)
         else:
             print("Form Error")
-            print(form.errors)
-    form = HouseReportForm()
-    return render(request, 'reviews/newreport.html', {'new_report_form' : form, 'house' : house})
+            print(review_form.errors)
+
+    house_details_form = HouseDetailsForm()
+    review_form = HouseReportForm()
+
+    return render(request, 'reviews/newreport.html', {
+                      'house_details_form': house_details_form,
+                      'new_report_form': review_form,
+                      'house': house,
+                  })
 
 
 def new_house(request):
