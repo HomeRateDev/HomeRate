@@ -19,15 +19,15 @@
     <ul class="basicInfo">
         <li class="infoItem">
             <img class="icon" src="{% static 'img/bed.svg' %}"/>
-            <span class="value">{{ house.bedrooms }}</span>
+            <span class="value">{{ house.bedrooms }}</s/5pan>
         </li>
         <li class="infoItem">
             <img class="icon" src="{% static 'img/bath.svg' %}"/>
-            <span class="value">{{ house.bathrooms }}</span>
+            <span class="value">{{ house.bathrooms }}</s/5pan>
         </li>
         <li class="infoItem">
             <img class="icon" src="{% static 'img/sofa.svg' %}"/>
-            <span class="value">{{ house.living_rooms }}</span>
+            <span class="value">{{ house.living_rooms }}</s/5pan>
         </li>
     </ul>
 </section>
@@ -38,13 +38,74 @@
     <ul class="reviewList">
     {% for review in reviews %}
         <li class="review">
-            <h3>Tenant who moved in on {{ review.moved_in_date }}</h3>
-            <p>{{ review.description }}</p>
-            <h4>Pros</h4>
-            <p>{{ review.pros }}</p>
-            <h4>Cons</h4>
-            <p>{{ review.cons }}</p>
-            <p>Monthly Rent: £{{ review.monthly_cost }}</p>
+            <h3>Tenant from {{ review.moved_in_date }} to {{ review.moved_out_date }}</h3>
+            <ul class="reviewPoints">
+                <li class="reviewPoint">
+                    <p class="label">Landlord Responsiveness</p>
+                    <p class="value">{{ review.landlord_responsiveness }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Repair Quality</p>
+                    <p class="value">{{ review.repair_quality }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Water Pressure</p>
+                    <p class="value">{{ review.water_pressure }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Utilities</p>
+                    <p class="value">{{ review.utilities }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Furniture Quality</p>
+                    <p class="value">{{ review.furniture_quality }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Mattress Quality</p>
+                    <p class="value">{{ review.mattress_quality }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Build Quality</p>
+                    <p class="value">{{ review.build_quality }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Quietness</p>
+                    <p class="value">{{ review.quietness }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Pest/Insect-free</p>
+                    <p class="value">{{ review.pest_free }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Smells</p>
+                    <p class="value">{{ review.smells }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Damp/Mould-free</p>
+                    <p class="value">{{ review.damp_mould_free }}/5</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Monthly Rent</p>
+                    <p class="value">£{{ review.monthly_rent }}</p>
+                </li>
+
+                <li class="reviewPoint">
+                    <p class="label">Monthly Bills</p>
+                    <p class="value">£{{ review.monthly_bills }}</p>
+                </li>
+
+            </ul>
         </li>
     {% endfor %}
     </ul>

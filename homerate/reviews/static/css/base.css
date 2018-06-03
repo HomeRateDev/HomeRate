@@ -90,14 +90,6 @@ ul {
 	display: inline-block;
 }
 
-.review:first-child {
-	border-top: solid 1px #ddd;
-}
-
-.review {
-	border-bottom: solid 1px #ddd;
-}
-
 .basicInfo {
 	padding: 20px;
 	background: #fff;
@@ -118,6 +110,39 @@ ul {
 
 .basicInfo .value {
 	margin-left: 10px;
+}
+
+/* House Page: Reviews */
+
+.review:first-child {
+	border-top: solid 1px #ddd;
+}
+
+.review {
+    padding: 10px 10px;
+	border-bottom: solid 1px #ddd;
+}
+
+.reviewPoint {
+    width: 40%;
+    display: inline-block;
+}
+
+.reviewPoint:nth-child(odd) {
+    margin-right: 7%;
+}
+
+.reviewPoint * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.reviewPoint .label {
+    font-weight: bold;
+}
+
+.reviewPoint .value {
+    float: right;
 }
 
 /* New Report Page */
