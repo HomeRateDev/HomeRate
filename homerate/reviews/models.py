@@ -22,6 +22,7 @@ class HouseReport(models.Model):
     house_filed = models.ForeignKey('reviews.House', on_delete=models.CASCADE)
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     moved_in_date = models.DateField(blank=True, null=True)
+    moved_out_date = models.DateField(blank=True, null=True)
     description = models.TextField()
     pros = models.TextField()
     cons = models.TextField()
