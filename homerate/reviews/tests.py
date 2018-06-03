@@ -29,13 +29,26 @@ class ReviewsTest(TestCase):
     def testMakeAndRecallHouseReport(self):
         house = House(address="13 NeverLand Lane", date_created=datetime.datetime(2018, 4, 3, tzinfo=UTC))
         house.save()
-        houseReport = HouseReport(house_filed=house, author=self.user_1,
-                                  moved_in_date=datetime.datetime(2018, 1, 3, tzinfo=UTC),
-                                  description="description",
-                                  pros="pros",
-                                  cons="cons",
-                                  monthly_cost=1000)
-        houseReport.save()
+        house_report = HouseReport(
+            house_filed=house,
+            author=self.user_1,
+            moved_in_date=datetime.datetime(2018, 1, 3, tzinfo=UTC),
+            moved_out_date=datetime.datetime(2018, 12, 10, tzinfo=UTC),
+            landlord_responsiveness=3,
+            repair_quality=3,
+            water_pressure=3,
+            utilities=3,
+            furniture_quality=3,
+            mattress_quality=3,
+            build_quality=3,
+            quietness=3,
+            pest_free=3,
+            smells=3,
+            damp_mould_free=3,
+            monthly_rent=2000,
+            monthly_bills=10,
+        )
+        house_report.save()
         reports = HouseReport.objects.filter(house_filed=house)
         self.assertEqual(len(reports), 1)
-        self.assertEquals(reports[0], houseReport)
+        self.assertEquals(reports[0], house_report)
