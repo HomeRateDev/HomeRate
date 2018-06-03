@@ -8,13 +8,15 @@
 </head>
 <body class="newReview">
 
-<h1>Add New Review</h1>
-<p class="address">{{ house.address }}</p>
-<form method="POST" class="reviewForm form">{% csrf_token %}
-    {{ house_details_form.as_p }}
-    {{ new_report_form.as_p }}
-    <button type="submit" class="save btn btn-default">Submit</button>
-</form>
+<div class="container">
+    <h1>Add New Review</h1>
+    <p class="address">{{ house.address }}</p>
+    <form method="POST" class="reviewForm form">{% csrf_token %}
+        {{ house_details_form.as_p }}
+        {{ new_report_form.as_p }}
+        <button type="submit" class="save btn btn-default">Submit</button>
+    </form>
+</div>
 
 </body>
 </html>

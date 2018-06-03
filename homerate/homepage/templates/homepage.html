@@ -7,19 +7,21 @@
 </head>
 <body>
 
-<h1>HomeRate</h1>
+<div class="container">
+    <h1>HomeRate</h1>
 
-<p>Taking the nasty surprises out of renting.</p>
+    <p>Taking the nasty surprises out of renting.</p>
 
-<input type="text" class="searchBox"/>
+    <input type="text" class="searchBox"/>
 
-<ul class="houses">
-{% for house in houses %}
-    <li class="house"><a href="{% url 'house' house.id %}">{{ house }}</a></li>
-{% endfor %}
-</ul>
+    <ul class="houses">
+    {% for house in houses %}
+        <li class="house"><a href="{% url 'house' house.id %}">{{ house }}</a></li>
+    {% endfor %}
+    </ul>
 
-<a href="/reviews/new_house">Add A New House?</a>
+    <a href="/reviews/new_house">Add A New House?</a>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
 <script>

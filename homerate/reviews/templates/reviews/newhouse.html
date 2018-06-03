@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
 </head>
 <body>
-    <h1>New House</h1>
-    <form method="POST" class="form">{% csrf_token %}
-        {{ new_house_form.as_p }}
-        <button type="submit" class="save btn btn-default">Submit</button>
-    </form>
+    <div class="container">
+        <h1>New House</h1>
+        <form method="POST" class="form">{% csrf_token %}
+            {{ new_house_form.as_p }}
+            <button type="submit" class="save btn btn-default">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
