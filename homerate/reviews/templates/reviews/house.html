@@ -8,13 +8,27 @@
 </head>
 <body class="housePage">
 
+<div class="container">
+
 <section class="houseInfo">
-    <h2>House Information</h2>
-    <ul>
-        <li><strong>Address:</strong> {{ house.address }}</li>
-        <li><strong>Bedrooms:</strong> {{ house.bedrooms }}</li>
-        <li><strong>Bathrooms:</strong> {{ house.bathrooms }}</li>
-        <li><strong>Living Rooms:</strong> {{ house.living_rooms }}</li>
+    <header class="houseHeader">
+        <h2 class="houseAddress">{{ house.address }}</h2>
+        <p class="averageStars">5 stars</p>
+        <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
+    </header>
+    <ul class="basicInfo">
+        <li class="infoItem">
+            <img class="icon" src="{% static 'img/bed.svg' %}"/>
+            <span class="value">{{ house.bedrooms }}</span>
+        </li>
+        <li class="infoItem">
+            <img class="icon" src="{% static 'img/bath.svg' %}"/>
+            <span class="value">{{ house.bathrooms }}</span>
+        </li>
+        <li class="infoItem">
+            <img class="icon" src="{% static 'img/sofa.svg' %}"/>
+            <span class="value">{{ house.living_rooms }}</span>
+        </li>
     </ul>
 </section>
 
@@ -35,6 +49,8 @@
     {% endfor %}
     </ul>
 </section>
+
+</div>
 
 </body>
 </html>
