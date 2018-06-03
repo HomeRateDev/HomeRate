@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ house.address }}</title>
+    <title>{{ house.address }} | HomeRate</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
 </head>
 <body class="housePage">
@@ -11,9 +11,10 @@
 <section class="houseInfo">
     <h2>House Information</h2>
     <ul>
-    <li><strong>Address:</strong> {{ house.address }}</li>
-    <li><strong>House ID:</strong> {{ house.id }}</li>
-    <li><strong>Date Created:</strong> {{ house.date_created }}</li>
+        <li><strong>Address:</strong> {{ house.address }}</li>
+        <li><strong>Bedrooms:</strong> {{ house.bedrooms }}</li>
+        <li><strong>Bathrooms:</strong> {{ house.bathrooms }}</li>
+        <li><strong>Living Rooms:</strong> {{ house.living_rooms }}</li>
     </ul>
 </section>
 
