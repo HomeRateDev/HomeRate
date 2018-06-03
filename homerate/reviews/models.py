@@ -9,6 +9,9 @@ from django.utils import timezone
 class House(models.Model):
     address = models.CharField(max_length=200)
     date_created = models.DateTimeField(default=timezone.now)
+    bedrooms = models.IntegerField(default=0)
+    bathrooms = models.IntegerField(default=0)
+    living_rooms = models.IntegerField(default=0)
 
     def __str__(self):
         return self.address
