@@ -13,7 +13,7 @@
 <section class="houseInfo">
     <header class="houseHeader">
         <h2 class="houseAddress">{{ house.address }}</h2>
-        <p class="averageStars">5 stars</p>
+        <p class="averageStars">{{rating}} stars</p>
         <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
     </header>
     <ul class="basicInfo">
@@ -38,7 +38,7 @@
     <ul class="reviewList">
     {% for review in reviews %}
         <li class="review">
-            <h3>Tenant from {{ review.moved_in_date }} to {{ review.moved_out_date }}</h3>
+            <h3>Tenant from {{ review.moved_in_date }} to {{ review.moved_out_date }}  <a class="averageStars">{{review.general_rating}} stars</a> </h3>
             <ul class="reviewPoints">
                 <li class="reviewPoint">
                     <p class="label">Landlord Responsiveness</p>

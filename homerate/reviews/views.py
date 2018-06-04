@@ -18,10 +18,13 @@ def house(request, id):
 
     house = houses[0]
     # Query database for reports about the house.
-    reviews = HouseReport.objects.filter(house_filed = house)
+    reviews = HouseReport.objects.filter(house_filed = house).order_by('-moved_out_date')
+    for report in reviews:
+        report.get_general_rating()
+    rating = house.star_rating()
 
     # return house view page with house and list of reports
-    return render(request, 'reviews/house.html', {'house' : house, 'reviews' : reviews})
+    return render(request, 'reviews/house.html', {'house' : house, 'reviews' : reviews, 'rating':rating})
 
 
 def new_report(request, id):
