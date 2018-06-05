@@ -10,7 +10,6 @@
 <section class="houseInfo">
     <header class="houseHeader">
         <h2 class="houseAddress">{{ house.address }}, {{ user.username }}</h2>
-        <a href="/accounts/logout">Logout</a>
         <p class="averageStars">{{ rating }} stars</p>
         <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
     </header>
