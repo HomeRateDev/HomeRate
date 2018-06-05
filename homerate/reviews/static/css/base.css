@@ -62,10 +62,26 @@ a.topBarName:hover {
 
 .topBarUser {
     float: right;
-    height: 100%;
+    height: 45px;
     line-height: 45px;
     font-size: 16px;
 }
+.topBarUser a {
+    height: 45px;
+    color: black;
+    text-decoration: none;
+}
+
+.topBarUser a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.topBarUser a:hover {
+    color: #505050;
+    text-decoration: none;
+}
+
 
 .topBarLogo {
     float: left;
