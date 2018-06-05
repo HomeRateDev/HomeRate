@@ -1,12 +1,10 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New House</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
-</head>
-<body>
+{% extends 'homepage/base.html' %}
+{% load staticfiles%}
+
+{% block title %}
+New House
+{% endblock %}
+{% block content %}
     <div class="container">
         <h1>New House</h1>
         <form method="POST" class="form">{% csrf_token %}
@@ -14,5 +12,4 @@
             <button type="submit" class="save btn btn-default">Submit</button>
         </form>
     </div>
-</body>
-</html>
+{% endblock %}

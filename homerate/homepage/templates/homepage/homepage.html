@@ -1,11 +1,9 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>HomeRate | Surprise-free Renting</title>
-	<link rel="stylesheet" href="{% static 'css/base.css' %}"/>
-</head>
-<body>
+{% extends 'homepage/base.html' %}
+
+{% block title %}
+HomeRate | Surprise-free Renting
+{% endblock %}
+{% block content %}
 
 <div class="container">
     <h1>HomeRate</h1>
@@ -47,5 +45,4 @@
 })(jQuery);
 </script>
 
-</body>
-</html>
+{% endblock %}

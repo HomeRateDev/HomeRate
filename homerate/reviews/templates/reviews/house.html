@@ -1,19 +1,17 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ house.address }} | HomeRate</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
-</head>
-<body class="housePage">
+{% extends 'homepage/base.html' %}
+{% load staticfiles%}
 
+{% block title %}
+{{ house.address }}
+{% endblock %}
+{% block content %}
 <div class="container">
 
 <section class="houseInfo">
     <header class="houseHeader">
-        <h2 class="houseAddress">{{ house.address }}</h2>
-        <p class="averageStars">{{rating}} stars</p>
+        <h2 class="houseAddress">{{ house.address }}, {{ user.username }}</h2>
+        <a href="/accounts/logout">Logout</a>
+        <p class="averageStars">{{ rating }} stars</p>
         <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
     </header>
     <ul class="basicInfo">
@@ -113,5 +111,4 @@
 
 </div>
 
-</body>
-</html>
+{% endblock %}

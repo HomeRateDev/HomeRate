@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %} SITE NAME {% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+</head>
+<body>
+    <div class="topBar">
+        <img class="topBarLogo" src="{% static 'img/bed.svg' %}">
+        <a class="topBarName" href="/">HomeRate</a>
+        <div class="topBarUser">user: {{ user.username }} <a href="/accounts/logout">Logout</a> </div>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

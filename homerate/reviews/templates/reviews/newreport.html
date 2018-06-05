@@ -1,12 +1,10 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New Report</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
-</head>
-<body class="newReview">
+{% extends 'homepage/base.html' %}
+{% load staticfiles%}
+
+{% block title %}
+New Report
+{% endblock %}
+{% block content %}
 
 <div class="container">
     <h1>Add New Review</h1>
@@ -17,6 +15,4 @@
         <button type="submit" class="save btn btn-default">Submit</button>
     </form>
 </div>
-
-</body>
-</html>
+{% endblock %}
