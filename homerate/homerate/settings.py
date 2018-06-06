@@ -125,3 +125,9 @@ LOGIN_REDIRECT_URL = 'homepage'
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'homerate.activation@gmail.com' 
+EMAIL_HOST_PASSWORD = os.environ['HOMERATE_ACTIVATION_PASSWORD']
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
