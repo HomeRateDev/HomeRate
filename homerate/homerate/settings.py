@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sass_processor',
     'reviews',
     'homepage',
     'profiles' 
@@ -126,8 +127,14 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+]
+
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'homerate.activation@gmail.com' 
+EMAIL_HOST_USER = 'homerate.activation@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ['HOMERATE_ACTIVATION_PASSWORD']
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
