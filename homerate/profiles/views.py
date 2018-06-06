@@ -24,7 +24,7 @@ def sign_up(request):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            subject = 'Activate your blog account.'
+            subject = 'Activate your HomeRate account.'
             message = render_to_string('registration/account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,
