@@ -32,7 +32,7 @@ class RatingField(models.IntegerField):
 
     def formfield(self, form_class=None, choices_form_class=None, **kwargs):
         kwargs['choices'] = self.choices
-        return forms.ChoiceField(**kwargs)
+        return forms.ChoiceField(widget=forms.Select(attrs={'class': 'starRating'}), **kwargs)
 
 
 class House(models.Model):
