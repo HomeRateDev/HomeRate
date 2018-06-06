@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+import os
 
 # Create your views here.
 def sign_up(request):
@@ -14,6 +15,7 @@ def sign_up(request):
             user.is_active = False
             user.email = user.username
             user.save()
+            user.email_user("test","testing")
             return redirect('homepage')
     else:
         form = UserCreationForm()
