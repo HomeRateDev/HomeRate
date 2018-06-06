@@ -1,9 +1,10 @@
 {% load staticfiles %}
+{% load sass_tags %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %} SITE NAME {% endblock %}</title>
-	<link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+	<link rel="stylesheet" href="{% sass_src 'css/base.scss' %}"/>
 
     {% block head %}
     {% endblock %}

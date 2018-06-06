@@ -1,0 +1,193 @@
+/* General Styles */
+body {
+  background: #f6f8fa;
+  font-family: Arial;
+  padding: 0;
+  margin: 0; }
+
+ul {
+  list-style: none;
+  padding: 0; }
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px; }
+
+.button {
+  padding: 10px 15px;
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.1s ease-in-out; }
+
+.button:hover {
+  opacity: 0.7; }
+
+.button:active {
+  opacity: 1;
+  transform: translateY(1px); }
+
+.topBar {
+  background: #3269c1;
+  height: 45px;
+  margin: 0;
+  padding-left: 5%;
+  padding-right: 5%;
+  overflow: hidden;
+  text-align: left;
+  vertical-align: middle;
+  line-height: 45px;
+  font-size: 30px; }
+
+a.topBarName {
+  color: black;
+  text-decoration: none; }
+
+a.topBarName:visited {
+  color: black;
+  text-decoration: none; }
+
+a.topBarName:hover {
+  background: #4279d1; }
+
+.topBarUser {
+  float: right;
+  height: 45px;
+  line-height: 45px;
+  font-size: 16px; }
+
+.topBarUser a {
+  height: 45px;
+  color: black;
+  text-decoration: none; }
+
+.topBarUser a:visited {
+  color: black;
+  text-decoration: none; }
+
+.topBarUser a:hover {
+  color: #505050;
+  text-decoration: none; }
+
+.topBarLogo {
+  float: left;
+  height: 45px;
+  margin-left: 5px;
+  margin-right: 5px; }
+
+/* Site homepage */
+.searchBox {
+  width: 250px;
+  margin-bottom: -1px;
+  padding: 10px;
+  font-size: 18px; }
+
+.searchBox:focus {
+  outline: none; }
+
+.houses {
+  margin-top: 0; }
+
+.house {
+  width: 252px;
+  padding: 10px;
+  margin: -1px 0 0 0;
+  background: #f6f6f6;
+  border: solid 1px #eee;
+  border-collapse: collapse;
+  cursor: pointer;
+  display: none; }
+
+.house a {
+  color: #333;
+  text-decoration: none; }
+
+.house:hover {
+  background: #fff;
+  font-weight: bold; }
+
+/* House Page */
+.houseHeader * {
+  margin-right: 15px;
+  display: inline-block; }
+
+.averageStars {
+  padding: 10px;
+  background: gold; }
+
+.reviews h2 {
+  margin-right: 5px;
+  margin-bottom: 0;
+  display: inline-block; }
+
+.addReview.button {
+  display: inline-block; }
+
+.basicInfo {
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  text-align: center; }
+
+.infoItem {
+  padding: 0 40px;
+  display: inline-block; }
+
+.basicInfo .icon {
+  width: 50px;
+  display: inline-block;
+  vertical-align: middle; }
+
+.basicInfo .value {
+  margin-left: 10px; }
+
+/* House Page: Reviews */
+.review:first-child {
+  border-top: solid 1px #ddd; }
+
+.review {
+  padding: 10px 10px;
+  border-bottom: solid 1px #ddd; }
+
+.reviewPoint {
+  width: 40%;
+  display: inline-block; }
+
+.reviewPoint:nth-child(odd) {
+  margin-right: 7%; }
+
+.reviewPoint * {
+  display: inline-block;
+  vertical-align: middle; }
+
+.reviewPoint .label {
+  font-weight: bold; }
+
+.reviewPoint .value {
+  float: right; }
+
+/* New Report Page */
+.address {
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #444;
+  border-bottom: solid 1px #ddd; }
+
+.form {
+  max-width: 400px; }
+
+.form label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  display: block; }
+
+.form textarea {
+  height: 70px; }
+
+.form input[type=text], .form input[type=number], .form button {
+  padding: 10px; }
+
+/*# sourceMappingURL=../../../../../../../../../../../../../static/css/base.css.map */

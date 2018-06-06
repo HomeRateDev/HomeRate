@@ -1,12 +1,13 @@
 {% extends 'homepage/base.html' %}
 {% load staticfiles%}
+{% load sass_tags %}
 
 {% block title %}
 New Report
 {% endblock %}
 {% block head %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-<link rel="stylesheet" href="{% static 'css/stars.css' %}">
+<link rel="stylesheet" href="{% sass_src 'css/stars.scss' %}">
 {% endblock %}
 {% block content %}
 
