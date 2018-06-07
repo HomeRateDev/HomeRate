@@ -1,32 +1,37 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 from .forms import HouseForm, HouseReportForm, HouseDetailsForm
 from .models import House
 from .models import HouseReport
 # Create your views here.
 
-
 def house(request, id):
-    # Query database for house with correct id
-    houses = House.objects.filter(id=id)
+    if request.user.is_authenticated:	
+        # Query database for house with correct id
+        houses = House.objects.filter(id=id)
 
-    # If no house found return a no house page
-    # TODO make this it's own view and redirect instead
-    if len(houses) == 0:
-        return render(request, 'reviews/nohouse.html', {})
+        # If no house found return a no house page
+        # TODO make this it's own view and redirect instead
+        if len(houses) == 0:
+            return render(request, 'reviews/nohouse.html', {})
 
-    house = houses[0]
-    # Query database for reports about the house.
-    reviews = HouseReport.objects.filter(house_filed = house).order_by('-moved_out_date')
-    for report in reviews:
-        report.get_general_rating()
-    rating = house.star_rating()
+        house = houses[0]
+        # Query database for reports about the house.
+        reviews = HouseReport.objects.filter(house_filed = house).order_by('-moved_out_date')
+        for report in reviews:
+            report.get_general_rating()
+        rating = house.star_rating()
 
-    # return house view page with house and list of reports
-    return render(request, 'reviews/house.html', {'house' : house, 'reviews' : reviews, 'rating':rating})
+        # return house view page with house and list of reports
+        return render(request, 'reviews/house.html', {'house' : house, 'reviews' : reviews, 'rating':rating})
+    else:
+        return render(request, 'reviews/login_to_view_reports.html')
+        
+        
 
-
+@login_required
 def new_report(request, id):
     # Get relevant house
     houses = House.objects.filter(id=id)
@@ -71,6 +76,7 @@ def new_report(request, id):
                   })
 
 
+@login_required
 def new_house(request):
     if(request.method == "POST"):
         form = HouseForm(request.POST)

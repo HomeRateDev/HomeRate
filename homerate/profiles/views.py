@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from profiles.forms import SignupForm
 
 from profiles.tokens import account_activation_token
@@ -54,6 +55,8 @@ def activate(request, uidb64, token):
 def account_activation_sent(request):
     return render(request, 'registration/please_activate.html')
 
-
 def profile(request):
-    return render(request, 'profiles/profile.html')
+    if request.user.is_authenticated:
+        return render(request, 'profiles/profile.html')
+    else:
+        return render(request, 'profiles/signin_to_view.html')

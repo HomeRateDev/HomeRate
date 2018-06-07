@@ -18,7 +18,9 @@ HomeRate | Surprise-free Renting
     {% endfor %}
     </ul>
 
+    {% if user.is_authenticated %}
     <a href="/reviews/new_house">Add A New House?</a>
+    {% endif %}
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
