@@ -40,6 +40,8 @@
                 <a class="addReview button" href="{% url 'edit_report' id=review.pk %}">Edit</a>
                 <a class="addReview button" href="{% url 'delete_report' id=review.pk %}">Delete</a>
                 {% endif %} </h3>
+            <img src="{{ review.image.url }}"/>
+
             <ul class="reviewPoints">
                 <li class="reviewPoint">
                     <p class="label">Landlord Responsiveness</p>

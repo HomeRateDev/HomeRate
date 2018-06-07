@@ -87,6 +87,8 @@ class HouseReport(models.Model):
     smells_weight = 1
     damp_mould_free_weight = 2
 
+    # Image
+    image = models.ImageField(upload_to='media/%Y/%m/%d/%s', default='default.png', blank=True, null=True)
 
     # Basic Info
     house_filed = models.ForeignKey('reviews.House', on_delete=models.CASCADE)
