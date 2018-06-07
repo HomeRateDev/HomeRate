@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
@@ -94,3 +94,43 @@ def new_house(request):
             return redirect('new_report', id=house.id)
     form = HouseForm()
     return render(request, 'reviews/newhouse.html', {'new_house_form' : form})
+
+@login_required
+def edit_report(request, id):
+    report = get_object_or_404(HouseReport, pk=id)
+    house = report.house_filed
+
+    if request.method == "POST":
+        house_details_form = HouseDetailsForm(request.POST, instance=report)
+        review_form = HouseReportForm(request.POST, instance=report)
+
+        # Ensure both forms are valid
+        if house_details_form.is_valid() and review_form.is_valid():
+
+            # Prepare to save review, but don't commit to database yet
+            report = review_form.save(commit=False)
+
+            # Insert foreign key from House model
+            report.house_filed = house
+
+            # Save house details
+            house_details_form.save()
+
+            report.author = request.user
+
+            # Commit review to database
+            report.save()
+
+            return redirect('house', id=house.id)
+        else:
+            print("Form Error")
+            print(review_form.errors)
+    else:
+        house_details_form = HouseDetailsForm(instance=house)
+        review_form = HouseReportForm(instance=report)
+
+        return render(request, 'reviews/newreport.html', {
+            'house_details_form': house_details_form,
+            'new_report_form': review_form,
+            'house': house,
+        })
