@@ -25,11 +25,24 @@ New Report
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
 <script type="text/javascript">
-   $(function() {
+   (function($) {
+     $(function() {
       $('.starRating').barrating({
-        theme: 'fontawesome-stars'
+        theme: 'fontawesome-stars',
+        allowEmpty: true,
+        initialRating: 0,
+        showSelectedRating: true,
+        deselectable: true
       });
-   });
+     });
+
+      $(function() {
+      $('.starRatingMandatory').barrating({
+        theme: 'fontawesome-stars',
+      });
+     });
+   })(jQuery);
+
 </script>
 
 

@@ -13,15 +13,16 @@ class RatingField(models.IntegerField):
     description = "A star rating from 1 to 5"
     min_rating = 1
     max_rating = 5
-    choices = [(i, i) for i in range(min_rating, max_rating + 1)]
 
     def __init__(self, mandatory=False, *args, **kwargs):
         self.mandatory = mandatory
-        kwargs['choices'] = self.choices
+        self.choices = [(i, i) for i in range(self.min_rating, self.max_rating + 1)]
         if not self.mandatory:
             kwargs['null'] = True
+            self.choices = [(None, 0)] + self.choices
         else:
             kwargs['default'] = (self.max_rating + self.min_rating) / 2
+        kwargs['choices'] = self.choices
         super().__init__(*args, **kwargs)
 
     def deconstruct(self):
@@ -32,7 +33,10 @@ class RatingField(models.IntegerField):
 
     def formfield(self, form_class=None, choices_form_class=None, **kwargs):
         kwargs['choices'] = self.choices
-        return forms.ChoiceField(widget=forms.Select(attrs={'class': 'starRating'}), **kwargs)
+        class_string = "starRating"
+        if self.mandatory:
+            class_string += "Mandatory"
+        return forms.ChoiceField(widget=forms.Select(attrs={'class': class_string}), **kwargs)
 
 
 class House(models.Model):
