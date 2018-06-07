@@ -1,7 +1,18 @@
 /* General Styles */
+
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700');
+
+$backgroundColour: #f6f8fa;
+$mainTextColour: #313951;
+$cornerRadius: 8px;
+$shadowColour: #576f92;
+$borderColour: #d8e4ea;
+
 body {
-  background: #f6f8fa;
-  font-family: Arial;
+  background: $backgroundColour;
+  color: $mainTextColour;
+  font-family: 'Source Sans Pro', sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -14,7 +25,7 @@ ul {
 .container {
   max-width: 960px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 0 5%;
 }
 
 .button {
@@ -35,7 +46,7 @@ ul {
 }
 
 .topBar {
-  background: #3269c1;
+  background: #fff;
   height: 45px;
   margin: 0;
   padding-left: 5%;
@@ -92,14 +103,41 @@ a.topBarName {
 }
 
 /* Site homepage */
+.homepage {
+  text-align: center;
+  .homepageHeader {
+    margin-top: 100px;
+  }
+  .title {
+    margin-bottom: 10px;
+    font: {
+      size: 3em;
+      weight: 600;
+    }
+  }
+  .tagline {
+    margin-top: 0;
+    font-size: 1.5em;
+  }
+}
+
 .searchBox {
   width: 250px;
   margin-bottom: -1px;
-  padding: 10px;
+  padding: 20px;
   font-size: 18px;
+  border: none;
+  border-radius: $cornerRadius;
+  box-shadow: 0 2px 8px rgba($shadowColour, 0.08);
+  transition: box-shadow 0.1s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 5px 8px rgba($shadowColour, 0.1);
+  }
 
   &:focus {
     outline: none;
+    box-shadow: 0 5px 10px rgba($shadowColour, 0.1), 0 0 0 1px $borderColour;
   }
 }
 
@@ -177,12 +215,12 @@ a.topBarName {
 /* House Page: Reviews */
 
 .review:first-child {
-  border-top: solid 1px #ddd;
+  border-top: solid 1px $borderColour;
 }
 
 .review {
   padding: 10px 10px;
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px $borderColour;
 }
 
 .reviewPoint {
@@ -216,7 +254,7 @@ a.topBarName {
   font-size: 22px;
   font-weight: bold;
   color: #444;
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px $borderColour;
 }
 
 .form {
