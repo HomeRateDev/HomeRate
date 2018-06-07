@@ -35,7 +35,7 @@
     <ul class="reviewList">
     {% for review in reviews %}
         <li class="review">
-            <h3>Tenant from {{ review.moved_in_date }} to {{ review.moved_out_date }}  <a class="averageStars">{{review.general_rating}} stars</a>
+            <h3>{{ review.moved_in_date }} to {{ review.moved_out_date }}  <a class="averageStars">{{review.general_rating}} stars</a>
                 {% if user == review.author %}
                 <a class="addReview button" href="{% url 'edit_report' id=review.pk %}">Edit</a>
                 <a class="addReview button" href="{% url 'delete_report' id=review.pk %}">Delete</a>
