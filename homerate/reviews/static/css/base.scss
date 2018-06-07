@@ -1,5 +1,4 @@
 /* General Styles */
-
 @import url('https://fonts.googleapis.com/css?family=Cabin');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700');
 
@@ -105,9 +104,11 @@ a.topBarName {
 /* Site homepage */
 .homepage {
   text-align: center;
+
   .homepageHeader {
     margin-top: 100px;
   }
+
   .title {
     margin-bottom: 10px;
     font: {
@@ -115,16 +116,21 @@ a.topBarName {
       weight: 600;
     }
   }
+
   .tagline {
     margin-top: 0;
+    color: lighten($mainTextColour, 20%);
     font-size: 1.5em;
   }
 }
 
+$searchBoxWidth: 250px;
+$searchPadding: 20px;
+
 .searchBox {
-  width: 250px;
+  width: $searchBoxWidth;
   margin-bottom: -1px;
-  padding: 20px;
+  padding: $searchPadding;
   font-size: 18px;
   border: none;
   border-radius: $cornerRadius;
@@ -141,28 +147,41 @@ a.topBarName {
   }
 }
 
-.houses {
-  margin-top: 0;
-}
+.autocomplete {
+  width: $searchBoxWidth + 2 * $searchPadding;
+  visibility: hidden;
+  margin: 20px auto 30px auto;
+  border-radius: $cornerRadius;
+  overflow: hidden;
+  box-shadow: 0 5px 8px rgba($shadowColour, 0.1);
 
-.house {
-  width: 252px;
-  padding: 10px;
-  margin: -1px 0 0 0;
-  background: #f6f6f6;
-  border: solid 1px #eee;
-  border-collapse: collapse;
-  cursor: pointer;
-  display: none;
-
-  &:hover {
+  .entry {
+    width: $searchBoxWidth;
+    padding: $searchPadding;
+    margin: -1px auto 0 auto;
     background: #fff;
-    font-weight: bold;
-  }
+    border-collapse: collapse;
+    cursor: pointer;
+    display: none;
+    transition: opacity 0.1s ease-in-out;
 
-  a {
-    color: #333;
-    text-decoration: none;
+    &:first-child {
+      // padding-top: $searchPadding + $cornerRadius;
+    }
+
+    &:last-child {
+      border-radius: 0 0 $cornerRadius $cornerRadius;
+    }
+
+    &:hover {
+      background: rgba(#fff, 0.5);
+      font-weight: 600;
+    }
+
+    a {
+      color: #333;
+      text-decoration: none;
+    }
   }
 }
 
