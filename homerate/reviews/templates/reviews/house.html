@@ -4,8 +4,22 @@
 {% block title %}
 {{ house.address }}
 {% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
+{% endblock %}
+
 {% block content %}
 <div class="container">
+
+<section class="gallery">
+    <div class="galleryWrapper">
+        {% for review in reviews %}
+            <img src="{{ review.image.url }}" />
+        {% endfor %}
+    </div>
+</section>
 
 <section class="houseInfo">
     <header class="houseHeader">
@@ -40,7 +54,6 @@
                 <a class="addReview button" href="{% url 'edit_report' id=review.pk %}">Edit</a>
                 <a class="addReview button" href="{% url 'delete_report' id=review.pk %}">Delete</a>
                 {% endif %} </h3>
-            <img src="{{ review.image.url }}"/>
 
             <ul class="reviewPoints">
                 <li class="reviewPoint">
@@ -161,4 +174,11 @@
 
 </div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="{% static 'slick/slick.min.js' %}"></script>
+<script>
+    (function($) {
+        $(".galleryWrapper").slick();
+    })(jQuery);
+</script>
 {% endblock %}

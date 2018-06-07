@@ -210,6 +210,21 @@ $searchPadding: 20px;
   }
 }
 
+/* House Page: Gallery */
+.galleryWrapper {
+  max-width: 900px;
+  margin: 30px auto;
+
+  .slick-prev:before, .slick-next:before {
+    color: $mainTextColour;
+  }
+}
+
+.slick-track {
+  max-height: 400px;
+  overflow: hidden;
+}
+
 /* House Page: Reviews */
 
 .review:first-child {
