@@ -8,7 +8,7 @@ from django.utils import timezone
 # Create your models here.
 
 
-class RatingField(models.IntegerField):
+class RatingField(models.CharField):
 
     description = "A star rating from 1 to 5"
     min_rating = 1
@@ -16,13 +16,16 @@ class RatingField(models.IntegerField):
 
     def __init__(self, mandatory=False, *args, **kwargs):
         self.mandatory = mandatory
-        self.choices = [(i, i) for i in range(self.min_rating, self.max_rating + 1)]
+        self.choices = [(str(i), i) for i in range(self.min_rating, self.max_rating + 1)]
         if not self.mandatory:
-            kwargs['null'] = True
-            self.choices = [(None, 0)] + self.choices
+            self.choices = [("", 0)] + self.choices
         else:
             kwargs['default'] = (self.max_rating + self.min_rating) / 2
+
         kwargs['choices'] = self.choices
+        kwargs['blank'] = True
+        kwargs['null'] = True
+        kwargs['max_length'] = 1
         super().__init__(*args, **kwargs)
 
     def deconstruct(self):
@@ -140,38 +143,38 @@ class HouseReport(models.Model):
     def get_general_rating(self):
         total_report_weight = 0
         rating = 0
-        if hasattr(self, 'landlord_responsiveness'):
-            rating += self.landlord_responsiveness * HouseReport.landlord_responsiveness_weight
+        if hasattr(self, 'landlord_responsiveness') and self.landlord_responsiveness is not '':
+            rating += int(self.landlord_responsiveness) * HouseReport.landlord_responsiveness_weight
             total_report_weight += HouseReport.landlord_responsiveness_weight
-        if hasattr(self, 'repare_quality'):
-            rating += self.repare_quality * HouseReport.repair_quality_weight
+        if hasattr(self, 'repair_quality') and self.repair_quality is not '':
+            rating += int(self.repair_quality) * HouseReport.repair_quality_weight
             total_report_weight += HouseReport.repair_quality_weight
-        if hasattr(self, 'water_pressure'):
-            rating += self.water_pressure * HouseReport.water_pressure_weight
+        if hasattr(self, 'water_pressure') and self.water_pressure is not '':
+            rating += int(self.water_pressure) * HouseReport.water_pressure_weight
             total_report_weight += HouseReport.water_pressure_weight
-        if hasattr(self, 'utilities'):
-            rating += self.utilities * HouseReport.utilities_weight
+        if hasattr(self, 'utilities') and self.utilities is not '':
+            rating += int(self.utilities) * HouseReport.utilities_weight
             total_report_weight += HouseReport.utilities_weight
-        if hasattr(self, 'furniture_quality'):
-            rating += self.furniture_quality * HouseReport.furniture_quality_weight
+        if hasattr(self, 'furniture_quality') and self.furniture_quality is not '':
+            rating += int(self.furniture_quality) * HouseReport.furniture_quality_weight
             total_report_weight += HouseReport.furniture_quality_weight
-        if hasattr(self, 'mattress_quality'):
-            rating += self.mattress_quality * HouseReport.mattress_quality_weight
+        if hasattr(self, 'mattress_quality') and self.mattress_quality is not '':
+            rating += int(self.mattress_quality) * HouseReport.mattress_quality_weight
             total_report_weight += HouseReport.mattress_quality_weight
-        if hasattr(self, 'build_quality'):
-            rating += self.build_quality * HouseReport.build_quality_weight
+        if hasattr(self, 'build_quality') and self.build_quality is not '':
+            rating += int(self.build_quality) * HouseReport.build_quality_weight
             total_report_weight += HouseReport.build_quality_weight
-        if hasattr(self, 'quietness'):
-            rating += self.quietness * HouseReport.quietness_weight
+        if hasattr(self, 'quietness') and self.quietness is not '':
+            rating += int(self.quietness) * HouseReport.quietness_weight
             total_report_weight += HouseReport.quietness_weight
-        if hasattr(self, 'pest_free'):
-            rating += self.pest_free * HouseReport.pest_free_weight
+        if hasattr(self, 'pest_free') and self.pest_free is not '':
+            rating += int(self.pest_free) * HouseReport.pest_free_weight
             total_report_weight += HouseReport.pest_free_weight
-        if hasattr(self, 'smells'):
-            rating += self.smells * HouseReport.smells_weight
+        if hasattr(self, 'smells') and self.smells is not '':
+            rating += int(self.smells) * HouseReport.smells_weight
             total_report_weight += HouseReport.smells_weight
-        if hasattr(self, 'damp_mould_free'):
-            rating += self.damp_mould_free * HouseReport.damp_mould_free_weight
+        if hasattr(self, 'damp_mould_free') and self.damp_mould_free is not '':
+            rating += int(self.damp_mould_free) * HouseReport.damp_mould_free_weight
             total_report_weight += HouseReport.damp_mould_free_weight
         rating = rating / total_report_weight
         self.general_rating = round(rating*10)/10
