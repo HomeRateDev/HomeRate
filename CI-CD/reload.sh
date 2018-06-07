@@ -1,6 +1,7 @@
 #!/bin/sh
 cd ..
 source ../.env/bin/activate
+yes | pip install -r requirements.txt
 cd homerate
 git pull origin master
 python manage.py collectstatic --no-input
