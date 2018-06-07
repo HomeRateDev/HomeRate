@@ -18,4 +18,4 @@ class HouseDetailsForm(forms.ModelForm):
 class HouseReportForm(forms.ModelForm):
     class Meta:
         model = HouseReport
-        exclude = ['house_filed']
+        exclude = ['house_filed', 'author']
