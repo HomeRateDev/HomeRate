@@ -56,5 +56,4 @@ def account_activation_sent(request):
 
 
 def profile(request):
-    print("profile")
-    return None
+    return render(request, 'profiles/profile.html')
