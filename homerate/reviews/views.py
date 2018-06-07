@@ -43,7 +43,7 @@ def new_report(request, id):
 
     # Check a POST request has been received
     if request.method == "POST":
-        house_details_form = HouseDetailsForm(request.POST)
+        house_details_form = HouseDetailsForm(request.POST, instance=house)
         review_form = HouseReportForm(request.POST, request.FILES)
 
         # Ensure both forms are valid
@@ -67,8 +67,9 @@ def new_report(request, id):
         else:
             print("Form Error")
             print(review_form.errors)
+            print(house_details_form.errors)
 
-    house_details_form = HouseDetailsForm()
+    house_details_form = HouseDetailsForm(instance=house)
     review_form = HouseReportForm()
 
     return render(request, 'reviews/newreport.html', {
