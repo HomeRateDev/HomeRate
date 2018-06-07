@@ -5,43 +5,64 @@ HomeRate | Surprise-free Renting
 {% endblock %}
 {% block content %}
 
-<div class="container">
-    <h1>HomeRate</h1>
+<div class="container homepage">
+    <header class="homepageHeader">
+        <h1 class="title">Surprise-free Renting</h1>
+        <p class="tagline">Read reviews of student houses, written by previous tenants.</p>
+    </header>
 
-    <p>Taking the nasty surprises out of renting.</p>
+    <input placeholder="Search for a house..." type="text" class="searchBox"/>
 
-    <input type="text" class="searchBox"/>
-
-    <ul class="houses">
+    <ul class="autocomplete">
     {% for house in houses %}
-        <li class="house"><a href="{% url 'house' house.id %}">{{ house }}</a></li>
+        <li class="entry"><a href="{% url 'house' house.id %}">{{ house }}</a></li>
     {% endfor %}
     </ul>
 
+    {% if user.is_authenticated %}
     <a href="/reviews/new_house">Add A New House?</a>
+    {% endif %}
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
 (function($) {
+    $("li").mousedown(function() {
+		window.location.href = $(this).children("a").attr("href");
+	});
 	$(".searchBox").keyup(function() {
-		var query = $(this).val();
-
-        var postCode = new RegExp('(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})', 'i');
+        const query = $(this).val();
+        const postCode = new RegExp('(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})', 'i');
 
         if (postCode.test(query)) {
 
         }
-		if (query == "") {
-			$(".house").hide();
+
+        $(".autocomplete").css('height', 'auto');
+		if (query === "") {
+			$(".autocomplete").css({
+                'height': 'auto',
+                'visibility': 'visible'
+            });
 		} else {
 			$("ul li:contains('" + query + "')").show();
 			$("ul li").not(":contains('" + query + "')").hide();
 		}
-	});
-	$("li").click(function() {
-		window.location.href = $(this).children("a").attr("href");
-	});
+	}).focusout(function() {
+        console.log(document.activeElement);
+	    if (!$(document.activeElement).hasClass('.entry')) {
+	        $(".autocomplete").css({
+                'height': '0',
+                'visibility': 'hidden'
+            });
+        }
+
+    }).focus(function() {
+        $(".autocomplete").css({
+            'height': 'auto',
+            'visibility': 'visible'
+	    });
+    });
 })(jQuery);
 </script>
 

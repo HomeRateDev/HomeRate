@@ -11,16 +11,19 @@
 </head>
 <body>
     <div class="topBar">
-        <img class="topBarLogo" src="{% static 'img/bed.svg' %}">
-        <a class="topBarName" href="/">HomeRate</a>
-        <div class="topBarUser">
-            {% if user.is_authenticated %}
-            <a href="{% url 'profile' %}"> {{ user.username }} </a>
-            <a href="{% url 'logout' %}"> Logout </a>
-            {% else %}
-            <a href="{% url 'login' %}"> Login </a>
-            <a href="{% url 'sign-up' %}"> Sign-up </a>
-            {% endif %}
+        <div class="container">
+            <a href="/"><img class="topBarLogo" src="{% static 'img/logo.png' %}"></a>
+            <div class="topBarUser">
+                {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}"> Hi, {{ user.first_name }} </a>
+                <a> - </a>
+                <a href="{% url 'logout' %}"> Logout </a>
+                {% else %}
+                <a href="{% url 'login' %}"> Login </a>
+                <a> - </a>
+                <a href="{% url 'sign-up' %}"> Sign-up </a>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="content">

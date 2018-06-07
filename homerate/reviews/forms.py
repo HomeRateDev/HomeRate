@@ -18,7 +18,7 @@ class HouseDetailsForm(forms.ModelForm):
 class HouseReportForm(forms.ModelForm):
     class Meta:
         model = HouseReport
-        exclude = ['house_filed']
+        exclude = ['house_filed', 'author']
 
     def __init__(self, *args, **kwargs):
         super(HouseReportForm, self).__init__(*args, **kwargs)
