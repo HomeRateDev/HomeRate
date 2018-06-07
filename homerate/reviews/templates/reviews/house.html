@@ -36,7 +36,11 @@
     {% for review in reviews %}
         <li class="review">
             <h3>Tenant from {{ review.moved_in_date }} to {{ review.moved_out_date }}  <a class="averageStars">{{review.general_rating}} stars</a>
-                {% if user == review.author %}<a href="{% url 'edit_report' id=review.pk %}">Edit Report</a> {% endif %} </h3>
+                {% if user == review.author %}
+                <a href="{% url 'edit_report' id=review.pk %}">Edit</a>
+                <a> - </a>
+                <a href="{% url 'delete_report' id=review.pk %}">Delete</a>
+                {% endif %} </h3>
             <ul class="reviewPoints">
                 <li class="reviewPoint">
                     <p class="label">Landlord Responsiveness</p>

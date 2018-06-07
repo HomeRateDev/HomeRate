@@ -134,3 +134,10 @@ def edit_report(request, id):
             'new_report_form': review_form,
             'house': house,
         })
+
+@login_required
+def delete_report(request, id):
+    report = get_object_or_404(HouseReport, pk=id)
+    house = report.house_filed
+    report.delete()
+    return redirect('house', id=house.id)
