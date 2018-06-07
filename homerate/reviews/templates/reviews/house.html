@@ -46,56 +46,91 @@
                     <p class="label">Landlord Responsiveness</p>
                     <p class="value">{{ review.landlord_responsiveness }}/5</p>
                 </li>
+                {{ review.landlord_responsiveness_comment|default_if_none:"" }}
+                <li>
+
+                </li>
 
                 <li class="reviewPoint">
                     <p class="label">Repair Quality</p>
                     <p class="value">{{ review.repair_quality }}/5</p>
                 </li>
+                </li>
+                    {{ review.repair_quality_comment|default_if_none:"" }}
+                <li>
 
                 <li class="reviewPoint">
                     <p class="label">Water Pressure</p>
                     <p class="value">{{ review.water_pressure }}/5</p>
                 </li>
+                                </li>
+                {{ review.water_pressure_comment|default_if_none:"" }}
+                <li>
 
                 <li class="reviewPoint">
                     <p class="label">Utilities</p>
                     <p class="value">{{ review.utilities }}/5</p>
                 </li>
+                                </li>
+                {{ review.utilities_comment|default_if_none:"" }}
+                <li>
 
                 <li class="reviewPoint">
                     <p class="label">Furniture Quality</p>
                     <p class="value">{{ review.furniture_quality }}/5</p>
                 </li>
+                </li>
+                {{ review.furniture_quality_comment|default_if_none:"" }}
+                <li>
+
 
                 <li class="reviewPoint">
                     <p class="label">Mattress Quality</p>
                     <p class="value">{{ review.mattress_quality }}/5</p>
                 </li>
+                </li>
+                {{ review.mattress_quality_comment|default_if_none:"" }}
+                <li>
 
                 <li class="reviewPoint">
                     <p class="label">Build Quality</p>
                     <p class="value">{{ review.build_quality }}/5</p>
                 </li>
+                </li>
+                {{ review.landlord_responsiveness_comment|default_if_none:"" }}
+                <li>
 
                 <li class="reviewPoint">
                     <p class="label">Quietness</p>
                     <p class="value">{{ review.quietness }}/5</p>
                 </li>
+                                </li>
+                {{ review.quietness_comment|default_if_none:"" }}
+                <li>
 
                 <li class="reviewPoint">
                     <p class="label">Pest/Insect-free</p>
                     <p class="value">{{ review.pest_free }}/5</p>
                 </li>
+                                </li>
+                {{ review.pest_free_comment|default_if_none:"" }}
+                <li>
 
                 <li class="reviewPoint">
                     <p class="label">Smells</p>
                     <p class="value">{{ review.smells }}/5</p>
                 </li>
+                </li>
+                {{ review.smells_comment|default_if_none:"" }}
+                <li>
 
                 <li class="reviewPoint">
                     <p class="label">Damp/Mould-free</p>
                     <p class="value">{{ review.damp_mould_free }}/5</p>
                 </li>
+                </li>
+                {{ review.damp_mould_free_comment|default_if_none:"" }}
+                <li>
 
                 <li class="reviewPoint">
                     <p class="label">Monthly Rent</p>
