@@ -9,7 +9,7 @@
 
 <section class="houseInfo">
     <header class="houseHeader">
-        <h2 class="houseAddress">{{ house.address }}, {{ user.username }}</h2>
+        <h2 class="houseAddress">{{ house.address }}</h2>
         <p class="averageStars">{{ rating }} stars</p>
         <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
     </header>
