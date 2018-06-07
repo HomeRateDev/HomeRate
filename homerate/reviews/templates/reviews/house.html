@@ -36,6 +36,8 @@
     {% for review in reviews %}
         <li class="review">
             <h3>Tenant from {{ review.moved_in_date }} to {{ review.moved_out_date }}  <a class="averageStars">{{review.general_rating}} stars</a> </h3>
+            <img src="{{ review.image.url }}"/>
+
             <ul class="reviewPoints">
                 <li class="reviewPoint">
                     <p class="label">Landlord Responsiveness</p>

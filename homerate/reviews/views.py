@@ -39,7 +39,7 @@ def new_report(request, id):
     # Check a POST request has been received
     if request.method == "POST":
         house_details_form = HouseDetailsForm(request.POST)
-        review_form = HouseReportForm(request.POST)
+        review_form = HouseReportForm(request.POST, request.FILES)
 
         # Ensure both forms are valid
         if house_details_form.is_valid() and review_form.is_valid():
