@@ -223,6 +223,10 @@ $searchPadding: 20px;
 .slick-track {
   max-height: 400px;
   overflow: hidden;
+
+  img {
+    transform: translateY(-33.3333%);
+  }
 }
 
 /* House Page: Reviews */
