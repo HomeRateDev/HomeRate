@@ -138,3 +138,7 @@ EMAIL_HOST_USER = 'homerate.activation@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ['HOMERATE_ACTIVATION_PASSWORD']
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+print("base dir path", BASE_DIR)
