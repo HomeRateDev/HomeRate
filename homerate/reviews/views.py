@@ -58,6 +58,8 @@ def new_report(request, id):
             # Save house details
             house_details_form.save()
 
+            report.author = request.user
+
             # Commit review to database
             report.save()
 
