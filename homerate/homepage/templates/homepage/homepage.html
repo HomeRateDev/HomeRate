@@ -5,12 +5,13 @@ HomeRate | Surprise-free Renting
 {% endblock %}
 {% block content %}
 
-<div class="container">
-    <h1>HomeRate</h1>
+<div class="container homepage">
+    <header class="homepageHeader">
+        <h1 class="title">Surprise-free Renting</h1>
+        <p class="tagline">Read reviews of student houses, written by previous tenants.</p>
+    </header>
 
-    <p>Taking the nasty surprises out of renting.</p>
-
-    <input type="text" class="searchBox"/>
+    <input placeholder="Search for a house..." type="text" class="searchBox"/>
 
     <ul class="houses">
     {% for house in houses %}

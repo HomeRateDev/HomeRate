@@ -1,233 +1,276 @@
 /* General Styles */
+
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700');
+
+$backgroundColour: #f6f8fa;
+$mainTextColour: #313951;
+$cornerRadius: 8px;
+$shadowColour: #576f92;
+$borderColour: #d8e4ea;
+
 body {
-	background: #f6f8fa;
-	font-family: Arial;
-	padding: 0;
-	margin: 0;
+  background: $backgroundColour;
+  color: $mainTextColour;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
 ul {
-	list-style: none;
-	padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .container {
-	max-width: 960px;
-	margin: 0 auto;
-	padding: 10px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 5%;
 }
 
 .button {
-	padding: 10px 15px;
-	background: #333;
-	color: #fff;
-	text-decoration: none;
-	transition: opacity 0.1s ease-in-out;
-}
+  padding: 10px 15px;
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.1s ease-in-out;
 
-.button:hover {
-	opacity: 0.7;
-}
+  &:hover {
+    opacity: 0.7;
+  }
 
-.button:active {
-	opacity: 1;
-	transform: translateY(1px);
+  &:active {
+    opacity: 1;
+    transform: translateY(1px);
+  }
 }
 
 .topBar {
-    background: #3269c1;
-    height: 45px;
-    margin: 0;
-    padding-left: 5%;
-    padding-right: 5%;
-    overflow: hidden;
-    text-align: left;
-    vertical-align: middle;
-    line-height: 45px;
-    font-size: 30px;
+  background: #fff;
+  height: 45px;
+  margin: 0;
+  padding-left: 5%;
+  padding-right: 5%;
+  overflow: hidden;
+  text-align: left;
+  vertical-align: middle;
+  line-height: 45px;
+  font-size: 30px;
 }
 
 a.topBarName {
-    color: black;
-    text-decoration: none;
-}
+  color: black;
+  text-decoration: none;
 
-a.topBarName:visited {
+  &:visited {
     color: black;
     text-decoration: none;
-}
-a.topBarName:hover {
+  }
+
+  &:hover {
     background: #4279d1;
+  }
 }
 
 .topBarUser {
-    float: right;
-    height: 45px;
-    line-height: 45px;
-    font-size: 16px;
-}
-.topBarUser a {
+  float: right;
+  height: 45px;
+  line-height: 45px;
+  font-size: 16px;
+
+  a {
     height: 45px;
     color: black;
     text-decoration: none;
-}
+  }
 
-.topBarUser a:visited {
-    color: black;
-    text-decoration: none;
-}
-
-.topBarUser a:hover {
+  a:hover {
     color: #505050;
     text-decoration: none;
+  }
+
+  a:visited {
+    color: black;
+    text-decoration: none;
+  }
 }
 
-
 .topBarLogo {
-    float: left;
-    height: 45px;
-    margin-left: 5px;
-    margin-right: 5px;
+  float: left;
+  height: 45px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 /* Site homepage */
-.searchBox {
-	width: 250px;
-	margin-bottom: -1px;
-	padding: 10px;
-	font-size: 18px;
+.homepage {
+  text-align: center;
+  .homepageHeader {
+    margin-top: 100px;
+  }
+  .title {
+    margin-bottom: 10px;
+    font: {
+      size: 3em;
+      weight: 600;
+    }
+  }
+  .tagline {
+    margin-top: 0;
+    font-size: 1.5em;
+  }
 }
 
-.searchBox:focus {
-	outline: none;
+.searchBox {
+  width: 250px;
+  margin-bottom: -1px;
+  padding: 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: $cornerRadius;
+  box-shadow: 0 2px 8px rgba($shadowColour, 0.08);
+  transition: box-shadow 0.1s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 5px 8px rgba($shadowColour, 0.1);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 5px 10px rgba($shadowColour, 0.1), 0 0 0 1px $borderColour;
+  }
 }
 
 .houses {
-	margin-top: 0;
+  margin-top: 0;
 }
 
 .house {
-	width: 252px;
-	padding: 10px;
-	margin: -1px 0 0 0;
-	background: #f6f6f6;
-	border: solid 1px #eee;
-	border-collapse: collapse;
-	cursor: pointer;
-	display: none;
-}
+  width: 252px;
+  padding: 10px;
+  margin: -1px 0 0 0;
+  background: #f6f6f6;
+  border: solid 1px #eee;
+  border-collapse: collapse;
+  cursor: pointer;
+  display: none;
 
-.house a {
-	color: #333;
-	text-decoration: none;
-}
+  &:hover {
+    background: #fff;
+    font-weight: bold;
+  }
 
-.house:hover {
-	background: #fff;
-	font-weight: bold;
+  a {
+    color: #333;
+    text-decoration: none;
+  }
 }
 
 /* House Page */
 
 .houseHeader * {
-	margin-right: 15px;
-	display: inline-block;
+  margin-right: 15px;
+  display: inline-block;
 }
 
 .averageStars {
-	padding: 10px;
-	background: gold;
+  padding: 10px;
+  background: gold;
 }
 
 .reviews h2 {
-	margin-right: 5px;
-	margin-bottom: 0;
-	display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 0;
+  display: inline-block;
 }
 
 .addReview.button {
-	display: inline-block;
+  display: inline-block;
 }
 
 .basicInfo {
-	padding: 20px;
-	background: #fff;
-	border-radius: 8px;
-	text-align: center;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .infoItem {
-	padding: 0 40px;
-	display: inline-block;
+  padding: 0 40px;
+  display: inline-block;
 }
 
-.basicInfo .icon {
-	width: 50px;
-	display: inline-block;
-	vertical-align: middle;
-}
+.basicInfo {
+  .icon {
+    width: 50px;
+    display: inline-block;
+    vertical-align: middle;
+  }
 
-.basicInfo .value {
-	margin-left: 10px;
+  .value {
+    margin-left: 10px;
+  }
 }
 
 /* House Page: Reviews */
 
 .review:first-child {
-	border-top: solid 1px #ddd;
+  border-top: solid 1px $borderColour;
 }
 
 .review {
-    padding: 10px 10px;
-	border-bottom: solid 1px #ddd;
+  padding: 10px 10px;
+  border-bottom: solid 1px $borderColour;
 }
 
 .reviewPoint {
-    width: 40%;
-    display: inline-block;
-}
+  width: 40%;
+  display: inline-block;
 
-.reviewPoint:nth-child(odd) {
-    margin-right: 7%;
-}
-
-.reviewPoint * {
+  * {
     display: inline-block;
     vertical-align: middle;
+  }
+
+  &:nth-child(odd) {
+    margin-right: 7%;
+  }
 }
 
-.reviewPoint .label {
+.reviewPoint {
+  .label {
     font-weight: bold;
-}
+  }
 
-.reviewPoint .value {
+  .value {
     float: right;
+  }
 }
 
 /* New Report Page */
 .address {
-	margin-bottom: 20px;
-	padding-bottom: 30px;
-	font-size: 22px;
-	font-weight: bold;
-	color: #444;
-	border-bottom: solid 1px #ddd;
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #444;
+  border-bottom: solid 1px $borderColour;
 }
 
 .form {
-	max-width: 400px;
-}
+  max-width: 400px;
 
-.form label {
-	margin-bottom: 10px;
-	font-weight: bold;
-	display: block;
-}
+  label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    display: block;
+  }
 
-.form textarea {
-	height: 70px;
-}
+  textarea {
+    height: 70px;
+  }
 
-.form input[type=text], .form input[type=number], .form button {
-	padding: 10px;
+  input[type=text], input[type=number], button {
+    padding: 10px;
+  }
 }
