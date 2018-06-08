@@ -272,7 +272,9 @@ $searchPadding: 20px;
 }
 
 .reviewPoint, .reviewComment {
+  max-width: 50%;
   display: inline-block;
+  vertical-align: middle;
 }
 
 /* New Report Page */
