@@ -17,6 +17,10 @@ body {
   margin: 0;
 }
 
+h1, h2, h3, h4, h4 {
+  font-weight: 600;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -28,12 +32,14 @@ ul {
   padding: 0 5%;
 }
 
-.button {
+@mixin button() {
   padding: 10px 15px;
   background: $buttonColour;
   color: #fff;
+  border: none;
   border-radius: $cornerRadius / 2;
   text-decoration: none;
+  cursor: pointer;
   transition: opacity 0.1s ease-in-out;
 
   &:hover {
@@ -44,6 +50,10 @@ ul {
     opacity: 1;
     transform: translateY(1px);
   }
+}
+
+.button {
+  @include button
 }
 
 .topBar {
@@ -114,13 +124,8 @@ $logoHeight: 45px;
   }
 }
 
-$searchBoxWidth: 250px;
-$searchPadding: 20px;
-
-.searchBox {
-  width: $searchBoxWidth;
-  margin-bottom: -1px;
-  padding: $searchPadding;
+@mixin textInput($padding) {
+  padding: $padding;
   font-size: 18px;
   border: none;
   border-radius: $cornerRadius;
@@ -135,6 +140,15 @@ $searchPadding: 20px;
     outline: none;
     box-shadow: 0 5px 10px rgba($shadowColour, 0.1), 0 0 0 1px $borderColour;
   }
+}
+
+$searchBoxWidth: 250px;
+$searchPadding: 20px;
+
+.searchBox {
+  @include textInput($searchPadding);
+  width: $searchBoxWidth;
+  margin-bottom: -1px;
 }
 
 .autocomplete {
@@ -311,5 +325,60 @@ $searchPadding: 20px;
 
   input[type=text], input[type=number], button {
     padding: 10px;
+  }
+}
+
+input[type=email], input[type=text], input[type=number], input[type=password] {
+  @include textInput(20px);
+}
+
+/* Sign-up Form */
+.accounts {
+
+  &.container {
+    margin-top: 80px;
+  }
+
+  h2 {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+}
+form.accounts {
+  width: 300px;
+  margin: 0 auto;
+
+  .entry {
+    margin-bottom: 20px;
+  }
+  label {
+    margin-bottom: 10px;
+    color: lighten($mainTextColour, 20%);
+    font-weight: 600;
+    text-transform: capitalize;
+    display: block;
+  }
+  p {
+    width: 100%;
+  }
+  input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  ul {
+    display: none;
+  }
+  .helptext {
+    display: none;
+  }
+  button {
+    width: 100%;
+    height: 50px;
+    padding: 20px;
+    font: {
+      size: 16px;
+      weight: 600;
+    }
+    @include button
   }
 }
