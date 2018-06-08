@@ -5,9 +5,12 @@ from django import forms
 from django.db import models
 from django.utils import timezone
 
+
+def round2sf(num):
+    return round(num*10)/10
+
+
 # Create your models here.
-
-
 class RatingField(models.CharField):
 
     description = "A star rating from 1 to 5"
@@ -66,7 +69,7 @@ class House(models.Model):
             time_dependant_rating_weight = time_dependant_rating_weight * 0.6
 
         total_report_rating = total_report_rating / time_dependant_rating_weight_total
-        return round(total_report_rating*100)/100
+        return round2sf(total_report_rating)
 
 
 
@@ -177,5 +180,5 @@ class HouseReport(models.Model):
             rating += int(self.damp_mould_free) * HouseReport.damp_mould_free_weight
             total_report_weight += HouseReport.damp_mould_free_weight
         rating = rating / total_report_weight
-        self.general_rating = round(rating*10)/10
+        self.general_rating = round2sf(rating)
         return rating
