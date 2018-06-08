@@ -7,7 +7,7 @@ $mainTextColour: #313951;
 $cornerRadius: 8px;
 $shadowColour: #576f92;
 $borderColour: #d8e4ea;
-$buttonColour: #2ba6ec;
+$buttonColour: $mainTextColour;
 
 body {
   background: $backgroundColour;
@@ -32,7 +32,7 @@ ul {
   padding: 10px 15px;
   background: $buttonColour;
   color: #fff;
-  border-radius: $cornerRadius;
+  border-radius: $cornerRadius / 2;
   text-decoration: none;
   transition: opacity 0.1s ease-in-out;
 
@@ -168,15 +168,21 @@ $searchPadding: 20px;
 
 /* House Page */
 
-.houseHeader * {
-  margin-right: 15px;
-  display: inline-block;
+.houseHeader {
+
+  .houseAddress {
+    margin-right: 10px;
+  }
+
+  .houseAddress, .averageStars {
+    display: inline-block;
+  }
 }
 
 .averageStars {
   padding: 10px;
   background: gold;
-  border-radius: $cornerRadius;
+  border-radius: $cornerRadius / 2;
 }
 
 .reviews h2 {
@@ -192,7 +198,7 @@ $searchPadding: 20px;
 .basicInfo {
   padding: 20px;
   background: #fff;
-  border-radius: 8px;
+  border-radius: $cornerRadius;
   text-align: center;
 }
 
@@ -266,7 +272,9 @@ $searchPadding: 20px;
 }
 
 .reviewPoint, .reviewComment {
+  max-width: 50%;
   display: inline-block;
+  vertical-align: middle;
 }
 
 /* New Report Page */
