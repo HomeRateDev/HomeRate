@@ -204,6 +204,7 @@ $searchPadding: 20px;
 
 .averageStars {
   padding: 10px;
+  font-weight: normal;
   background: gold;
   border-radius: $cornerRadius / 2;
 }
@@ -212,6 +213,10 @@ $searchPadding: 20px;
   margin-right: 5px;
   margin-bottom: 0;
   display: inline-block;
+}
+
+.review .averageStars {
+  margin-left: 10px;
 }
 
 .addReview.button {
