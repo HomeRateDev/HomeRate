@@ -33,7 +33,7 @@ def sign_up(request):
                     'user': user,
                     'domain': current_site.domain,
                     'uid':urlsafe_base64_encode(force_bytes(user.pk)).decode('utf-8'),
-                    'token':account_activation_token.make_token(user),
+                    'token': account_activation_token.make_token(user),
                 })
                 user.email_user(subject, message)
                 return render(request, 'registration/please_activate.html')

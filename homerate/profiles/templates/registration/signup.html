@@ -3,11 +3,30 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h2>Sign up</h2>
-        <form method="post">
+    <div class="container signup accounts">
+        <h2>Sign up to see reviews now!</h2>
+        <form class="signup accounts" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            <div class="form entry">
+                <label>{{ form.email.label }}</label>
+                {{ form.email }}
+            </div>
+            <!--<p class="message">You must have a .ac.uk email</p>-->
+            <div class="form entry">
+                <label>{{ form.first_name.label }}</label>
+                {{ form.first_name }}
+            </div>
+
+            <div class="form entry">
+                <label>{{ form.password1.label }}</label>
+                {{ form.password1 }}
+            </div>
+
+            <div class="form entry">
+                <label>{{ form.password2.label }}</label>
+                {{ form.password2 }}
+            </div>
+
             <button type="submit">Sign up</button>
         </form>
     </div>
