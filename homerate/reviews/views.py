@@ -148,4 +148,17 @@ def delete_report(request, id):
 
 
 def check_house(request, encoded_addr):
-    return HttpResponse(unquote(encoded_addr))
+    # Decode the address
+    address_str = unquote(encoded_addr)
+
+    # Query the database to check if the house already exists
+    query = House.objects.filter(address=address_str)
+
+    if query.count() > 0:
+        # The house exists, redirect to it
+        return redirect('house', id=query.first().id)
+    else:
+        # The house doesn't exist, create a new house
+        new_house_entry = House(address=str(address_str))
+        new_house_entry.save()
+        return redirect('new_report', new_house_entry.id)
