@@ -1,7 +1,7 @@
 (function ($) {
     function populateAddresses(query) {
         /* Strip trailing whitespace and remove (optional) space within postcode */
-        const postcode = query.trim().replace(' ', '');
+        const postcode = query.trim().replace(' ', '').toUpperCase();
         $.get({
             'url': '/address_api/postcode/' + postcode,
             success: function (data) {
