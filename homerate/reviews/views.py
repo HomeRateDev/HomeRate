@@ -161,4 +161,4 @@ def check_house(request, encoded_addr):
         # The house doesn't exist, create a new house
         new_house_entry = House(address=str(address_str))
         new_house_entry.save()
-        return redirect('new_report', new_house_entry.id)
+        return redirect('house', id=new_house_entry.id)
