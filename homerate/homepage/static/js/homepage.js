@@ -14,9 +14,9 @@
                  * and appends them to the autocomplete box */
                 addresses.forEach(function (address) {
                     const formattedAddr = formatAddress(address, postcode),
-                          entry = $('<li/>').addClass('entry'),
-                          url = '/reviews/check_address/' + encodeURIComponent(address),
-                          link = $('<a/>').attr('href', url).html(formattedAddr);
+                        entry = $('<li/>').addClass('entry'),
+                        url = '/reviews/check_address/' + encodeURIComponent(formattedAddr),
+                        link = $('<a/>').attr('href', url).html(formattedAddr);
                     link.appendTo(entry);
                     entry.appendTo('.autocomplete');
                 });
@@ -37,11 +37,10 @@
             /* If component is non-empty */
             if (components[i].trim().length > 0) {
                 result += components[i] + ", ";
-
-                /* Append the postcode if we're at the last component */
-                if (i === components.length - 1) {
-                    result += postcode
-                }
+            }
+            /* Append the postcode if we're at the last component */
+            if (i === components.length - 1) {
+                result += postcode
             }
         }
 
