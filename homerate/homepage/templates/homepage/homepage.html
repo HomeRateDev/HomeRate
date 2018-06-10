@@ -15,9 +15,7 @@ HomeRate | Surprise-free Renting
     <input placeholder="Search for a house..." type="text" class="searchBox"/>
 
     <ul class="autocomplete">
-    {% for house in houses %}
-        <li class="entry"><a href="{% url 'house' house.id %}">{{ house }}</a></li>
-    {% endfor %}
+
     </ul>
 
     {% if user.is_authenticated %}
