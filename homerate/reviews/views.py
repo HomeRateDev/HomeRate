@@ -103,7 +103,7 @@ def edit_report(request, id):
 
     if request.method == "POST":
         house_details_form = HouseDetailsForm(request.POST, instance=house)
-        review_form = HouseReportForm(request.POST, instance=report)
+        review_form = HouseReportForm(request.POST, request.FILES, instance=report)
 
         # Ensure both forms are valid
         if house_details_form.is_valid() and review_form.is_valid():
