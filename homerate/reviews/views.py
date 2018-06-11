@@ -4,14 +4,17 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.forms import modelformset_factory
 
+
+from profiles.models import Profile
 from .forms import HouseForm, HouseReportForm, HouseDetailsForm
-from .models import House
-from .models import HouseReport
+from .models import House, HouseReport, ReviewImage
 # Create your views here.
 
 def house(request, id):
-    if request.user.is_authenticated:	
+    if request.user.is_authenticated:
+        user_profile = Profile.objects.get(user=request.user)
         # Query database for house with correct id
         houses = House.objects.filter(id=id)
 
@@ -23,9 +26,16 @@ def house(request, id):
         house = houses[0]
         # Query database for reports about the house.
         reviews = HouseReport.objects.filter(house_filed=house).order_by('-moved_out_date')
+
+        # Create an empty list for the images
+        images = []
         for report in reviews:
-            report.get_general_rating()
-        rating = house.star_rating()
+            # Calculate the general rating
+            report.get_personal_rating(user_profile)
+            # Append the images in to the list
+            images += ReviewImage.objects.filter(house_report=report)
+
+        rating = house.personal_star_rating(user_profile)
 
         # Construct a split-up version of the address
         address_components = house.split_address()
@@ -36,6 +46,7 @@ def house(request, id):
                 'house': house,
                 'reviews': reviews,
                 'rating': rating,
+                'images': images,
                 'address_components': address_components
             }
         )
@@ -46,6 +57,9 @@ def house(request, id):
 
 @login_required
 def new_report(request, id):
+    # Create a formset factory for multiple images
+    image_formset_factory = modelformset_factory(ReviewImage, fields=('image',), extra=4)
+
     # Get relevant house
     houses = House.objects.filter(id=id)
 
@@ -56,11 +70,13 @@ def new_report(request, id):
 
     # Check a POST request has been received
     if request.method == "POST":
+
         house_details_form = HouseDetailsForm(request.POST, instance=house)
         review_form = HouseReportForm(request.POST, request.FILES)
+        image_formset = image_formset_factory(request.POST, request.FILES)
 
         # Ensure both forms are valid
-        if house_details_form.is_valid() and review_form.is_valid():
+        if house_details_form.is_valid() and review_form.is_valid() and image_formset.is_valid():
 
             # Prepare to save review, but don't commit to database yet
             report = review_form.save(commit=False)
@@ -76,19 +92,31 @@ def new_report(request, id):
             # Commit review to database
             report.save()
 
+            for img in image_formset:
+                try:
+                    # Save the reviews to the database
+                    photo = ReviewImage(house_report=report, image=img.cleaned_data['image'])
+                    photo.save()
+                except Exception as e:
+                    # Users may not insert photos in order. Try remaining photos.
+                    continue
+
             return redirect('house', id=house.id)
         else:
             print("Form Error")
             print(review_form.errors)
             print(house_details_form.errors)
+            print(image_formset.errors)
 
     house_details_form = HouseDetailsForm(instance=house)
     review_form = HouseReportForm()
+    image_formset = image_formset_factory(queryset=ReviewImage.objects.none())
 
     return render(request, 'reviews/newreport.html', {
                       'house_details_form': house_details_form,
                       'new_report_form': review_form,
                       'house': house,
+                      'image_formset': image_formset,
                   })
 
 
