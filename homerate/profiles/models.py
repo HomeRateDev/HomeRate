@@ -35,3 +35,6 @@ class Profile(models.Model):
         if created:
             Profile.objects.create(user=instance)
         instance.profile.save()
+
+    def __str__(self):
+        return self.user.first_name
