@@ -55,7 +55,7 @@ def activate(request, uidb64, token):
         user.save()
         new_profile = Profile()
         new_profile.user = user
-        new_profile.email_confirmed = True
+        #new_profile.email_confirmed = True
         new_profile.save()
         login(request, user)
         return render(request, 'registration/activation_successful.html')
@@ -72,7 +72,7 @@ def profile(request):
             if form.is_valid():
                 profile = form.save(commit=False)
                 profile.user = request.user
-                profile.save()
+                #profile.save()
             else:
                 print("Form Error")
                 print(form.errors)
