@@ -2,6 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from .models import Profile
+
+
 class SignupForm(UserCreationForm):
     email = forms.EmailField(
         max_length=200,
@@ -19,3 +22,18 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('email', 'first_name', 'password1', 'password2')
+
+
+class StarRatingWeighting(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['landlord_responsiveness',
+                   'repair_quality',
+                   'water_pressure',
+                   'utilities',
+                   'furniture_quality',
+                   'build_quality',
+                   'quietness',
+                   'pest_free',
+                   'smells',
+                   'damp_mould_free']

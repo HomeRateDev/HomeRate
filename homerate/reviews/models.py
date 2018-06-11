@@ -25,7 +25,7 @@ class House(models.Model):
         return self.address
 
 
-    def star_rating(self):
+    def general_star_rating(self):
         reports = HouseReport.objects.filter(house_filed=self).order_by('-moved_out_date')
         time_dependant_rating_weight = 1
         time_dependant_rating_weight_total = 0
@@ -34,6 +34,21 @@ class House(models.Model):
             return None
         for report in reports:
             total_report_rating += report.get_general_rating() * time_dependant_rating_weight
+            time_dependant_rating_weight_total += time_dependant_rating_weight
+            time_dependant_rating_weight = time_dependant_rating_weight * 0.6
+
+        total_report_rating = total_report_rating / time_dependant_rating_weight_total
+        return round2sf(total_report_rating)
+
+    def personal_star_rating(self, user_profile):
+        reports = HouseReport.objects.filter(house_filed=self).order_by('-moved_out_date')
+        time_dependant_rating_weight = 1
+        time_dependant_rating_weight_total = 0
+        total_report_rating = 0
+        if len(reports) == 0:
+            return None
+        for report in reports:
+            total_report_rating += report.get_personal_rating(user_profile) * time_dependant_rating_weight
             time_dependant_rating_weight_total += time_dependant_rating_weight
             time_dependant_rating_weight = time_dependant_rating_weight * 0.6
 
@@ -151,3 +166,45 @@ class HouseReport(models.Model):
         rating = rating / total_report_weight
         self.general_rating = round2sf(rating)
         return rating
+    
+    
+    def get_personal_rating(self, user_profile):
+        total_report_weight = 0
+        rating = 0
+        if hasattr(self, 'landlord_responsiveness') and self.landlord_responsiveness is not '':
+            rating += int(self.landlord_responsiveness) * int(user_profile.landlord_responsiveness)
+            total_report_weight += int(user_profile.landlord_responsiveness)
+        if hasattr(self, 'repair_quality') and self.repair_quality is not '':
+            rating += int(self.repair_quality) * int(user_profile.repair_quality)
+            total_report_weight += int(user_profile.repair_quality)
+        if hasattr(self, 'water_pressure') and self.water_pressure is not '':
+            rating += int(self.water_pressure) * int(user_profile.water_pressure)
+            total_report_weight += int(user_profile.water_pressure)
+        if hasattr(self, 'utilities') and self.utilities is not '':
+            rating += int(self.utilities) * int(user_profile.utilities)
+            total_report_weight += int(user_profile.utilities)
+        if hasattr(self, 'furniture_quality') and self.furniture_quality is not '':
+            rating += int(self.furniture_quality) * int(user_profile.furniture_quality)
+            total_report_weight += int(user_profile.furniture_quality)
+        if hasattr(self, 'mattress_quality') and self.mattress_quality is not '':
+            rating += int(self.mattress_quality) * int(user_profile.mattress_quality)
+            total_report_weight += int(user_profile.mattress_quality)
+        if hasattr(self, 'build_quality') and self.build_quality is not '':
+            rating += int(self.build_quality) * int(user_profile.build_quality)
+            total_report_weight += int(user_profile.build_quality)
+        if hasattr(self, 'quietness') and self.quietness is not '':
+            rating += int(self.quietness) * int(user_profile.quietness)
+            total_report_weight += int(user_profile.quietness)
+        if hasattr(self, 'pest_free') and self.pest_free is not '':
+            rating += int(self.pest_free) * int(user_profile.pest_free)
+            total_report_weight += int(user_profile.pest_free)
+        if hasattr(self, 'smells') and self.smells is not '':
+            rating += int(self.smells) * int(user_profile.smells)
+            total_report_weight += int(user_profile.smells)
+        if hasattr(self, 'damp_mould_free') and self.damp_mould_free is not '':
+            rating += int(self.damp_mould_free) * int(user_profile.damp_mould_free)
+            total_report_weight += int(user_profile.damp_mould_free)
+        rating = rating / total_report_weight
+        self.general_rating = round2sf(rating)
+        return rating
+

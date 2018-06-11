@@ -5,13 +5,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
+from profiles.models import Profile
 from .forms import HouseForm, HouseReportForm, HouseDetailsForm
 from .models import House
 from .models import HouseReport
 # Create your views here.
 
 def house(request, id):
-    if request.user.is_authenticated:	
+    if request.user.is_authenticated:
+        user_profile = Profile.objects.get(user=request.user)
         # Query database for house with correct id
         houses = House.objects.filter(id=id)
 
@@ -23,9 +25,10 @@ def house(request, id):
         house = houses[0]
         # Query database for reports about the house.
         reviews = HouseReport.objects.filter(house_filed=house).order_by('-moved_out_date')
+
         for report in reviews:
-            report.get_general_rating()
-        rating = house.star_rating()
+            report.get_personal_rating(user_profile)
+        rating = house.personal_star_rating(user_profile)
 
         # return house view page with house and list of reports
         return render(request, 'reviews/house.html', {'house': house, 'reviews': reviews, 'rating': rating})
