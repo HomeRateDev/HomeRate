@@ -63,36 +63,46 @@
     }
 
     function relevantKey(event) {
-        const key = event.which,
-              codes = {
+        const key = event.which;
+
+        /* Key codes that we're interested in. CMD and CTRL
+           are included to allow copy + paste events to go through. */
+        const codes = {
                   'alphanumeric': [48, 90],
+                  'cmd_keys': [91, 92],
                   'numpad': [96, 105],
                   'backspace': 8,
-                  'delete': 46
+                  'delete': 46,
+                  'ctrl': 17
               };
+
         return inRange(key, codes['alphanumeric']) ||
                inRange(key, codes['numpad']) ||
+               inRange(key, codes['cmd_keys']) ||
                key === codes['backspace'] ||
-               key === codes['delete']
+               key === codes['delete'] ||
+               key === codes['ctrl']
     }
 
     /* After a key is typed in the search box */
     $('.searchBox').keyup(function (event) {
 
+        /* If a key that doesn't affect our input was pressed,
+           do nothing. */
         if (!relevantKey(event)) {
             return;
         }
 
         const query = $(this).val(),
-            postCode = new RegExp('^(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})$', 'i'),
-            errorMsg = $('.errorMessage');
+              postCode = new RegExp('^(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})$', 'i'),
+              errorMsg = $('.errorMessage');
 
+        /* Hide the previous error message if it's visible. */
         if (errorMsg.css('display') !== 'none') {
             errorMsg.hide()
         }
 
         // If current input is a valid postcode, populate the autocomplete box
-        console.log(postCode.test(query));
         if (postCode.test(query)) {
             populateAddresses(query);
         }
