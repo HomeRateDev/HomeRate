@@ -1,11 +1,14 @@
 {% extends 'homepage/base.html' %}
 {% load staticfiles %}
+{% load sass_tags %}
 
 {% block title %}
     {{ house.address }}
 {% endblock %}
 
 {% block head %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% sass_src 'css/stars.scss' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
 {% endblock %}
@@ -26,7 +29,7 @@
                 <header class="houseHeader">
                     <h2 class="houseAddress">{{ house.split_address.line1 }}</h2>
                     <p class="houseLocation">{{ house.split_address.line2 }}</p>
-                    <p class="averageStars">{{ rating }} ★</p>
+                    <p class="averageStars createStars">{{ rating }}</p>
                 </header>
                 <ul class="basicInfo">
                     <li class="infoItem">
@@ -50,8 +53,8 @@
                 <ul class="reviewList">
                     {% for review in reviews %}
                         <li class="review">
-                            <h3>{{ review.moved_in_date }} to {{ review.moved_out_date }} <a
-                                    class="averageStars">{{ review.general_rating }} ★</a>
+                            <h3>Tenant from {{ review.moved_in_date }} to {{ review.moved_out_date }} <a
+                                    class="averageStars createStars">{{ review.general_rating }} ★</a>
                                 {% if user == review.author %}
                                     <a class="addReview button" href="{% url 'edit_report' id=review.pk %}">Edit</a>
                                     <a class="addReview button" href="{% url 'delete_report' id=review.pk %}">Delete</a>
@@ -62,7 +65,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Landlord Responsiveness</p>
-                                        <p class="value">{{ review.landlord_responsiveness }} ★</p>
+                                        <p class="value createStars">{{ review.landlord_responsiveness }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -73,7 +76,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Repair Quality</p>
-                                        <p class="value">{{ review.repair_quality }} ★</p>
+                                        <p class="value createStars">{{ review.repair_quality }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -84,7 +87,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Water Pressure</p>
-                                        <p class="value">{{ review.water_pressure }} ★</p>
+                                        <p class="value createStars">{{ review.water_pressure }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -95,7 +98,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Utilities</p>
-                                        <p class="value">{{ review.utilities }} ★</p>
+                                        <p class="value createStars">{{ review.utilities }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -106,7 +109,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Furniture Quality</p>
-                                        <p class="value">{{ review.furniture_quality }} ★</p>
+                                        <p class="value createStars">{{ review.furniture_quality }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -117,7 +120,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Mattress Quality</p>
-                                        <p class="value">{{ review.mattress_quality }} ★</p>
+                                        <p class="value createStars">{{ review.mattress_quality }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -128,7 +131,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Build Quality</p>
-                                        <p class="value">{{ review.build_quality }} ★</p>
+                                        <p class="value createStars">{{ review.build_quality }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -139,7 +142,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Quietness</p>
-                                        <p class="value">{{ review.quietness }} ★</p>
+                                        <p class="value createStars">{{ review.quietness }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -150,7 +153,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Pest/Insect-free</p>
-                                        <p class="value">{{ review.pest_free }} ★</p>
+                                        <p class="value createStars">{{ review.pest_free }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -161,7 +164,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Smells</p>
-                                        <p class="value">{{ review.smells }} ★</p>
+                                        <p class="value createStars">{{ review.smells }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -172,7 +175,7 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Damp/Mould-free</p>
-                                        <p class="value">{{ review.damp_mould_free }} ★</p>
+                                        <p class="value createStars">{{ review.damp_mould_free }} ★</p>
                                     </div>
 
                                     <div class="reviewComment">
@@ -183,14 +186,14 @@
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Monthly Rent</p>
-                                        <p class="value">£{{ review.monthly_rent }}</p>
+                                        <p class="value createStars">£{{ review.monthly_rent }}</p>
                                     </div>
                                 </li>
 
                                 <li class="reviewPointWrapper">
                                     <div class="reviewPoint">
                                         <p class="label">Monthly Bills</p>
-                                        <p class="value">£{{ review.monthly_bills }}</p>
+                                        <p class="value createStars">£{{ review.monthly_bills }}</p>
                                     </div>
                                 </li>
 
@@ -205,9 +208,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="{% static 'slick/slick.min.js' %}"></script>
-    <script>
-        (function ($) {
-            $(".galleryWrapper").slick();
-        })(jQuery);
-    </script>
+    <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
+    <script src="{% static 'js/house.js' %}"></script>
 {% endblock %}
