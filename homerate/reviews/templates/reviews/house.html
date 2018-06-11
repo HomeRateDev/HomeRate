@@ -9,6 +9,8 @@
 {% block head %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% sass_src 'css/stars.scss' %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-oi8o31xSQq8S0RpBcb4FaLB8LJi9AT8oIdmS1QldR8Ui7KUQjNAnDlJjp55Ba8FG" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
 {% endblock %}
@@ -33,16 +35,19 @@
                 </header>
                 <ul class="basicInfo">
                     <li class="infoItem">
-                        <img class="icon" src="{% static 'img/bed.svg' %}"/>
+                        <i class="far fa-bed"></i>
                         <span class="value">{{ house.bedrooms }}</span>
+                        <span class="label">bed</span>
                     </li>
                     <li class="infoItem">
-                        <img class="icon" src="{% static 'img/bath.svg' %}"/>
+                        <i class="far fa-bath"></i>
                         <span class="value">{{ house.bathrooms }}</span>
+                        <span class="label">bath</span>
                     </li>
                     <li class="infoItem">
-                        <img class="icon" src="{% static 'img/sofa.svg' %}"/>
+                        <i class="far fa-couch"></i>
                         <span class="value">{{ house.living_rooms }}</span>
+                        <span class="label">living room</span>
                     </li>
                 </ul>
             </section>
@@ -53,12 +58,19 @@
                 <ul class="reviewList">
                     {% for review in reviews %}
                         <li class="review">
-                            <h3>Tenant from {{ review.moved_in_date }} to {{ review.moved_out_date }} <a
-                                    class="averageStars createStars">{{ review.general_rating }} ★</a>
-                                {% if user == review.author %}
-                                    <a class="addReview button" href="{% url 'edit_report' id=review.pk %}">Edit</a>
-                                    <a class="addReview button" href="{% url 'delete_report' id=review.pk %}">Delete</a>
-                                {% endif %} </h3>
+                            <header class="reviewHeader">
+                                <i class="fas fa-user-circle"></i>
+                                <div class="text">
+                                    <h3>Tenant from {{ review.moved_in_date }} to {{ review.moved_out_date }}</h3>
+                                    <a class="averageStars createStars">{{ review.general_rating }}</a>
+                                    {% if user == review.author %}
+                                        <div class="reviewActions">
+                                            <a class="edit button" href="{% url 'edit_report' id=review.pk %}">Edit</a>
+                                            <a class="delete button" href="{% url 'delete_report' id=review.pk %}">Delete</a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </header>
 
                             <ul class="reviewPoints">
 

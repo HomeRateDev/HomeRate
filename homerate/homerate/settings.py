@@ -25,7 +25,7 @@ SECRET_KEY = 'ix+n$!11imuv+mqi%+k8e54l0$uc6s#%qae&97dp33c^_#h4d8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'homerate.co.uk']
+ALLOWED_HOSTS = ['127.0.0.1', 'homerate.co.uk', 'localhost']
 
 
 # Application definition
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'sass_processor',
     'reviews',
     'homepage',
-    'profiles' 
+    'profiles'
 ]
 
 MIDDLEWARE = [
