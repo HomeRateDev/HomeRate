@@ -83,23 +83,6 @@ def new_report(request, id):
 
 
 @login_required
-def new_house(request):
-    if(request.method == "POST"):
-        form = HouseForm(request.POST)
-        print("POST")
-        print(request.POST)
-        print("FORM")
-        print(form)
-        if(form.is_valid()):
-            house = form.save(commit=False)
-            house.date_created = timezone.now()
-            house.save()
-            print(house.id)
-            return redirect('new_report', id=house.id)
-    form = HouseForm()
-    return render(request, 'reviews/newhouse.html', {'new_house_form' : form})
-
-@login_required
 def edit_report(request, id):
     report = get_object_or_404(HouseReport, pk=id)
     house = report.house_filed
