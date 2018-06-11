@@ -91,36 +91,28 @@ class HouseReport(models.Model):
 
     # Landlord
     landlord_responsiveness = RatingField(mandatory=True)
-    landlord_responsiveness_comment = models.CharField(max_length=comment_length, blank=True, null=True)
-
     repair_quality = RatingField()
-    repair_quality_comment = models.CharField(max_length=comment_length, blank=True, null=True)
+    landlord_comment = models.CharField(max_length=comment_length, blank=True, null=True)
 
     # Construction Quality
     water_pressure = RatingField(mandatory=True)
-    water_pressure_comment = models.CharField(max_length=comment_length, blank=True, null=True)
     utilities = RatingField(mandatory=True)
-    utilities_comment = models.CharField(max_length=comment_length, blank=True, null=True)
     furniture_quality = RatingField()
-    furniture_quality_comment = models.CharField(max_length=comment_length, blank=True, null=True)
     mattress_quality = RatingField()
-    mattress_quality_comment = models.CharField(max_length=comment_length, blank=True, null=True)
     build_quality = RatingField()
-    build_quality_comment = models.CharField(max_length=comment_length, blank=True, null=True)
+    construction_quality_comment = models.CharField(max_length=comment_length, blank=True, null=True)
 
     # Nuisances
     quietness = RatingField(mandatory=True)
-    quietness_comment = models.CharField(max_length=comment_length, blank=True, null=True)
     pest_free = RatingField(mandatory=True)
-    pest_free_comment = models.CharField(max_length=comment_length, blank=True, null=True)
     smells = RatingField()
-    smells_comment = models.CharField(max_length=comment_length, blank=True, null=True)
     damp_mould_free = RatingField()
-    damp_mould_free_comment = models.CharField(max_length=comment_length, blank=True, null=True)
+    nuisances_comment = models.CharField(max_length=comment_length, blank=True, null=True)
 
     # Affordability
     monthly_rent = models.IntegerField(default=0)
     monthly_bills = models.IntegerField(default=0)
+    affordability_comment = models.CharField(max_length=comment_length, blank=True, null=True)
 
     general_rating = None
 
