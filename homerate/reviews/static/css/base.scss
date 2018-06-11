@@ -162,11 +162,15 @@ $searchPadding: 20px;
   width: 100%;
   margin-bottom: -1px;
   box-sizing: border-box;
+
+  &::placeholder {
+    color: $midText;
+  }
 }
 
 .autocomplete {
   width: 100%;
-  max-height: 200px;
+  max-height: 210px;
   // visibility: hidden;
   margin: 20px auto 30px auto;
   box-sizing: border-box;
@@ -177,26 +181,29 @@ $searchPadding: 20px;
   transition: opacity 0.1s ease-in-out;
 
   .entry {
-    width: $searchBoxWidth;
-    padding: $searchPadding;
+    width: 100%;
     margin: -1px auto 0 auto;
-    background: #fff;
-    border-collapse: collapse;
-    cursor: pointer;
-    text-align: left;
-    transition: opacity 0.1s ease-in-out;
+    background-color: #fff;
+    transition: background-color 0.15s ease-in-out;
 
     &:last-child {
       border-radius: 0 0 $cornerRadius $cornerRadius;
     }
 
     &:hover {
-      background: rgba(#fff, 0.5);
+      background-color: rgba(#fff, 0.5);
       font-weight: 600;
       font-size: 16px;
     }
 
     a {
+      width: 100%;
+      padding: $searchPadding;
+      border-collapse: collapse;
+      box-sizing: border-box;
+      cursor: pointer;
+      text-align: left;
+      display: block;
       color: $mainTextColour;
       text-decoration: none;
     }
@@ -390,6 +397,7 @@ input[type=email], input[type=text], input[type=number], input[type=password] {
     text-align: center;
   }
 }
+
 form.accounts {
   width: 300px;
   margin: 0 auto;
