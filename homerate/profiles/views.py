@@ -53,10 +53,9 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        new_profile = Profile()
-        new_profile.user = user
-        #new_profile.email_confirmed = True
-        new_profile.save()
+        profile = Profile.objects.get(user=user)
+        profile.email_confirmed = True
+        profile.save()
         login(request, user)
         return render(request, 'registration/activation_successful.html')
     else:
@@ -72,7 +71,7 @@ def profile(request):
             if form.is_valid():
                 profile = form.save(commit=False)
                 profile.user = request.user
-                #profile.save()
+                profile.save()
             else:
                 print("Form Error")
                 print(form.errors)
