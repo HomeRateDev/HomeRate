@@ -33,7 +33,7 @@
 
                 /* Generate list entries with URLs for each address
                  * and appends them to the autocomplete box */
-                addresses.forEach(generateAddressEntry);
+                addresses.forEach(addr => generateAddressEntry(addr, postcode));
 
                 autocomplete.css('opacity', '1');
             }
@@ -42,7 +42,7 @@
 
     /* Creates HTML for an autocomplete address entry and inserts it into
        the DOM. */
-    function generateAddressEntry(address) {
+    function generateAddressEntry(address, postcode) {
         const formattedAddr = formatAddress(address, postcode),
               entry = $('<li/>').addClass('entry'),
               url = '/reviews/check_address/' + encodeURIComponent(formattedAddr),
