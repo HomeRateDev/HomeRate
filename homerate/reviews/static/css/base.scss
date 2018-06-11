@@ -103,6 +103,25 @@ $logoHeight: 45px;
   }
 }
 
+a {
+  color: $midText;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+  display: inline-block;
+
+  &:hover {
+    color: $lightestText;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.br-wrapper a:active {
+  transform: translateY(0);
+}
+
 /* Site homepage */
 .homepage {
   text-align: center;
@@ -319,8 +338,21 @@ $searchPadding: 20px;
     vertical-align: middle;
   }
   h3 {
+    margin-top: 5px;
     margin-bottom: 10px;
+    // display: block;
+  }
+
+  .br-wrapper, .reviewActions {
     display: inline-block;
+    vertical-align: middle;
+  }
+
+  .reviewActions {
+    margin-top: -11px;
+    a {
+      padding: 0 4px;
+    }
   }
 }
 

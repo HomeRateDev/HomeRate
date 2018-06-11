@@ -65,8 +65,10 @@
                                     <a class="averageStars createStars">{{ review.general_rating }}</a>
                                     {% if user == review.author %}
                                         <div class="reviewActions">
-                                            <a class="edit button" href="{% url 'edit_report' id=review.pk %}">Edit</a>
-                                            <a class="delete button" href="{% url 'delete_report' id=review.pk %}">Delete</a>
+                                            ∙
+                                            <a class="edit" href="{% url 'edit_report' id=review.pk %}">Edit</a>
+                                            ∙
+                                            <a class="delete" href="{% url 'delete_report' id=review.pk %}">Delete</a>
                                         </div>
                                     {% endif %}
                                 </div>
