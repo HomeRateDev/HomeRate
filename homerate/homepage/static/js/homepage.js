@@ -9,8 +9,10 @@
         $.get({
             'url': '/address_api/postcode/' + postcode,
             success: function (data) {
+
+                const autocomplete = $('.autocomplete');
                 /* Delete everything in the autocomplete box */
-                $('.autocomplete').empty();
+                autocomplete.empty();
 
                 const addresses = data.addresses;
 
@@ -29,6 +31,8 @@
                     link.appendTo(entry);
                     entry.appendTo('.autocomplete');
                 });
+
+                showAutocomplete();
             }
         })
     }
@@ -84,6 +88,18 @@
                key === codes['ctrl']
     }
 
+    function hideAutocomplete(command) {
+        $('.autocomplete').css({
+            'opacity': 0
+        });
+    }
+
+    function showAutocomplete(command) {
+        $('.autocomplete').css({
+            'opacity': 1
+        });
+    }
+
     /* After a key is typed in the search box */
     $('.searchBox').keyup(function (event) {
 
@@ -102,9 +118,11 @@
             errorMsg.hide()
         }
 
-        // If current input is a valid postcode, populate the autocomplete box
+        /* If current input is a valid postcode, populate the autocomplete box */
         if (postCode.test(query)) {
             populateAddresses(query);
+        } else {
+            hideAutocomplete();
         }
     })
 

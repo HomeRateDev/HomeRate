@@ -146,22 +146,26 @@ $logoHeight: 45px;
   }
 }
 
-$searchBoxWidth: 250px;
+$searchBoxWidth: 700px;
 $searchPadding: 20px;
 
 .searchBox {
   @include textInput($searchPadding);
-  width: $searchBoxWidth;
+  max-width: $searchBoxWidth;
+  width: 80%;
   margin-bottom: -1px;
 }
 
 .autocomplete {
   width: $searchBoxWidth + 2 * $searchPadding;
+  max-height: 200px;
   // visibility: hidden;
   margin: 20px auto 30px auto;
   border-radius: $cornerRadius;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   box-shadow: 0 5px 8px rgba($shadowColour, 0.1);
+  transition: opacity 0.1s ease-in-out;
 
   .entry {
     width: $searchBoxWidth;
@@ -170,12 +174,8 @@ $searchPadding: 20px;
     background: #fff;
     border-collapse: collapse;
     cursor: pointer;
-    // display: none;
+    text-align: left;
     transition: opacity 0.1s ease-in-out;
-
-    &:first-child {
-      // padding-top: $searchPadding + $cornerRadius;
-    }
 
     &:last-child {
       border-radius: 0 0 $cornerRadius $cornerRadius;
@@ -184,6 +184,7 @@ $searchPadding: 20px;
     &:hover {
       background: rgba(#fff, 0.5);
       font-weight: 600;
+      font-size: 16px;
     }
 
     a {
