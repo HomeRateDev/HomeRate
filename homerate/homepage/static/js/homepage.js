@@ -1,4 +1,8 @@
 (function ($) {
+    function renderErrorMessage(errorMessage, insertAfter) {
+        $('.errorMessage').html(errorMessage).show();
+    }
+
     function populateAddresses(query) {
         /* Strip trailing whitespace and remove (optional) space within postcode */
         const postcode = query.trim().replace(' ', '').toUpperCase();
@@ -9,6 +13,11 @@
                 $('.autocomplete').empty();
 
                 const addresses = data.addresses;
+
+                if (addresses === undefined) {
+                    renderErrorMessage("We couldn't find that postcode...", '.searchBox')
+                    return;
+                }
 
                 /* Generate list entries with URLs for each address
                  * and appends them to the autocomplete box */
@@ -47,12 +56,43 @@
         return result;
     }
 
+    function inRange(item, range) {
+        const lower = range[0],
+            upper = range[1];
+        return item >= lower && item <= upper;
+    }
+
+    function relevantKey(event) {
+        const key = event.which,
+              codes = {
+                  'alphanumeric': [48, 90],
+                  'numpad': [96, 105],
+                  'backspace': 8,
+                  'delete': 46
+              };
+        return inRange(key, codes['alphanumeric']) ||
+               inRange(key, codes['numpad']) ||
+               key === codes['backspace'] ||
+               key === codes['delete']
+    }
+
     /* After a key is typed in the search box */
-    $('.searchBox').keyup(function () {
+    $('.searchBox').keyup(function (event) {
+
+        if (!relevantKey(event)) {
+            return;
+        }
+
         const query = $(this).val(),
-              postCode = new RegExp('(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})', 'i');
+            postCode = new RegExp('^(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})$', 'i'),
+            errorMsg = $('.errorMessage');
+
+        if (errorMsg.css('display') !== 'none') {
+            errorMsg.hide()
+        }
 
         // If current input is a valid postcode, populate the autocomplete box
+        console.log(postCode.test(query));
         if (postCode.test(query)) {
             populateAddresses(query);
         }

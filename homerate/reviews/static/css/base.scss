@@ -122,6 +122,10 @@ $logoHeight: 45px;
     color: lighten($mainTextColour, 20%);
     font-size: 1.5em;
   }
+
+  .errorMessage {
+    display: none;
+  }
 }
 
 @mixin textInput($padding) {
