@@ -1,40 +1,54 @@
 (function ($) {
-    function renderErrorMessage(errorMessage, insertAfter) {
+
+    /* Sets the HTML content of the homepage's error message field
+       and makes it visible. */
+    function renderErrorMessage(errorMessage) {
         $('.errorMessage').html(errorMessage).show();
     }
 
+    /* Retrieves addresses for the queried postcode via our API and
+       inserts them into the autocomplete DOM element. */
     function populateAddresses(query) {
+
         /* Strip trailing whitespace and remove (optional) space within postcode */
         const postcode = query.trim().replace(' ', '').toUpperCase();
+
+        /* Make a GET request to our address API. */
         $.get({
             'url': '/address_api/postcode/' + postcode,
             success: function (data) {
 
-                const autocomplete = $('.autocomplete');
-                /* Delete everything in the autocomplete box */
-                autocomplete.empty();
-
                 const addresses = data.addresses;
 
+                /* Postcode is valid, but doesn't actually exist. */
                 if (addresses === undefined) {
-                    renderErrorMessage("We couldn't find that postcode...", '.searchBox')
+                    renderErrorMessage("We couldn't find that postcode...");
                     return;
                 }
 
+                const autocomplete = $('.autocomplete');
+
+                /* Delete everything in the autocomplete box */
+                autocomplete.empty();
+
                 /* Generate list entries with URLs for each address
                  * and appends them to the autocomplete box */
-                addresses.forEach(function (address) {
-                    const formattedAddr = formatAddress(address, postcode),
-                        entry = $('<li/>').addClass('entry'),
-                        url = '/reviews/check_address/' + encodeURIComponent(formattedAddr),
-                        link = $('<a/>').attr('href', url).html(formattedAddr);
-                    link.appendTo(entry);
-                    entry.appendTo('.autocomplete');
-                });
+                addresses.forEach(generateAddressEntry);
 
-                showAutocomplete();
+                autocomplete.css('opacity', '1');
             }
         })
+    }
+
+    /* Creates HTML for an autocomplete address entry and inserts it into
+       the DOM. */
+    function generateAddressEntry(address) {
+        const formattedAddr = formatAddress(address, postcode),
+              entry = $('<li/>').addClass('entry'),
+              url = '/reviews/check_address/' + encodeURIComponent(formattedAddr),
+              link = $('<a/>').attr('href', url).html(formattedAddr);
+        link.appendTo(entry);
+        entry.appendTo('.autocomplete');
     }
 
     /* Takes a raw address string (e.g. "1 Stratford Avenue, , , , , Rochdale, Lancashire")
@@ -60,12 +74,16 @@
         return result;
     }
 
-    function inRange(item, range) {
+    /* Takes a number and a range defined by a 2-element array: [lower, upper].
+       Returns true if lower <= number <= upper. */
+    function inRange(num, range) {
         const lower = range[0],
             upper = range[1];
-        return item >= lower && item <= upper;
+        return num >= lower && num <= upper;
     }
 
+    /* Returns true if the key pressed in a keypress event would affect the
+       postcode input field. */
     function relevantKey(event) {
         const key = event.which;
 
@@ -86,18 +104,6 @@
                key === codes['backspace'] ||
                key === codes['delete'] ||
                key === codes['ctrl']
-    }
-
-    function hideAutocomplete(command) {
-        $('.autocomplete').css({
-            'opacity': 0
-        });
-    }
-
-    function showAutocomplete(command) {
-        $('.autocomplete').css({
-            'opacity': 1
-        });
     }
 
     /* After a key is typed in the search box */
@@ -122,7 +128,7 @@
         if (postCode.test(query)) {
             populateAddresses(query);
         } else {
-            hideAutocomplete();
+            $('.autocomplete').css('opacity', '0');
         }
     })
 
