@@ -93,9 +93,6 @@ class HouseReport(models.Model):
     smells_weight = 1
     damp_mould_free_weight = 2
 
-    # Image
-    image = models.ImageField(upload_to='media/%Y/%m/%d/%s', default='default.png', blank=True, null=True)
-
     # Basic Info
     house_filed = models.ForeignKey('reviews.House', on_delete=models.CASCADE)
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -182,3 +179,10 @@ class HouseReport(models.Model):
         rating = rating / total_report_weight
         self.general_rating = round2sf(rating)
         return rating
+
+
+class ReviewImage(models.Model):
+    # Linked house report
+    house_report = models.ForeignKey('reviews.HouseReport', on_delete=models.CASCADE)
+    # Image
+    image = models.ImageField(upload_to='media/%Y/%m/%d/%s', blank=True, null=True)

@@ -15,8 +15,8 @@
 
         <section class="gallery">
             <div class="galleryWrapper">
-                {% for review in reviews %}
-                    <img src="{{ review.image.url }}"/>
+                {% for img in images %}
+                    <img src="{{ img.image.url }}"/>
                 {% endfor %}
             </div>
         </section>
