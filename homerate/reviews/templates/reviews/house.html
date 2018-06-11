@@ -21,183 +21,185 @@
             </div>
         </section>
 
-        <section class="houseInfo">
-            <header class="houseHeader">
-                <h2 class="houseAddress">{{ house.address }}</h2>
-                <p class="averageStars">{{ rating }} ★</p>
-            </header>
-            <ul class="basicInfo">
-                <li class="infoItem">
-                    <img class="icon" src="{% static 'img/bed.svg' %}"/>
-                    <span class="value">{{ house.bedrooms }}</span>
-                </li>
-                <li class="infoItem">
-                    <img class="icon" src="{% static 'img/bath.svg' %}"/>
-                    <span class="value">{{ house.bathrooms }}</span>
-                </li>
-                <li class="infoItem">
-                    <img class="icon" src="{% static 'img/sofa.svg' %}"/>
-                    <span class="value">{{ house.living_rooms }}</span>
-                </li>
-            </ul>
-        </section>
-
-        <section class="reviews">
-            <h2>Reviews</h2>
-            <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
-            <ul class="reviewList">
-                {% for review in reviews %}
-                    <li class="review">
-                        <h3>{{ review.moved_in_date }} to {{ review.moved_out_date }} <a
-                                class="averageStars">{{ review.general_rating }} ★</a>
-                            {% if user == review.author %}
-                                <a class="addReview button" href="{% url 'edit_report' id=review.pk %}">Edit</a>
-                                <a class="addReview button" href="{% url 'delete_report' id=review.pk %}">Delete</a>
-                            {% endif %} </h3>
-
-                        <ul class="reviewPoints">
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Landlord Responsiveness</p>
-                                    <p class="value">{{ review.landlord_responsiveness }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.landlord_responsiveness_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Repair Quality</p>
-                                    <p class="value">{{ review.repair_quality }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.repair_quality_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Water Pressure</p>
-                                    <p class="value">{{ review.water_pressure }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.water_pressure_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Utilities</p>
-                                    <p class="value">{{ review.utilities }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.utilities_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Furniture Quality</p>
-                                    <p class="value">{{ review.furniture_quality }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.furniture_quality_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Mattress Quality</p>
-                                    <p class="value">{{ review.mattress_quality }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.mattress_quality_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Build Quality</p>
-                                    <p class="value">{{ review.build_quality }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.build_quality_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Quietness</p>
-                                    <p class="value">{{ review.quietness }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.quietness_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Pest/Insect-free</p>
-                                    <p class="value">{{ review.pest_free }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.pest_free_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Smells</p>
-                                    <p class="value">{{ review.smells }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.smells_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Damp/Mould-free</p>
-                                    <p class="value">{{ review.damp_mould_free }} ★</p>
-                                </div>
-
-                                <div class="reviewComment">
-                                    {{ review.damp_mould_free_comment|default_if_none:"" }}
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Monthly Rent</p>
-                                    <p class="value">£{{ review.monthly_rent }}</p>
-                                </div>
-                            </li>
-
-                            <li class="reviewPointWrapper">
-                                <div class="reviewPoint">
-                                    <p class="label">Monthly Bills</p>
-                                    <p class="value">£{{ review.monthly_bills }}</p>
-                                </div>
-                            </li>
-
-                        </ul>
+        <div class="mainContent">
+            <section class="houseInfo">
+                <header class="houseHeader">
+                    <h2 class="houseAddress">{{ house.split_address.line1 }}</h2>
+                    <p class="houseLocation">{{ house.split_address.line2 }}</p>
+                    <p class="averageStars">{{ rating }} ★</p>
+                </header>
+                <ul class="basicInfo">
+                    <li class="infoItem">
+                        <img class="icon" src="{% static 'img/bed.svg' %}"/>
+                        <span class="value">{{ house.bedrooms }}</span>
                     </li>
-                {% endfor %}
-            </ul>
-        </section>
+                    <li class="infoItem">
+                        <img class="icon" src="{% static 'img/bath.svg' %}"/>
+                        <span class="value">{{ house.bathrooms }}</span>
+                    </li>
+                    <li class="infoItem">
+                        <img class="icon" src="{% static 'img/sofa.svg' %}"/>
+                        <span class="value">{{ house.living_rooms }}</span>
+                    </li>
+                </ul>
+            </section>
 
+            <section class="reviews">
+                <h2>Reviews</h2>
+                <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
+                <ul class="reviewList">
+                    {% for review in reviews %}
+                        <li class="review">
+                            <h3>{{ review.moved_in_date }} to {{ review.moved_out_date }} <a
+                                    class="averageStars">{{ review.general_rating }} ★</a>
+                                {% if user == review.author %}
+                                    <a class="addReview button" href="{% url 'edit_report' id=review.pk %}">Edit</a>
+                                    <a class="addReview button" href="{% url 'delete_report' id=review.pk %}">Delete</a>
+                                {% endif %} </h3>
+
+                            <ul class="reviewPoints">
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Landlord Responsiveness</p>
+                                        <p class="value">{{ review.landlord_responsiveness }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.landlord_responsiveness_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Repair Quality</p>
+                                        <p class="value">{{ review.repair_quality }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.repair_quality_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Water Pressure</p>
+                                        <p class="value">{{ review.water_pressure }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.water_pressure_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Utilities</p>
+                                        <p class="value">{{ review.utilities }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.utilities_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Furniture Quality</p>
+                                        <p class="value">{{ review.furniture_quality }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.furniture_quality_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Mattress Quality</p>
+                                        <p class="value">{{ review.mattress_quality }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.mattress_quality_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Build Quality</p>
+                                        <p class="value">{{ review.build_quality }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.build_quality_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Quietness</p>
+                                        <p class="value">{{ review.quietness }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.quietness_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Pest/Insect-free</p>
+                                        <p class="value">{{ review.pest_free }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.pest_free_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Smells</p>
+                                        <p class="value">{{ review.smells }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.smells_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Damp/Mould-free</p>
+                                        <p class="value">{{ review.damp_mould_free }} ★</p>
+                                    </div>
+
+                                    <div class="reviewComment">
+                                        {{ review.damp_mould_free_comment|default_if_none:"" }}
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Monthly Rent</p>
+                                        <p class="value">£{{ review.monthly_rent }}</p>
+                                    </div>
+                                </li>
+
+                                <li class="reviewPointWrapper">
+                                    <div class="reviewPoint">
+                                        <p class="label">Monthly Bills</p>
+                                        <p class="value">£{{ review.monthly_bills }}</p>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"

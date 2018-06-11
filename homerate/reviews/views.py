@@ -27,8 +27,18 @@ def house(request, id):
             report.get_general_rating()
         rating = house.star_rating()
 
+        # Construct a split-up version of the address
+        address_components = house.split_address()
+
         # return house view page with house and list of reports
-        return render(request, 'reviews/house.html', {'house': house, 'reviews': reviews, 'rating': rating})
+        return render(
+            request, 'reviews/house.html', {
+                'house': house,
+                'reviews': reviews,
+                'rating': rating,
+                'address_components': address_components
+            }
+        )
     else:
         return render(request, 'reviews/login_to_view_reports.html')
         

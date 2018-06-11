@@ -55,6 +55,12 @@ class House(models.Model):
     def __str__(self):
         return self.address
 
+    def split_address(self):
+        components = self.address.split(",")
+        return {
+            'line1': components[0],
+            'line2': components[-2] + ", " + components[-3]
+        }
 
     def star_rating(self):
         reports = HouseReport.objects.filter(house_filed=self).order_by('-moved_out_date')
