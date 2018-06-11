@@ -1,9 +1,10 @@
 /* General Styles */
-@import url('https://fonts.googleapis.com/css?family=Cabin');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700');
+@import url(../fonts/circular.css);
 
 $backgroundColour: #f6f8fa;
 $mainTextColour: #313951;
+$midText: #657180;
+$lightestText: #8b9bb1;
 $cornerRadius: 8px;
 $shadowColour: #576f92;
 $borderColour: #d8e4ea;
@@ -12,7 +13,7 @@ $buttonColour: $mainTextColour;
 body {
   background: $backgroundColour;
   color: $mainTextColour;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Circular Std', sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -199,11 +200,24 @@ $searchPadding: 20px;
 .houseHeader {
 
   .houseAddress {
+    margin-bottom: 0;
     margin-right: 10px;
+    font-size: 32px;
   }
 
-  .houseAddress, .averageStars {
+  .houseLocation, .averageStars, .br-wrapper {
     display: inline-block;
+    vertical-align: middle;
+  }
+
+  .houseLocation {
+    margin-top: 15px;
+    color: $lightestText;
+  }
+
+  .br-wrapper {
+    margin-left: 5px;
+    margin-top: 5px;
   }
 }
 
