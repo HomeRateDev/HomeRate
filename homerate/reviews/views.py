@@ -51,7 +51,6 @@ def new_report(request, id):
 
         # Ensure both forms are valid
         if house_details_form.is_valid() and review_form.is_valid():
-
             # Prepare to save review, but don't commit to database yet
             report = review_form.save(commit=False)
 

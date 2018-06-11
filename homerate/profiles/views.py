@@ -14,6 +14,9 @@ from profiles.tokens import account_activation_token
 
 import os
 
+from .models import Profile
+
+
 def sign_up(request):
     if request.user.is_authenticated:
         return render(request, 'registration/already_signed_in.html')
@@ -50,6 +53,10 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
+        new_profile = Profile()
+        new_profile.user = user
+        new_profile.email_confirmed = True
+        new_profile.save()
         login(request, user)
         return render(request, 'registration/activation_successful.html')
     else:
