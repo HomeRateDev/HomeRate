@@ -28,6 +28,5 @@ class HouseReportForm(forms.ModelForm):
         self.fields['build_quality'].required = False
         self.fields['smells'].required = False
         self.fields['damp_mould_free'].required = False
-        self.fields['image'].required = False
 
 

@@ -17,6 +17,7 @@ New Report
     <form method="POST" enctype="multipart/form-data" class="reviewForm form">{% csrf_token %}
         {{ house_details_form.as_p }}
         {{ new_report_form.as_p }}
+        {{ image_formset.as_p}}
         <button type="submit" class="save btn btn-default">Submit</button>
     </form>
 </div>
