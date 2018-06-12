@@ -245,6 +245,7 @@ $searchPadding: 20px;
 
 .extraContent {
   max-width: 0.35 * $containerWidth;
+  padding-bottom: 10px;
   margin-bottom: 40px;
   background-color: $darkerBackgroudnColour;
   margin-left: 1%;
@@ -447,7 +448,11 @@ $searchPadding: 20px;
 }
 
 .infoModule {
-  padding: 20px;
+  padding: 15px 20px 0 20px;
+
+  &:first-child {
+    padding-top: 20px;
+  }
 
   .title {
     margin-top: 0;
@@ -458,18 +463,25 @@ $searchPadding: 20px;
     }
   }
 
-  .routes {
-    margin-top: 3px;
-  }
-
-  .route {
-    padding: 10px 0;
-    i {
+  i {
       width: 20px;
       margin-right: 7px;
       text-align: center;
     }
+
+  ul {
+    margin-top: 3px;
+    margin-bottom: 5px;
   }
+
+  li {
+    padding: 10px 0;
+  }
+
+  .shops {
+    list-style: none;
+  }
+
 }
 
 /* New Report Page */
