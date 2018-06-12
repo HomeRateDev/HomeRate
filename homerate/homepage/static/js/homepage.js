@@ -124,10 +124,11 @@
             errorMsg.hide()
         }
 
-        /* If current input is a valid postcode, populate the autocomplete box */
         if (postCode.test(query)) {
+            /* If current input is a valid postcode, populate the autocomplete box */
             populateAddresses(query);
         } else {
+            /* Invalid postcode typed, hide the autocomplete box */
             $('.autocomplete').css('opacity', '0');
         }
     })
