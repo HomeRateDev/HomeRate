@@ -18,8 +18,9 @@
 
     <div> <!-- settings area-->
         <h2> Settings and Preferences</h2>
-        <div class="settings">
-            <div class="weightingSettings" id="weightings">
+        <div class="settingsContainer">
+
+            <div class="settings" id="weightings">
                 <h3> Star Rating Weightings</h3>
                 <p> Customise how houses are rated to suit your wants.</p>
                 <form method="POST" class="form", action="{% url 'profile' %}#weightings">{% csrf_token %}
@@ -29,6 +30,18 @@
                     </div>
                 </form>
             </div>
+
+            <div class="settings" id="postcode">
+                <h3> University postcode </h3>
+                <p> Get travel times to and from your university. </p>
+                <form method="POST" class="form", action="{% url 'profile' %}#postcode">{% csrf_token %}
+                    {{ postcode_form.as_p }}
+                    <div>
+                        <button type="submit" class="button">Save</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 

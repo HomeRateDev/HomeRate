@@ -32,8 +32,15 @@ class StarRatingWeighting(forms.ModelForm):
                    'water_pressure',
                    'utilities',
                    'furniture_quality',
+                   'mattress_quality',
                    'build_quality',
                    'quietness',
                    'pest_free',
                    'smells',
                    'damp_mould_free']
+
+
+class CommutePostcode(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['postcode']

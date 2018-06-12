@@ -8,7 +8,7 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from profiles.forms import SignupForm, StarRatingWeighting
+from profiles.forms import SignupForm, StarRatingWeighting, CommutePostcode
 
 from profiles.tokens import account_activation_token
 
@@ -68,17 +68,24 @@ def profile(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             weights_form = StarRatingWeighting(request.POST, instance=Profile.objects.get(user=request.user))
+            postcode_form = CommutePostcode(request.POST, instance=Profile.objects.get(user=request.user))
+
+
             if weights_form.is_valid():
                 profile = weights_form.save(commit=False)
                 profile.user = request.user
                 profile.save()
+            elif postcode_form.is_valid():
+                profile = postcode_form.save(commit=False)
+                profile.save(update_fields=["postcode"])
             else:
                 print("Form Error")
                 print(weights_form.errors)
 
-        else:
-            weights_form = StarRatingWeighting(instance=Profile.objects.get(user=request.user))
 
-        return render(request, 'profiles/profile.html', {'weights_form': weights_form})
+        weights_form = StarRatingWeighting(instance=Profile.objects.get(user=request.user))
+        postcode_form = CommutePostcode(instance=Profile.objects.get(user=request.user))
+
+        return render(request, 'profiles/profile.html', {'weights_form': weights_form, 'postcode_form':postcode_form})
     else:
         return render(request, 'profiles/signin_to_view.html')
