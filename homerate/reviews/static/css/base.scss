@@ -515,6 +515,12 @@ input[type=email], input[type=text], input[type=number], input[type=password] {
     margin-bottom: 30px;
     text-align: center;
   }
+
+  .alert {
+    padding-bottom: 20px;
+    text-align: center;
+    color: darkred;
+  }
 }
 
 form.accounts {
@@ -566,7 +572,7 @@ form.accounts {
 .settings {
   padding: 20px;
   margin: 10px;
-  background: #fff;
+  background: $darkerBackgroudnColour;
   border-radius: 8px;
   text-align: left;
 
@@ -587,3 +593,5 @@ form.accounts {
     }
   }
 }
+
+
