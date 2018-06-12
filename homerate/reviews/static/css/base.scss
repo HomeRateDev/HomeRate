@@ -2,7 +2,7 @@
 @import url(../fonts/circular.css);
 
 $backgroundColour: #f6f8fa;
-$darkerBackgroudnColour: #f0f3f7;
+$darkerBackgroundColour: #f0f3f7;
 $mainTextColour: #313951;
 $midText: #657180;
 $lightestText: #8b9bb1;
@@ -247,7 +247,7 @@ $searchPadding: 20px;
   max-width: 0.35 * $containerWidth;
   padding-bottom: 10px;
   margin-bottom: 40px;
-  background-color: $darkerBackgroudnColour;
+  background-color: $darkerBackgroundColour;
   margin-left: 1%;
 }
 
@@ -585,7 +585,7 @@ form.accounts {
 .settings {
   padding: 20px;
   margin: 10px;
-  background: $darkerBackgroudnColour;
+  background: $darkerBackgroundColour;
   border-radius: 8px;
   text-align: left;
 
