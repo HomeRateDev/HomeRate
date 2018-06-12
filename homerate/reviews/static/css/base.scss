@@ -2,6 +2,7 @@
 @import url(../fonts/circular.css);
 
 $backgroundColour: #f6f8fa;
+$darkerBackgroudnColour: #f0f3f7;
 $mainTextColour: #313951;
 $midText: #657180;
 $lightestText: #8b9bb1;
@@ -231,6 +232,28 @@ $searchPadding: 20px;
 
 /* House Page */
 
+.mainContent, .extraContent {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.mainContent {
+  max-width: 0.62 * $containerWidth;
+  width: 100%;
+}
+
+.extraContent {
+  max-width: 0.35 * $containerWidth;
+  margin-bottom: 40px;
+  height: 400px;
+  background-color: $darkerBackgroudnColour;
+  margin-left: 1%;
+
+  .map img {
+    width: 100%;
+  }
+}
+
 .houseInfo {
   margin-bottom: 15px;
   border-bottom: solid 1px $borderColour;
@@ -240,8 +263,7 @@ $searchPadding: 20px;
 .houseHeader {
 
   .houseAddress {
-    margin-bottom: 0;
-    margin-right: 10px;
+    margin: 0 10px 0 0;
     font-size: 32px;
   }
 

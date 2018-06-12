@@ -28,7 +28,8 @@ class House(models.Model):
         components = self.address.split(",")
         return {
             'line1': components[0],
-            'line2': components[-2] + ", " + components[-3]
+            'line2': components[-2] + ", " + components[-3],
+            'postcode': components[-1]
         }
 
     def general_star_rating(self):
