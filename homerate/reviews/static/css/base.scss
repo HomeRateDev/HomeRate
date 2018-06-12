@@ -557,15 +557,19 @@ form.accounts {
 }
 
 /* Profiles styling*/
+.settingsContainer{
+
+
+}
+
 
 .settings {
   padding: 20px;
+  margin: 10px;
   background: #fff;
   border-radius: 8px;
   text-align: left;
-}
 
-.weightingSettings {
   h3, p {
     margin: 0px;
   }

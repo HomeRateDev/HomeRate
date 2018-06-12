@@ -13,6 +13,7 @@ class Profile(models.Model):
     # Landlord
     landlord_responsiveness = RatingField(mandatory=True, weighting=True, default=2)
 
+    # Repairs
     repair_quality = RatingField(mandatory=True, weighting=True, default=2)
 
     # Construction Quality
@@ -28,7 +29,9 @@ class Profile(models.Model):
     smells = RatingField(mandatory=True, weighting=True, default=2)
     damp_mould_free = RatingField(mandatory=True, weighting=True, default=2)
 
-    # other fields...
+    # Postcode
+    postcode_max_length = 8
+    postcode = models.CharField(max_length=postcode_max_length, blank=True, null=True)
 
     @receiver(post_save, sender=User)
     def update_user_profile(sender, instance, created, **kwargs):
