@@ -40,6 +40,11 @@ def house(request, id):
         # Construct a split-up version of the address
         address_components = house.split_address()
 
+        profilepostcode = user_profile.postcode
+
+        if profilepostcode is not None:
+            profilepostcode = profilepostcode.upper()
+
         # return house view page with house and list of reports
         return render(
             request, 'reviews/house.html', {
@@ -48,7 +53,7 @@ def house(request, id):
                 'rating': rating,
                 'images': images,
                 'address_components': address_components,
-                'profilepostcode': user_profile.postcode.upper()
+                'profilepostcode': profilepostcode
             }
         )
     else:
