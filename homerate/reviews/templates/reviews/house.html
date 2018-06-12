@@ -179,7 +179,7 @@
             <div class="infoModules">
                 <span class="mapsHook"></span>
                 <section class="infoModule commuteTime">
-                    <h3 class="title">Commute Times to SW7 2AZ</h3>
+                    <h3 class="title">Commute Times to {{ profilepostcode }}</h3>
                     <ul class="routes">
                         <li class="route walking">
                             <i class="far fa-walking"></i>
@@ -225,7 +225,7 @@
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="{% static 'slick/slick.min.js' %}"></script>
     <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
-    <script src="{% static 'js/house.js' %}"></script>
+    <script class="data" data-profilepostcode="{{ profilepostcode }}" src="{% static 'js/house.js' %}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o&callback=initMapping&libraries=places">
     </script>

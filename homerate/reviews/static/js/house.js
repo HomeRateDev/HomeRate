@@ -12,7 +12,7 @@ function getPostcode() {
  * via 4 different methods and inserts it into the page. */
 function getCommuteTimes() {
     const origin = getPostcode(),
-        destination = 'SW7 2AZ',
+        destination = $(".data").data("profilepostcode"),
         modes = ['walking', 'bicycling', 'transit', 'driving'];
 
     modes.forEach(function (mode) {

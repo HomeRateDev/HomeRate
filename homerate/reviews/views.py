@@ -47,7 +47,8 @@ def house(request, id):
                 'reviews': reviews,
                 'rating': rating,
                 'images': images,
-                'address_components': address_components
+                'address_components': address_components,
+                'profilepostcode': user_profile.postcode.upper()
             }
         )
     else:
