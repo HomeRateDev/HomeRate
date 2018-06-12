@@ -324,23 +324,27 @@ $searchPadding: 20px;
 /* House Page: Reviews */
 
 .review {
-  padding: 10px 0;
+  padding: 30px 0;
   border-bottom: solid 1px $borderColour;
+
+  &:first-child {
+    padding: 10px 0;
+  }
 }
 
 .reviewHeader {
   i {
     margin-right: 12px;
-    font-size: 64px;
+    font-size: 48px;
   }
   i, .text {
     display: inline-block;
     vertical-align: middle;
   }
-  h3 {
+  .reviewAuthor {
     margin-top: 5px;
     margin-bottom: 10px;
-    // display: block;
+    font-weight: 500;
   }
 
   .br-wrapper, .reviewActions {
@@ -356,32 +360,66 @@ $searchPadding: 20px;
   }
 }
 
-.reviewPoint {
-  width: 40%;
-  display: inline-block;
+.reviewCategory {
+  margin-bottom: 0px;
 
-  * {
-    display: inline-block;
-    vertical-align: middle;
+  &:last-child {
+    margin-bottom: 10px;
   }
+}
 
-  &:nth-child(odd) {
-    margin-right: 7%;
-  }
-
-  .label {
-    font-weight: bold;
-  }
-
-  .value {
-    float: right;
+.reviewCategoryName {
+  margin-bottom: 15px;
+  font-weight: 500;
+  i {
+    margin-right: 5px;
   }
 }
 
 .reviewPoint, .reviewComment {
-  max-width: 50%;
+  color: $midText;
+  font-size: 14px
+}
+
+.reviewPoint {
+  width: 320px;
+  margin-bottom: 5px;
   display: inline-block;
   vertical-align: middle;
+
+  &:nth-child(odd) {
+    margin-right: 30px;
+  }
+
+  .label, .br-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .label {
+    margin-top: 0;
+    margin-right: 20px;
+  }
+
+  .br-wrapper, .value {
+    float: right;
+  }
+
+  .value {
+    margin-top: 0;
+  }
+}
+
+.reviewComment {
+  margin-top: 5px;
+  padding: $searchPadding;
+  background: #fff;
+  border-radius: $cornerRadius;
+  box-shadow: 0 3px 5px rgba($shadowColour, 0.1);
+
+  &:empty {
+    display: none;
+  }
 }
 
 /* New Report Page */

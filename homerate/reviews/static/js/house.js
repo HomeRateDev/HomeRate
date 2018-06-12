@@ -7,6 +7,7 @@
                   select = $('<select/>').addClass('starRating');
 
             if (isNaN(value)) {
+                field.parent().remove();
                 return;
             }
 

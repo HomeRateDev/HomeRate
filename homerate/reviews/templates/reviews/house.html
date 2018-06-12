@@ -61,7 +61,8 @@
                             <header class="reviewHeader">
                                 <i class="fas fa-user-circle"></i>
                                 <div class="text">
-                                    <h3>Tenant from {{ review.moved_in_date }} to {{ review.moved_out_date }}</h3>
+                                    <h3 class="reviewAuthor">Tenant from {{ review.moved_in_date }}
+                                        to {{ review.moved_out_date }}</h3>
                                     <a class="averageStars createStars">{{ review.general_rating }}</a>
                                     {% if user == review.author %}
                                         <div class="reviewActions">
@@ -74,144 +75,92 @@
                                 </div>
                             </header>
 
-                            <ul class="reviewPoints">
+                            <div class="reviewContent">
+                                <section class="reviewCategory landlord">
+                                    <h4 class="reviewCategoryName"><i class="far fa-id-card"></i> Landlord</h4>
+                                    <ul class="reviewPoints">
+                                        <li class="reviewPoint">
+                                            <p class="label">Landlord Responsiveness</p>
+                                            <p class="value createStars">{{ review.landlord_responsiveness }} ★</p>
+                                        </li>
 
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Landlord Responsiveness</p>
-                                        <p class="value createStars">{{ review.landlord_responsiveness }} ★</p>
-                                    </div>
+                                        <li class="reviewPoint">
+                                            <p class="label">Repair Quality</p>
+                                            <p class="value createStars">{{ review.repair_quality }}</p>
+                                        </li>
+                                    </ul>
+                                    <p class="reviewComment">{{ review.landlord_comment|default_if_none:"" }}</p>
+                                </section>
 
-                                    <div class="reviewComment">
-                                        {{ review.landlord_responsiveness_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
+                                <section class="reviewCategory construction">
+                                    <h4 class="reviewCategoryName"><i class="far fa-wrench"></i> Construction Quality
+                                    </h4>
+                                    <ul class="reviewPoints">
+                                        <li class="reviewPoint">
+                                            <p class="label">Water Pressure</p>
+                                            <p class="value createStars">{{ review.water_pressure }}</p>
+                                        </li>
+                                        <li class="reviewPoint">
+                                            <p class="label">Utility Quality</p>
+                                            <p class="value createStars">{{ review.utilities }}</p>
+                                        </li>
+                                        <li class="reviewPoint">
+                                            <p class="label">Furniture Quality</p>
+                                            <p class="value createStars">{{ review.furniture_quality }}</p>
+                                        </li>
+                                        <li class="reviewPoint">
+                                            <p class="label">Mattress Quality</p>
+                                            <p class="value createStars">{{ review.mattress_quality }}</p>
+                                        </li>
+                                        <li class="reviewPoint">
+                                            <p class="label">Build Quality</p>
+                                            <p class="value createStars">{{ review.build_quality }}</p>
+                                        </li>
+                                    </ul>
+                                    <p class="reviewComment">{{ review.construction_quality_comment|default_if_none:"" }}</p>
+                                </section>
 
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Repair Quality</p>
-                                        <p class="value createStars">{{ review.repair_quality }}</p>
-                                    </div>
+                                <section class="reviewCategory nuisances">
+                                    <h4 class="reviewCategoryName"><i class="far fa-exclamation-triangle"></i> Nuisances
+                                    </h4>
+                                    <ul class="reviewPoints">
+                                        <li class="reviewPoint">
+                                            <p class="label">Quietness</p>
+                                            <p class="value createStars">{{ review.quietness }}</p>
+                                        </li>
+                                        <li class="reviewPoint">
+                                            <p class="label">Pest/Insect-free</p>
+                                            <p class="value createStars">{{ review.pest_free }}</p>
+                                        </li>
+                                        <li class="reviewPoint">
+                                            <p class="label">Smells</p>
+                                            <p class="value createStars">{{ review.smells }}</p>
+                                        </li>
+                                        <li class="reviewPoint">
+                                            <p class="label">Damp/Mould-free</p>
+                                            <p class="value createStars">{{ review.damp_mould_free }}</p>
+                                        </li>
+                                    </ul>
+                                    <p class="reviewComment">{{ review.nuisances_comment|default_if_none:"" }}</p>
+                                </section>
 
-                                    <div class="reviewComment">
-                                        {{ review.repair_quality_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
+                                <section class="reviewCategory affordability">
+                                    <h4 class="reviewCategoryName"><i class="far fa-money-bill-alt"></i> Affordability
+                                    </h4>
+                                    <ul class="reviewPoints">
+                                        <li class="reviewPoint">
+                                            <p class="label">Monthly Rent</p>
+                                            <p class="value">£{{ review.monthly_rent }}</p>
+                                        </li>
+                                        <li class="reviewPoint">
+                                            <p class="label">Monthly Bills</p>
+                                            <p class="value createStars">£{{ review.monthly_bills }}</p>
+                                        </li>
+                                    </ul>
+                                    <p class="reviewComment">{{ review.affordability_comment|default_if_none:"" }}</p>
+                                </section>
 
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Water Pressure</p>
-                                        <p class="value createStars">{{ review.water_pressure }}</p>
-                                    </div>
-
-                                    <div class="reviewComment">
-                                        {{ review.water_pressure_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
-
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Utilities</p>
-                                        <p class="value createStars">{{ review.utilities }}</p>
-                                    </div>
-
-                                    <div class="reviewComment">
-                                        {{ review.utilities_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
-
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Furniture Quality</p>
-                                        <p class="value createStars">{{ review.furniture_quality }}</p>
-                                    </div>
-
-                                    <div class="reviewComment">
-                                        {{ review.furniture_quality_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
-
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Mattress Quality</p>
-                                        <p class="value createStars">{{ review.mattress_quality }}</p>
-                                    </div>
-
-                                    <div class="reviewComment">
-                                        {{ review.mattress_quality_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
-
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Build Quality</p>
-                                        <p class="value createStars">{{ review.build_quality }}</p>
-                                    </div>
-
-                                    <div class="reviewComment">
-                                        {{ review.build_quality_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
-
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Quietness</p>
-                                        <p class="value createStars">{{ review.quietness }}</p>
-                                    </div>
-
-                                    <div class="reviewComment">
-                                        {{ review.quietness_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
-
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Pest/Insect-free</p>
-                                        <p class="value createStars">{{ review.pest_free }}</p>
-                                    </div>
-
-                                    <div class="reviewComment">
-                                        {{ review.pest_free_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
-
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Smells</p>
-                                        <p class="value createStars">{{ review.smells }}</p>
-                                    </div>
-
-                                    <div class="reviewComment">
-                                        {{ review.smells_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
-
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Damp/Mould-free</p>
-                                        <p class="value createStars">{{ review.damp_mould_free }}</p>
-                                    </div>
-
-                                    <div class="reviewComment">
-                                        {{ review.damp_mould_free_comment|default_if_none:"" }}
-                                    </div>
-                                </li>
-
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Monthly Rent</p>
-                                        <p class="value createStars">£{{ review.monthly_rent }}</p>
-                                    </div>
-                                </li>
-
-                                <li class="reviewPointWrapper">
-                                    <div class="reviewPoint">
-                                        <p class="label">Monthly Bills</p>
-                                        <p class="value createStars">£{{ review.monthly_bills }}</p>
-                                    </div>
-                                </li>
-
-                            </ul>
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>
