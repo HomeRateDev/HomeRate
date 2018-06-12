@@ -29,7 +29,7 @@
         <div class="mainContent">
             <section class="houseInfo">
                 <header class="houseHeader">
-                    <h2 class="houseAddress">{{ house.split_address.line1 }}</h2>
+                    <h2 data-postcode="{{ house.split_address.postcode }}" class="houseAddress">{{ house.split_address.line1 }}</h2>
                     <p class="houseLocation">{{ house.split_address.line2 }} ∙ </p>
                     <p class="averageStars createStars">{{ rating }}</p>
                 </header>
@@ -178,7 +178,37 @@
             </div>
             <div class="infoModules">
                 <section class="infoModule commuteTime">
-
+                    <h3 class="title">Commute Times to SW7 2AZ</h3>
+                    <ul class="routes">
+                        <li class="route walking">
+                            <i class="far fa-walking"></i>
+                            <span>
+                                <span class="timeValue"><i class="far fa-times-circle"></i></span>
+                                <strong>walk</strong>
+                            </span>
+                        </li>
+                        <li class="route bicycling">
+                            <i class="far fa-bicycle"></i>
+                            <span>
+                                <span class="timeValue"><i class="far fa-times-circle"></i></span>
+                                <strong>cycle</strong>
+                            </span>
+                        </li>
+                        <li class="route transit">
+                            <i class="far fa-subway"></i>
+                            <span>
+                                <span class="timeValue"><i class="far fa-times-circle"></i></span>
+                                on <strong>public transport</strong>
+                            </span>
+                        </li>
+                        <li class="route driving">
+                            <i class="far fa-car"></i>
+                            <span>
+                                <span class="timeValue"><i class="far fa-times-circle"></i></span>
+                                <strong>drive</strong>
+                            </span>
+                        </li>
+                    </ul>
                 </section>
             </div>
         </div>
@@ -189,4 +219,7 @@
     <script src="{% static 'slick/slick.min.js' %}"></script>
     <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
     <script src="{% static 'js/house.js' %}"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o&callback=getCommuteTimes">
+    </script>
 {% endblock %}

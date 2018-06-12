@@ -245,13 +245,8 @@ $searchPadding: 20px;
 .extraContent {
   max-width: 0.35 * $containerWidth;
   margin-bottom: 40px;
-  height: 400px;
   background-color: $darkerBackgroudnColour;
   margin-left: 1%;
-
-  .map img {
-    width: 100%;
-  }
 }
 
 .houseInfo {
@@ -293,6 +288,7 @@ $searchPadding: 20px;
 .reviews h2 {
   margin-right: 5px;
   margin-bottom: 0;
+  font-weight: 500;
   display: inline-block;
 }
 
@@ -441,6 +437,37 @@ $searchPadding: 20px;
 
   &:empty {
     display: none;
+  }
+}
+
+/* House Page: Information Modules */
+.map img {
+  width: 100%;
+}
+
+.infoModule {
+  padding: 20px;
+
+  .title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font: {
+      size: 18px;
+      weight: 500;
+    }
+  }
+
+  .routes {
+    margin-top: 3px;
+  }
+
+  .route {
+    padding: 10px 0;
+    i {
+      width: 20px;
+      margin-right: 7px;
+      text-align: center;
+    }
   }
 }
 
