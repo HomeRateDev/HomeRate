@@ -177,6 +177,7 @@
                           &key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o"/>
             </div>
             <div class="infoModules">
+                <span class="mapsHook"></span>
                 <section class="infoModule commuteTime">
                     <h3 class="title">Commute Times to SW7 2AZ</h3>
                     <ul class="routes">
@@ -210,6 +211,12 @@
                         </li>
                     </ul>
                 </section>
+                <section class="infoModule nearbyShops">
+                    <h3 class="title">Nearby Shops</h3>
+                    <ul class="shops">
+
+                    </ul>
+                </section>
             </div>
         </div>
     </div>
@@ -220,6 +227,6 @@
     <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
     <script src="{% static 'js/house.js' %}"></script>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o&callback=getCommuteTimes">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o&callback=initMapping&libraries=places">
     </script>
 {% endblock %}
