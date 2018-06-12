@@ -67,18 +67,18 @@ def account_activation_sent(request):
 def profile(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            form = StarRatingWeighting(request.POST, instance=Profile.objects.get(user=request.user))
-            if form.is_valid():
-                profile = form.save(commit=False)
+            weights_form = StarRatingWeighting(request.POST, instance=Profile.objects.get(user=request.user))
+            if weights_form.is_valid():
+                profile = weights_form.save(commit=False)
                 profile.user = request.user
                 profile.save()
             else:
                 print("Form Error")
-                print(form.errors)
+                print(weights_form.errors)
 
         else:
-            form = StarRatingWeighting(instance=Profile.objects.get(user=request.user))
+            weights_form = StarRatingWeighting(instance=Profile.objects.get(user=request.user))
 
-        return render(request, 'profiles/profile.html', {'form': form})
+        return render(request, 'profiles/profile.html', {'weights_form': weights_form})
     else:
         return render(request, 'profiles/signin_to_view.html')

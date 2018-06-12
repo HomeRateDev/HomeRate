@@ -23,7 +23,7 @@
                 <h3> Star Rating Weightings</h3>
                 <p> Customise how houses are rated to suit your wants.</p>
                 <form method="POST" class="form", action="{% url 'profile' %}#weightings">{% csrf_token %}
-                    {{ form.as_p }}
+                    {{ weights_form.as_p }}
                     <div>
                         <button type="submit" class="button">Save</button>
                     </div>
