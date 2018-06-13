@@ -1,4 +1,10 @@
 {% extends 'homepage/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-oi8o31xSQq8S0RpBcb4FaLB8LJi9AT8oIdmS1QldR8Ui7KUQjNAnDlJjp55Ba8FG" crossorigin="anonymous">
+{% endblock %}
 
 {% block title %}Login{% endblock %}
 
@@ -26,8 +32,8 @@
             <div class="form entry">
                 <label>{{ form.email.label }}</label>
                 {{ form.email }}
+                <p class="message"><i class="far fa-graduation-cap"></i> You must use an ac.uk email address</p>
             </div>
-            <!--<p class="message">You must have a .ac.uk email</p>-->
             <div class="form entry">
                 <label>{{ form.first_name.label }}</label>
                 {{ form.first_name }}
@@ -36,6 +42,14 @@
             <div class="form entry">
                 <label>{{ form.password1.label }}</label>
                 {{ form.password1 }}
+                <div class="passwordReqs">
+                    {% for req in passwordReqs %}
+                        <p class="requirement invalid {{ req.name }}">
+                            <i class="far fa-times-circle"></i>
+                            {{ req.text }}
+                        </p>
+                    {% endfor %}
+                </div>
             </div>
 
             <div class="form entry">
@@ -46,4 +60,6 @@
             <button type="submit">Sign up</button>
         </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/profiles.js' %}"></script>
 {% endblock %}
