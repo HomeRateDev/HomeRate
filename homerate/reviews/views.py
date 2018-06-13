@@ -13,18 +13,19 @@ from .models import House, HouseReport, ReviewImage
 # Create your views here.
 
 def house(request, id):
+    user_profile = Profile.objects.get(user=request.user) if request.user.is_authenticated else None
+    # Query database for house with correct id
+    houses = House.objects.filter(id=id)
+
+    # If no house found return a no house page
+    # TODO make this it's own view and redirect instead
+    if len(houses) == 0:
+        return render(request, 'reviews/nohouse.html', {})
+
+    house = houses[0]
+
     if request.user.is_authenticated:
-        user_profile = Profile.objects.get(user=request.user)
-        # Query database for house with correct id
-        houses = House.objects.filter(id=id)
-
-        # If no house found return a no house page
-        # TODO make this it's own view and redirect instead
-        if len(houses) == 0:
-            return render(request, 'reviews/nohouse.html', {})
-
-        house = houses[0]
-        # Query database for reports about the house.
+    # Query database for reports about the house.
         reviews = HouseReport.objects.filter(house_filed=house).order_by('-moved_out_date')
 
         # Create an empty list for the images
@@ -34,33 +35,36 @@ def house(request, id):
             report.get_personal_rating(user_profile)
             # Append the images in to the list
             images += ReviewImage.objects.filter(house_report=report)
-
         rating = house.personal_star_rating(user_profile)
+    else:
+        rating = house.general_star_rating()
+        reviews = None
+        images = None
 
-        # Construct a split-up version of the address
-        address_components = house.split_address()
+    # Construct a split-up version of the address
+    address_components = house.split_address()
 
+    postcode_form = None
+    profilepostcode = None
+    if request.user.is_authenticated:
         postcode_form = CommutePostcode(instance=Profile.objects.get(user=request.user))
-
         profilepostcode = user_profile.postcode
 
-        if profilepostcode is not None:
-            profilepostcode = profilepostcode.upper()
+    if profilepostcode is not None:
+        profilepostcode = profilepostcode.upper()
 
-        # return house view page with house and list of reports
-        return render(
-            request, 'reviews/house.html', {
-                'house': house,
-                'reviews': reviews,
-                'rating': rating,
-                'images': images,
-                'address_components': address_components,
-                'profilepostcode': profilepostcode,
-                'postcodeForm': postcode_form
-            }
-        )
-    else:
-        return render(request, 'reviews/login_to_view_reports.html')
+    # return house view page with house and list of reports
+    return render(
+        request, 'reviews/house.html', {
+            'house': house,
+            'reviews': reviews,
+            'rating': rating,
+            'images': images,
+            'address_components': address_components,
+            'profilepostcode': profilepostcode,
+            'postcodeForm': postcode_form
+        }
+    )
         
         
 

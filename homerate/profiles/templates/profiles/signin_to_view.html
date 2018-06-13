@@ -8,6 +8,6 @@ Login to view profile
 
 <div class="container">
 	<h1>This is a restricted page</h1>
-	<p>Please login to view your profile.</p>
+	<p>Please <a href="{% url 'login' %}?next={{request.path}}">login</a> to view your profile.</p>
 </div>
 {% endblock %}
