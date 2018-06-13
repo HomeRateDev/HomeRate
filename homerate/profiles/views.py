@@ -29,6 +29,8 @@ def sign_up(request):
                 if user.email[-6:] != ".ac.uk":
                     return render(request, 'registration/signup_error.html')
                 user.username = user.email
+                if User.objects.filter(username=user.username).exists():
+                    return render(request, 'registration/username_exists.html', {'username': user.username})
                 user.is_active = False
                 user.save()
                 current_site = get_current_site(request)
