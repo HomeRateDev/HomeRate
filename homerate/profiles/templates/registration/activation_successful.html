@@ -1,8 +1,22 @@
 
 {% extends "homepage/base.html" %}
 
+{% block title %}
+Activation Successful
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <p class="message">Your account has been activated successfully. We hope you enjoy HomeRate.</p>
-    </div>
+        <p>You will be redirected in <span id="counter">3</span> seconds.</p>
+    <script>
+        setInterval(function() {
+            var div = document.querySelector("#counter");
+            var count = div.textContent * 1 - 1;
+            div.textContent = count;
+            if (count <= 0) {
+                window.location.replace("/");
+            }
+        }, 1000);
+    </script>
 {% endblock %}
