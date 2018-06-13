@@ -28,6 +28,18 @@
         </ul>
     </div>
 
+    <div>
+        <h2>My Reviews</h2>
+        <ul>
+        {% for report in reports %}
+
+            <li><a href="{% url 'house' id=report.house_filed.id %}">{{ report.house_filed.split_address.line1 }}:
+                {{ report.moved_in_date }} to {{ report.moved_out_date }}</a></li>
+
+        {% endfor %}
+        </ul>
+    </div>
+
     <div> <!-- settings area-->
         <h2> Settings and Preferences</h2>
         <div class="settingsContainer">

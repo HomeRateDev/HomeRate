@@ -14,6 +14,7 @@ from profiles.tokens import account_activation_token
 
 import os
 
+from reviews.models import House, HouseReport
 from .models import Profile
 
 
@@ -86,7 +87,13 @@ def profile(request):
         weights_form = StarRatingWeighting(instance=Profile.objects.get(user=request.user))
         postcode_form = CommutePostcode(instance=Profile.objects.get(user=request.user))
         saved_houses = Profile.objects.get(user=request.user).saved_houses.all()
+        reports = HouseReport.objects.filter(author=request.user)
 
-        return render(request, 'profiles/profile.html', {'saved_houses': saved_houses, 'weights_form': weights_form, 'postcode_form':postcode_form})
+        return render(request, 'profiles/profile.html', {
+            'reports': reports,
+            'saved_houses': saved_houses,
+            'weights_form': weights_form,
+            'postcode_form':postcode_form
+        })
     else:
         return render(request, 'profiles/signin_to_view.html')
