@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 
-
+from profiles.forms import CommutePostcode
 from profiles.models import Profile
 from .forms import HouseForm, HouseReportForm, HouseDetailsForm
 from .models import House, HouseReport, ReviewImage
@@ -40,6 +40,8 @@ def house(request, id):
         # Construct a split-up version of the address
         address_components = house.split_address()
 
+        postcode_form = CommutePostcode(instance=Profile.objects.get(user=request.user))
+
         profilepostcode = user_profile.postcode
 
         if profilepostcode is not None:
@@ -53,7 +55,8 @@ def house(request, id):
                 'rating': rating,
                 'images': images,
                 'address_components': address_components,
-                'profilepostcode': profilepostcode
+                'profilepostcode': profilepostcode,
+                'postcodeForm': postcode_form
             }
         )
     else:

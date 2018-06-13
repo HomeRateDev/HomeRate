@@ -448,7 +448,7 @@ $searchPadding: 20px;
 }
 
 .infoModule {
-  padding: 15px 20px 0 20px;
+  padding: 10px 20px 0 20px;
 
   &:first-child {
     padding-top: 20px;
@@ -464,10 +464,10 @@ $searchPadding: 20px;
   }
 
   i {
-      width: 20px;
-      margin-right: 7px;
-      text-align: center;
-    }
+    width: 20px;
+    margin-right: 7px;
+    text-align: center;
+  }
 
   ul {
     margin-top: 3px;
@@ -486,6 +486,48 @@ $searchPadding: 20px;
     list-style: none;
   }
 
+}
+
+.commuteTime {
+  .postcodeForm, .description {
+    display: none;
+  }
+
+  &.noPostcode {
+    .postcodeForm, .description {
+      display: block;
+    }
+    .title, .routes {
+      display: none;
+    }
+  }
+
+  label {
+    display: none;
+  }
+
+  input::placeholder {
+    font-size: 14px;
+    line-height: 150%;
+  }
+
+  #id_postcode {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .description {
+    margin-top: 0;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .submitWrap {
+    margin-bottom: 5px;
+    text-align: right;
+  }
 }
 
 /* New Report Page */
@@ -580,11 +622,9 @@ form.accounts {
 }
 
 /* Profiles styling*/
-.settingsContainer{
-
+.settingsContainer {
 
 }
-
 
 .settings {
   padding: 20px;

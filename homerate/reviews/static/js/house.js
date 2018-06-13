@@ -15,6 +15,12 @@ function getCommuteTimes() {
         destination = $(".data").data("profilepostcode"),
         modes = ['walking', 'bicycling', 'transit', 'driving'];
 
+    /* User hasn't saved a postcode to their profile */
+    if (destination === "None") {
+        console.log("No postcode");
+        return;
+    }
+
     modes.forEach(function (mode) {
         const service = new google.maps.DistanceMatrixService();
         service.getDistanceMatrix({
@@ -35,7 +41,7 @@ function geocodeAddress(address, callback) {
     geocoder.geocode({'address': address}, function (results, status) {
         if (status === 'OK') {
             const location = results[0].geometry.location,
-                  coords = {lat: location.lat(), lng: location.lng()};
+                coords = {lat: location.lat(), lng: location.lng()};
             callback(coords);
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
@@ -49,14 +55,14 @@ function insertNearestShops(location) {
         location: new google.maps.LatLng(location),
         radius: 1000,
         type: ['store']
-    }, function(response) {
+    }, function (response) {
         window.rsp = response;
         for (let i = 0; i < response.length; i++) {
             let place = response[i];
             if (place.types.includes('grocery_or_supermarket')) {
                 const shop = $("<li/>").addClass('shop'),
-                      icon = $("<i class='far fa-store'></i>"),
-                      shopName = $("<span/>").addClass('shopName').html(place.name);
+                    icon = $("<i class='far fa-store'></i>"),
+                    shopName = $("<span/>").addClass('shopName').html(place.name);
                 shop.appendTo('.shops');
                 icon.appendTo(shop);
                 shopName.appendTo(shop);
@@ -67,8 +73,38 @@ function insertNearestShops(location) {
 
 /* Parses commute time response and injects it into the DOM */
 function insertCommuteTimes(mode, response) {
+    console.log(response);
     const time = response.rows[0].elements[0].duration.text;
     $('.route.' + mode + ' .timeValue').html(time);
+}
+
+/* Hijacks the commute postcode form's submit event to update
+ * the backend without a refresh. Also triggers commute time
+ * calculations once the postcode has been saved. */
+function initPostcodeForm() {
+    const form = $('.postcodeForm');
+    form.submit(function () {
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function () {
+                const postcode = form.find('#id_postcode').val();
+                /* Set the postcode mentioned on the page to the new value */
+                $('.commuteTime .postcode').html(postcode);
+                /* Update the data attribute used by the commute time function */
+                $('.data').data('profilepostcode', postcode);
+                /* Enable visual styles for when postcode isn't null */
+                form.parent().removeClass('noPostcode');
+                /* Recalculate and display commute times for new postcode */
+                getCommuteTimes();
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+        return false;
+    });
 }
 
 (function ($) {
@@ -123,4 +159,5 @@ function insertCommuteTimes(mode, response) {
     $('.galleryWrapper').slick();
 
     createVisualStars();
+    initPostcodeForm();
 })(jQuery);

@@ -44,3 +44,6 @@ class CommutePostcode(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['postcode']
+        widgets = {
+            'postcode': forms.TextInput(attrs={'placeholder': 'Enter a postcode (e.g. SW7 2AZ)'})
+        }

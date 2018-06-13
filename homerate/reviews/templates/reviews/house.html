@@ -177,9 +177,13 @@
                           &key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o"/>
             </div>
             <div class="infoModules">
-                <span class="mapsHook"></span>
-                <section class="infoModule commuteTime">
-                    <h3 class="title">Commute Times to {{ profilepostcode }}</h3>
+                <section class="infoModule commuteTime {% if not profilepostcode %}noPostcode{% endif %}">
+                    <h3 class="title">Commute Times to <span class="postcode">{{ profilepostcode }}</span></h3>
+                    <p class="description">Enter your university's postcode below to get commute times:</p>
+                    <form method="POST" class="postcodeForm" action="{% url 'profile' %}">{% csrf_token %}
+                        {{ postcodeForm.as_p }}
+                        <p class="submitWrap"><input class="button" value="Save" type="submit"/></p>
+                    </form>
                     <ul class="routes">
                         <li class="route walking">
                             <i class="far fa-walking"></i>
@@ -210,6 +214,7 @@
                             </span>
                         </li>
                     </ul>
+                    <span class="mapsHook"></span>
                 </section>
                 <section class="infoModule nearbyShops">
                     <h3 class="title">Nearby Shops</h3>
