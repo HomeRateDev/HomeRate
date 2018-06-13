@@ -40,8 +40,8 @@
                     <p class="houseLocation">{{ house.split_address.line2 }} ∙ </p>
                     <p class="averageStars createStars">{{ rating }}</p>
                     {% if request.user.is_authenticated %}
-                        <a href="{% url 'profile' %}#weightings" class="customisationIcon">
-                            <i class="far fa-cog" title="Customise what makes up this rating"></i>
+                        <a href="{% url 'profile' %}#weightings" class="customisationIcon" title="Customise what makes up this rating">
+                            <i class="far fa-cog"></i>
                         </a>
                     {% endif %}
                 </header>
