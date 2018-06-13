@@ -286,6 +286,7 @@ $searchPadding: 20px;
   .customisationIcon {
     vertical-align: middle;
   }
+
 }
 
 .averageStars {
@@ -331,6 +332,10 @@ $searchPadding: 20px;
     font: {
       weight: 600;
     }
+  }
+
+  .unavailable {
+    font-size: 16px;
   }
 }
 

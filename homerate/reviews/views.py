@@ -23,10 +23,11 @@ def house(request, id):
         return render(request, 'reviews/nohouse.html', {})
 
     house = houses[0]
+    reviews = HouseReport.objects.filter(house_filed=house).order_by('-moved_out_date')
+    aggregate = HouseReport.make_aggregate(reviews)
 
     if request.user.is_authenticated:
-    # Query database for reports about the house.
-        reviews = HouseReport.objects.filter(house_filed=house).order_by('-moved_out_date')
+        # Query database for reports about the house.
 
         # Create an empty list for the images
         images = []
@@ -62,7 +63,8 @@ def house(request, id):
             'images': images,
             'address_components': address_components,
             'profilepostcode': profilepostcode,
-            'postcodeForm': postcode_form
+            'postcodeForm': postcode_form,
+            'aggregate': aggregate
         }
     )
         

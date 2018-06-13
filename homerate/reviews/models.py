@@ -66,6 +66,7 @@ class House(models.Model):
 
 
 
+
 class HouseReport(models.Model):
 
     comment_length = 280
@@ -203,6 +204,70 @@ class HouseReport(models.Model):
         rating = rating / total_report_weight
         self.general_rating = round2sf(rating)
         return rating
+
+    @staticmethod
+    def make_aggregate(reports):
+        aggregate = {'landlord_responsiveness': 0, 'repair_quality': 0, 'water_pressure': 0,
+                     'utilities': 0, 'furniture_quality': 0, 'mattress_quality': 0,
+                     'build_quality': 0, 'quietness': 0, 'pest_free': 0,
+                     'smells': 0, 'damp_mould_free': 0, 'landlord_overall': 0}
+        aggregate_t = {'landlord_responsiveness': 0, 'repair_quality': 0, 'water_pressure': 0,
+                     'utilities': 0, 'furniture_quality': 0, 'mattress_quality': 0,
+                     'build_quality': 0, 'quietness': 0, 'pest_free': 0,
+                     'smells': 0, 'damp_mould_free': 0}
+
+        time_weighting = 1
+        time_factor = 0.8
+        for report in reports:
+            if hasattr(report, 'landlord_responsiveness') and report.landlord_responsiveness is not '':
+                aggregate['landlord_responsiveness'] += int(report.landlord_responsiveness) * time_weighting
+                aggregate_t['landlord_responsiveness'] += time_weighting
+            if hasattr(report, 'repair_quality') and report.repair_quality is not '':
+                aggregate['repair_quality'] += int(report.repair_quality) * time_weighting
+                aggregate_t['repair_quality'] += time_weighting
+            if hasattr(report, 'water_pressure') and report.water_pressure is not '':
+                aggregate['water_pressure'] += int(report.water_pressure) * time_weighting
+                aggregate_t['water_pressure'] += time_weighting
+            if hasattr(report, 'utilities') and report.utilities is not '':
+                aggregate['utilities'] += int(report.utilities) * time_weighting
+                aggregate_t['utilities'] += time_weighting
+            if hasattr(report, 'furniture_quality') and report.furniture_quality is not '':
+                aggregate['furniture_quality'] += int(report.furniture_quality) * time_weighting
+                aggregate_t['furniture_quality'] += time_weighting
+            if hasattr(report, 'mattress_quality') and report.mattress_quality is not '':
+                aggregate['mattress_quality'] += int(report.mattress_quality) * time_weighting
+                aggregate_t['mattress_quality'] += time_weighting
+            if hasattr(report, 'build_quality') and report.build_quality is not '':
+                aggregate['build_quality'] += int(report.build_quality) * time_weighting
+                aggregate_t['build_quality'] += time_weighting
+            if hasattr(report, 'quietness') and report.quietness is not '':
+                aggregate['quietness'] += int(report.quietness) * time_weighting
+                aggregate_t['quietness'] += time_weighting
+            if hasattr(report, 'pest_free') and report.pest_free is not '':
+                aggregate['pest_free'] += int(report.pest_free) * time_weighting
+                aggregate_t['pest_free'] += time_weighting
+            if hasattr(report, 'smells') and report.smells is not '':
+                aggregate['smells'] += int(report.smells) * time_weighting
+                aggregate_t['smells'] += time_weighting
+            if hasattr(report, 'damp_mould_free') and report.damp_mould_free is not '':
+                aggregate['damp_mould_free'] += int(report.damp_mould_free) * time_weighting
+                aggregate_t['damp_mould_free'] += time_weighting
+            time_weighting *= time_factor
+
+        for key in aggregate_t:
+            if aggregate_t[key] != 0:
+                aggregate[key] /= aggregate_t[key]
+
+
+        if aggregate_t['landlord_responsiveness'] != 0:
+            aggregate['landlord_overall'] += aggregate['landlord_responsiveness']
+        if aggregate_t['repair_quality'] != 0:
+            aggregate['landlord_overall'] += aggregate['repair_quality']
+        if aggregate_t['landlord_responsiveness'] != 0 and aggregate_t['repair_quality'] != 0:
+            aggregate['landlord_overall'] /= 2
+
+
+        return aggregate
 
 
 class ReviewImage(models.Model):
