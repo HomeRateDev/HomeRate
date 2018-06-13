@@ -40,8 +40,8 @@
                     <p class="houseLocation">{{ house.split_address.line2 }} ∙ </p>
                     <p class="averageStars createStars">{{ rating }}</p>
                     {% if request.user.is_authenticated %}
-                        <a href="{% url 'profile' %}#weightings" class="customisationIcon">
-                            <i class="far fa-cog" title="Customise what makes up this rating"></i>
+                        <a href="{% url 'profile' %}#weightings" class="customisationIcon" title="Customise what makes up this rating">
+                            <i class="far fa-cog"></i>
                         </a>
                     {% endif %}
                 </header>
@@ -60,6 +60,57 @@
                         <i class="far fa-couch"></i>
                         <span class="value">{{ house.living_rooms }}</span>
                         <span class="label">living room</span>
+                    </li>
+                </ul>
+
+                <ul class="basicInfo">
+                    <li class="infoItem">
+                        <p>Landlord Overall</p>
+                        {% if aggregate.landlord_overall == 0 %}
+                            <p class="unavailable" >Unavailable</p>
+                        {% else %}
+                            <p class="value createStars">{{ aggregate.landlord_overall }}</p>
+                        {% endif %}
+                    </li>
+                    <li class="infoItem">
+                        <p>Utilities</p>
+                        {% if aggregate.utilities == 0 %}
+                            <p class="unavailable" >Unavailable</p>
+                        {% else %}
+                            <p class="value createStars">{{ aggregate.utilities }}</p>
+                        {% endif %}
+                    </li>
+                    <li class="infoItem">
+                        <p>Damp and Mould Free</p>
+                        {% if aggregate.damp_mould_free == 0 %}
+                            <p class="unavailable" >Unavailable</p>
+                        {% else %}
+                            <p class="value createStars">{{ aggregate.damp_mould_free }}</p>
+                        {% endif %}
+                    </li>
+                    <li class="infoItem">
+                        <p>Water Pressure</p>
+                        {% if aggregate.water_pressure == 0 %}
+                            <p class="unavailable" >Unavailable</p>
+                        {% else %}
+                            <p class="value createStars">{{ aggregate.water_pressure }}</p>
+                        {% endif %}
+                    </li>
+                    <li class="infoItem">
+                        <p>Quietness</p>
+                        {% if aggregate.quietness == 0 %}
+                            <p class="unavailable" >Unavailable</p>
+                        {% else %}
+                            <p class="value createStars">{{ aggregate.quietness }}</p>
+                        {% endif %}
+                    </li>
+                    <li class="infoItem">
+                        <p>Pest Free</p>
+                        {% if aggregate.pest_free == 0 %}
+                            <p class="unavailable" >Unavailable</p>
+                        {% else %}
+                            <p class="value createStars">{{ aggregate.pest_free }}</p>
+                        {% endif %}
                     </li>
                 </ul>
             </section>
