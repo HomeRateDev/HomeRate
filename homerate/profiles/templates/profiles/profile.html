@@ -34,7 +34,7 @@
             <div class="settings" id="postcode">
                 <h3> University postcode </h3>
                 <p> Get travel times to and from your university. </p>
-                <form method="POST" class="form", action="{% url 'profile' %}#postcode">{% csrf_token %}
+                <form method="POST" class="form" action="{% url 'profile' %}#postcode">{% csrf_token %}
                     {{ postcode_form.as_p }}
                     <div>
                         <button type="submit" class="button">Save</button>
