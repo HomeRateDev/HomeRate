@@ -31,11 +31,12 @@
                 <header class="houseHeader">
                     <h2 data-postcode="{{ house.split_address.postcode }}" class="houseAddress">{{ house.split_address.line1 }}</h2>
                     {% if user.is_authenticated %}
-                    {% if user_saved %}
-                    <a href="{% url 'unsave' id=house.id %}">Remove Saved House</a>
-                    {% else %}
-                    <a href="{% url 'save' id=house.id %}">Save House</a>
-                    {% endif %}
+                    <a data-issaved="{{ user_saved }}"
+                       data-unsaveurl="{% url 'unsave' id=house.id %}"
+                       data-saveurl="{% url 'save' id=house.id %}"
+                       class="savedHouseAction {% if user_saved %} remove {% else %} save {% endif %}">
+                        {% if user_saved %}Remove Saved House{% else %}Save House{% endif %}
+                    </a>
                     {% endif %}
                     <p class="houseLocation">{{ house.split_address.line2 }} ∙ </p>
                     <p class="averageStars createStars">{{ rating }}</p>

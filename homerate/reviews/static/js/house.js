@@ -107,6 +107,38 @@ function initPostcodeForm() {
     });
 }
 
+function initSavedHouseActions() {
+
+    $(".savedHouseAction").click(function () {
+        const action = $(this),
+              saved = action.data('issaved') == 'True';
+        let url = action.data('saveurl');
+
+        if (saved) {
+            url = action.data('unsaveurl');
+        }
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function () {
+                /* Was saved, we've just removed it. */
+                if (saved) {
+                    action.data('issaved', 'False');
+                    action.html('Save House');
+                } else {
+                    action.data('issaved', 'True')
+                    action.html('Remove Saved House');
+                }
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+        return false;
+    });
+}
+
 (function ($) {
 
     /* Converts text rating values into visual stars using BarRating.js */
@@ -160,6 +192,7 @@ function initPostcodeForm() {
 
     createVisualStars();
     initPostcodeForm();
+    initSavedHouseActions();
 
     /* After a key is typed in the postcode box try and valdate */
     $('.postcodeForm').keyup(function (event) {
