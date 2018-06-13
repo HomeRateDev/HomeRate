@@ -33,7 +33,7 @@
         <ul>
         {% for report in reports %}
 
-            <li><a href="{% url 'house' id=report.house_filed.id %}">{{ report.house_filed.split_address.line1 }}:
+            <li><a href="{% url 'house' id=report.house_filed.id %}#{{report.pk}}">{{ report.house_filed.split_address.line1 }}:
                 {{ report.moved_in_date }} to {{ report.moved_out_date }}</a></li>
 
         {% endfor %}

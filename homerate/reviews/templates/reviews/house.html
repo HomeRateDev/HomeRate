@@ -121,7 +121,7 @@
                 <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
                 <ul class="reviewList">
                     {% for review in reviews %}
-                        <li class="review">
+                        <li class="review" id="{{ review.pk }}">
                             <header class="reviewHeader">
                                 <i class="fas fa-user-circle"></i>
                                 <div class="text">
