@@ -23,7 +23,7 @@
         $('.postcode').keyup(function (event) {
 
             const inputCode = $('#id_postcode').val()
-            postCodeRegex = new RegExp('^(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})$', 'i');
+            postCodeRegex = new RegExp('(^(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})$)|^$', 'i');
 
             /* Test if the current value matches the regex */
             if (postCodeRegex.test(inputCode)) {
