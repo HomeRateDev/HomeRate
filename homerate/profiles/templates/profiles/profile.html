@@ -17,6 +17,17 @@
 <div class="container">
     <h1>HomeRate</h1>
 
+    <div>
+        <h2>Saved Houses</h2>
+        <ul>
+        {% for house in saved_houses %}
+
+            <li><a href="{% url 'house' id=house.id %}">{{ house.split_address.line1 }}</a></li>
+
+        {% endfor %}
+        </ul>
+    </div>
+
     <div> <!-- settings area-->
         <h2> Settings and Preferences</h2>
         <div class="settingsContainer">
