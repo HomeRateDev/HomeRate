@@ -160,4 +160,10 @@ function initPostcodeForm() {
 
     createVisualStars();
     initPostcodeForm();
+
+    /* After a key is typed in the postcode box try and valdate */
+    $('.postcodeForm').keyup(function (event) {
+        validatePostcode()
+    });
+
 })(jQuery);

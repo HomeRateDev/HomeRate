@@ -30,6 +30,13 @@
             <section class="houseInfo">
                 <header class="houseHeader">
                     <h2 data-postcode="{{ house.split_address.postcode }}" class="houseAddress">{{ house.split_address.line1 }}</h2>
+                    {% if user.is_authenticated %}
+                    {% if user_saved %}
+                    <a href="{% url 'unsave' id=house.id %}">Remove Saved House</a>
+                    {% else %}
+                    <a href="{% url 'save' id=house.id %}">Save House</a>
+                    {% endif %}
+                    {% endif %}
                     <p class="houseLocation">{{ house.split_address.line2 }} ∙ </p>
                     <p class="averageStars createStars">{{ rating }}</p>
                     {% if request.user.is_authenticated %}
@@ -247,7 +254,7 @@
                     <p class="description">Enter your university's postcode below to get commute times:</p>
                     <form method="POST" class="postcodeForm" action="{% url 'profile' %}">{% csrf_token %}
                         {{ postcodeForm.as_p }}
-                        <p class="submitWrap"><input class="button" value="Save" type="submit"/></p>
+                        <p class="submitWrap"><input class="button" id="postcodeSubmit" value="Save" type="submit"/></p>
                     </form>
                     <ul class="routes">
                         <li class="route walking">
@@ -295,6 +302,7 @@
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="{% static 'slick/slick.min.js' %}"></script>
     <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
+    <script src="{% static 'js/profilePostcode.js' %}"></script>
     <script class="data" data-profilepostcode="{{ profilepostcode }}" src="{% static 'js/house.js' %}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o&callback=initMapping&libraries=places">
