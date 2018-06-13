@@ -4,11 +4,14 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 from core.ratings import RatingField
+from reviews.models import House
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)
+
+    saved_houses = models.ManyToManyField(House)
 
     # Landlord
     landlord_responsiveness = RatingField(mandatory=True, weighting=True, default=2)

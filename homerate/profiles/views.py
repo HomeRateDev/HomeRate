@@ -85,7 +85,8 @@ def profile(request):
 
         weights_form = StarRatingWeighting(instance=Profile.objects.get(user=request.user))
         postcode_form = CommutePostcode(instance=Profile.objects.get(user=request.user))
+        saved_houses = Profile.objects.get(user=request.user).saved_houses.all()
 
-        return render(request, 'profiles/profile.html', {'weights_form': weights_form, 'postcode_form':postcode_form})
+        return render(request, 'profiles/profile.html', {'saved_houses': saved_houses, 'weights_form': weights_form, 'postcode_form':postcode_form})
     else:
         return render(request, 'profiles/signin_to_view.html')
