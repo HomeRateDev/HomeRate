@@ -52,6 +52,7 @@
                 </ul>
             </section>
 
+            {% if user.is_authenticated %}
             <section class="reviews">
                 <h2>Reviews</h2>
                 <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
@@ -165,6 +166,12 @@
                     {% endfor %}
                 </ul>
             </section>
+            {% else %}
+
+            <p>To read full reviews by previous tenants for this house, please
+                <a href="{% url 'login' %}?next={{request.path}}">log in</a> or <a href="{% url 'sign-up' %}">create an account</a>.</p>
+
+            {% endif %}
         </div>
 
         <div class="extraContent">
@@ -177,6 +184,8 @@
                           &key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o"/>
             </div>
             <div class="infoModules">
+                <span class="mapsHook"></span>
+                {% if user.is_authenticated %}
                 <section class="infoModule commuteTime {% if not profilepostcode %}noPostcode{% endif %}">
                     <h3 class="title">Commute Times to <span class="postcode">{{ profilepostcode }}</span></h3>
                     <p class="description">Enter your university's postcode below to get commute times:</p>
@@ -214,8 +223,8 @@
                             </span>
                         </li>
                     </ul>
-                    <span class="mapsHook"></span>
                 </section>
+                {% endif %}
                 <section class="infoModule nearbyShops">
                     <h3 class="title">Nearby Shops</h3>
                     <ul class="shops">
