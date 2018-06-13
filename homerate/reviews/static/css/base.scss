@@ -591,8 +591,8 @@ form.accounts {
   }
   label {
     margin-bottom: 10px;
-    color: lighten($mainTextColour, 20%);
-    font-weight: 600;
+    color: $midText;
+    font-weight: 400;
     text-transform: capitalize;
     display: block;
   }
@@ -606,8 +606,9 @@ form.accounts {
   ul {
     display: none;
   }
-  .helptext {
-    display: none;
+  .far {
+    margin-right: 5px;
+    display: inline-block;
   }
   button {
     width: 100%;

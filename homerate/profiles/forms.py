@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -16,7 +17,11 @@ class SignupForm(UserCreationForm):
         })
     )
     first_name = forms.CharField(max_length=20, label_suffix='')
-    password1 = forms.CharField(widget=forms.PasswordInput(), label_suffix='', label='Password')
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(),
+        label_suffix='',
+        label='Password',
+    )
     password2 = forms.CharField(widget=forms.PasswordInput(), label_suffix='', label='Password Confirmation')
 
     class Meta:
