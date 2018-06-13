@@ -7,6 +7,7 @@ function validatePostcode() {
     if (postCodeRegex.test(inputCode)) {
         /* If current input is a valid postcode, enable the submission box and make full opacity. */
         $("#postcodeSubmit").removeAttr('disabled').css({"opacity": 1});
+        $('#id_postcode').val($('#id_postcode').val().toUpperCase())
     } else {
         /* If the current input is invalid, disbale the submission box and reduce opacity. */
         $("#postcodeSubmit").attr('disabled', 'disabled').css({"opacity": 0.7});

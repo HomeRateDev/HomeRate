@@ -19,7 +19,7 @@
             showSelectedRating: false
         });
 
-        /* After a key is typed in the search box try and valdate */
+        /* After a key is typed in the postcode box try and valdate */
         $('.postcode').keyup(function (event) {
             validatePostcode()
         });
