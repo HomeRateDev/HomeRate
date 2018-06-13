@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -11,12 +12,15 @@ class SignupForm(UserCreationForm):
         help_text='Required',
         label_suffix='',
         widget=forms.EmailInput(attrs={
-            'pattern': "^[\w!#$%&'*+\/=?^`{|}~-]+(?:\.[\w!#$%&'*+\/=?`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+(?:ac\.uk)$",
-            'oninvalid': "setCustomValidity('You must use a .ac.uk email to sign up for HomeRate')"
+            'pattern': "^[\w!#$%&'*+\/=?^`{|}~-]+(?:\.[\w!#$%&'*+\/=?`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+(?:ac\.uk)$"
         })
     )
     first_name = forms.CharField(max_length=20, label_suffix='')
-    password1 = forms.CharField(widget=forms.PasswordInput(), label_suffix='', label='Password')
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(),
+        label_suffix='',
+        label='Password',
+    )
     password2 = forms.CharField(widget=forms.PasswordInput(), label_suffix='', label='Password Confirmation')
 
     class Meta:
