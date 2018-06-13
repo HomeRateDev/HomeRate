@@ -168,7 +168,8 @@
             </section>
             {% else %}
 
-            <p>To read full reviews by previous tenants for this house, please <a href="{% url 'login' %}?next={{request.path}}">log in</a>.</p>
+            <p>To read full reviews by previous tenants for this house, please
+                <a href="{% url 'login' %}?next={{request.path}}">log in</a> or <a href="{% url 'sign-up' %}">create an account</a>.</p>
 
             {% endif %}
         </div>
