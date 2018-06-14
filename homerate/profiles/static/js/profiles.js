@@ -22,4 +22,6 @@
         validatePostcode()
     });
 
+    createVisualStars();
+
 })(jQuery);

@@ -9,35 +9,71 @@ Your Account
 
 {% block head %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% sass_src 'css/stars.scss' %}">
 <link rel="stylesheet" href="{% sass_src 'css/boxes.scss' %}">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-oi8o31xSQq8S0RpBcb4FaLB8LJi9AT8oIdmS1QldR8Ui7KUQjNAnDlJjp55Ba8FG" crossorigin="anonymous">
 {% endblock %}
 
 {% block content %}
 
 <div class="container">
-    <h1>HomeRate</h1>
+    <h1>Your Profile</h1>
 
     <div>
-        <h2>Saved Houses</h2>
+        <div class="settings">
+        <h3>Saved Houses</h3>
         <ul>
         {% for house in saved_houses %}
 
-            <li><a href="{% url 'house' id=house.id %}">{{ house.split_address.line1 }}</a></li>
+            <li class="savedHouse">
+                <a class="houseLink" href="{% url 'house' id=house.id %}">
+
+                <img src="https://maps.googleapis.com/maps/api/staticmap?
+                          center={{ house.split_address.postcode }}
+                          &markers=color:red|{{ house.split_address.postcode }}
+                          &zoom=14
+                          &size=336x215
+                          &key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o">
+                    <div class="caption"><p>{{ house.split_address.line1 }}</p> <p class="postcode">{{ house.split_address.postcode }}</p>
+                        <p class="createStars">{{ house.average_rating }}</p>
+                <ul class="basicInfo">
+                    <li class="infoItem">
+                        <i class="far fa-bed"></i>
+                        <span class="value">{{ house.bedrooms }}</span>
+                    </li>
+                    <li class="infoItem">
+                        <i class="far fa-bath"></i>
+                        <span class="value">{{ house.bathrooms }}</span>
+                    </li>
+                    <li class="infoItem">
+                        <i class="far fa-couch"></i>
+                        <span class="value">{{ house.living_rooms }}</span>
+                    </li>
+                </ul>
+                    </div>
+                </a>
+            </li>
 
         {% endfor %}
         </ul>
+        </div>
     </div>
 
     <div>
-        <h2>My Reviews</h2>
+        <div class="settings">
+        <h3>My Reviews</h3>
         <ul>
         {% for report in reports %}
 
-            <li><a href="{% url 'house' id=report.house_filed.id %}#{{report.pk}}">{{ report.house_filed.split_address.line1 }}:
-                {{ report.moved_in_date }} to {{ report.moved_out_date }}</a></li>
+            <li class="myReport"><a href="{% url 'house' id=report.house_filed.id %}#{{report.pk}}">
+                <p class="house">{{ report.house_filed.split_address.line1 }}</p>
+                <p class="dates">{{ report.moved_in_date }} to {{ report.moved_out_date }}</p>
+            </a></li>
 
         {% endfor %}
         </ul>
+        </div>
     </div>
 
     <div> <!-- settings area-->
@@ -55,7 +91,7 @@ Your Account
                 </form>
             </div>
 
-            <div class="settings" id="postcode">
+            <div class="settings" id="postcode1">
                 <h3> University postcode </h3>
                 <p> Get travel times to and from your university. </p>
                 <form method="POST" class="form postcode" action="{% url 'profile' %}#postcode">{% csrf_token %}
@@ -74,6 +110,7 @@ Your Account
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
 <script src="{% static 'js/profilePostcode.js' %}"></script>
+<script src="{% static 'js/core.js' %}"></script>
 <script src="{% static 'js/profiles.js' %}"></script>
 
 

@@ -60,6 +60,7 @@ class House(models.Model):
             time_dependant_rating_weight = time_dependant_rating_weight * 0.6
 
         total_report_rating = total_report_rating / time_dependant_rating_weight_total
+        self.average_rating = total_report_rating
         return round2sf(total_report_rating)
 
 
