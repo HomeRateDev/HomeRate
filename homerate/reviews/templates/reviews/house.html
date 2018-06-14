@@ -29,20 +29,25 @@
         <div class="mainContent">
             <section class="houseInfo">
                 <header class="houseHeader">
-                    <h2 data-postcode="{{ house.split_address.postcode }}" class="houseAddress">{{ house.split_address.line1 }}</h2>
-                    {% if user.is_authenticated %}
-                    <a data-issaved="{{ user_saved }}"
-                       data-unsaveurl="{% url 'unsave' id=house.id %}"
-                       data-saveurl="{% url 'save' id=house.id %}"
-                       class="savedHouseAction {% if user_saved %} remove {% else %} save {% endif %}">
-                        {% if user_saved %}Remove Saved House{% else %}Save House{% endif %}
-                    </a>
-                    {% endif %}
+                    <h2 data-postcode="{{ house.split_address.postcode }}" class="houseAddress">
+                        {{ house.split_address.line1 }}
+                        {% if user.is_authenticated %}
+                            <a data-issaved="{{ user_saved }}"
+                               data-unsaveurl="{% url 'unsave' id=house.id %}"
+                               data-saveurl="{% url 'save' id=house.id %}"
+                               title="Save this house to your profile"
+                               class="savedHouseAction {% if user_saved %} remove {% else %} save {% endif %}">
+                                {% if user_saved %}<i class="fas fa-heart"></i>{% else %}
+                                    <i class="far fa-heart"></i>{% endif %}
+                            </a>
+                        {% endif %}
+                    </h2>
                     <p class="houseLocation">{{ house.split_address.line2 }} ∙ </p>
                     <p class="averageStars createStars {% if rating == None %}noRatings{% endif %}">{{ rating|default_if_none:"No ratings yet" }}</p>
                     {% if request.user.is_authenticated %}
                         {% if rating != None %}
-                            <a href="{% url 'profile' %}#weightings" class="customisationIcon" title="Customise what makes up this rating">
+                            <a href="{% url 'profile' %}#weightings" class="customisationIcon"
+                               title="Customise what makes up this rating">
                                 <i class="far fa-cog"></i>
                             </a>
                         {% endif %}
@@ -70,7 +75,7 @@
                     <li class="ratingItem">
                         <p>Landlord Overall</p>
                         {% if aggregate.landlord_overall == 0 %}
-                            <p class="unavailable" >Unavailable</p>
+                            <p class="unavailable">Unavailable</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.landlord_overall }}</p>
                         {% endif %}
@@ -78,7 +83,7 @@
                     <li class="ratingItem">
                         <p>Utilities</p>
                         {% if aggregate.utilities == 0 %}
-                            <p class="unavailable" >Unavailable</p>
+                            <p class="unavailable">Unavailable</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.utilities }}</p>
                         {% endif %}
@@ -86,7 +91,7 @@
                     <li class="ratingItem">
                         <p>Damp and Mould Free</p>
                         {% if aggregate.damp_mould_free == 0 %}
-                            <p class="unavailable" >Unavailable</p>
+                            <p class="unavailable">Unavailable</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.damp_mould_free }}</p>
                         {% endif %}
@@ -94,7 +99,7 @@
                     <li class="ratingItem">
                         <p>Water Pressure</p>
                         {% if aggregate.water_pressure == 0 %}
-                            <p class="unavailable" >Unavailable</p>
+                            <p class="unavailable">Unavailable</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.water_pressure }}</p>
                         {% endif %}
@@ -102,7 +107,7 @@
                     <li class="ratingItem">
                         <p>Quietness</p>
                         {% if aggregate.quietness == 0 %}
-                            <p class="unavailable" >Unavailable</p>
+                            <p class="unavailable">Unavailable</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.quietness }}</p>
                         {% endif %}
@@ -110,7 +115,7 @@
                     <li class="ratingItem">
                         <p>Pest Free</p>
                         {% if aggregate.pest_free == 0 %}
-                            <p class="unavailable" >Unavailable</p>
+                            <p class="unavailable">Unavailable</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.pest_free }}</p>
                         {% endif %}
@@ -119,123 +124,128 @@
             </section>
 
             {% if user.is_authenticated %}
-            <section class="reviews">
-                <h2>Reviews</h2>
-                <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
-                <ul class="reviewList">
-                    {% for review in reviews %}
-                        <li class="review" id="{{ review.pk }}">
-                            <header class="reviewHeader">
-                                <i class="fas fa-user-circle"></i>
-                                <div class="text">
-                                    <h3 class="reviewAuthor">Tenant from {{ review.moved_in_date }}
-                                        to {{ review.moved_out_date }}</h3>
-                                    <a class="averageStars createStars">{{ review.general_rating }}</a>
-                                    {% if user == review.author %}
-                                        <div class="reviewActions">
-                                            ∙
-                                            <a class="edit" href="{% url 'edit_report' id=review.pk %}">Edit</a>
-                                            ∙
-                                            <a class="delete" href="{% url 'delete_report' id=review.pk %}">Delete</a>
-                                        </div>
-                                    {% endif %}
+                <section class="reviews">
+                    <h2>Reviews</h2>
+                    <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
+                    <ul class="reviewList">
+                        {% for review in reviews %}
+                            <li class="review" id="{{ review.pk }}">
+                                <header class="reviewHeader">
+                                    <i class="fas fa-user-circle"></i>
+                                    <div class="text">
+                                        <h3 class="reviewAuthor">Tenant from {{ review.moved_in_date }}
+                                            to {{ review.moved_out_date }}</h3>
+                                        <a class="averageStars createStars">{{ review.general_rating }}</a>
+                                        {% if user == review.author %}
+                                            <div class="reviewActions">
+                                                ∙
+                                                <a class="edit" href="{% url 'edit_report' id=review.pk %}">Edit</a>
+                                                ∙
+                                                <a class="delete"
+                                                   href="{% url 'delete_report' id=review.pk %}">Delete</a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </header>
+
+                                <div class="reviewContent">
+                                    <section class="reviewCategory landlord">
+                                        <h4 class="reviewCategoryName"><i class="far fa-id-card"></i> Landlord</h4>
+                                        <ul class="reviewPoints">
+                                            <li class="reviewPoint">
+                                                <p class="label">Landlord Responsiveness</p>
+                                                <p class="value createStars">{{ review.landlord_responsiveness }} ★</p>
+                                            </li>
+
+                                            <li class="reviewPoint">
+                                                <p class="label">Repair Quality</p>
+                                                <p class="value createStars">{{ review.repair_quality }}</p>
+                                            </li>
+                                        </ul>
+                                        <p class="reviewComment">{{ review.landlord_comment|default_if_none:"" }}</p>
+                                    </section>
+
+                                    <section class="reviewCategory construction">
+                                        <h4 class="reviewCategoryName"><i class="far fa-wrench"></i> Construction
+                                            Quality
+                                        </h4>
+                                        <ul class="reviewPoints">
+                                            <li class="reviewPoint">
+                                                <p class="label">Water Pressure</p>
+                                                <p class="value createStars">{{ review.water_pressure }}</p>
+                                            </li>
+                                            <li class="reviewPoint">
+                                                <p class="label">Utility Quality</p>
+                                                <p class="value createStars">{{ review.utilities }}</p>
+                                            </li>
+                                            <li class="reviewPoint">
+                                                <p class="label">Furniture Quality</p>
+                                                <p class="value createStars">{{ review.furniture_quality }}</p>
+                                            </li>
+                                            <li class="reviewPoint">
+                                                <p class="label">Mattress Quality</p>
+                                                <p class="value createStars">{{ review.mattress_quality }}</p>
+                                            </li>
+                                            <li class="reviewPoint">
+                                                <p class="label">Build Quality</p>
+                                                <p class="value createStars">{{ review.build_quality }}</p>
+                                            </li>
+                                        </ul>
+                                        <p class="reviewComment">{{ review.construction_quality_comment|default_if_none:"" }}</p>
+                                    </section>
+
+                                    <section class="reviewCategory nuisances">
+                                        <h4 class="reviewCategoryName"><i class="far fa-exclamation-triangle"></i>
+                                            Nuisances
+                                        </h4>
+                                        <ul class="reviewPoints">
+                                            <li class="reviewPoint">
+                                                <p class="label">Quietness</p>
+                                                <p class="value createStars">{{ review.quietness }}</p>
+                                            </li>
+                                            <li class="reviewPoint">
+                                                <p class="label">Pest/Insect-free</p>
+                                                <p class="value createStars">{{ review.pest_free }}</p>
+                                            </li>
+                                            <li class="reviewPoint">
+                                                <p class="label">Smells</p>
+                                                <p class="value createStars">{{ review.smells }}</p>
+                                            </li>
+                                            <li class="reviewPoint">
+                                                <p class="label">Damp/Mould-free</p>
+                                                <p class="value createStars">{{ review.damp_mould_free }}</p>
+                                            </li>
+                                        </ul>
+                                        <p class="reviewComment">{{ review.nuisances_comment|default_if_none:"" }}</p>
+                                    </section>
+
+                                    <section class="reviewCategory affordability">
+                                        <h4 class="reviewCategoryName"><i class="far fa-money-bill-alt"></i>
+                                            Affordability
+                                        </h4>
+                                        <ul class="reviewPoints">
+                                            <li class="reviewPoint">
+                                                <p class="label">Monthly Rent</p>
+                                                <p class="value">£{{ review.monthly_rent }}</p>
+                                            </li>
+                                            <li class="reviewPoint">
+                                                <p class="label">Monthly Bills</p>
+                                                <p class="value createStars">£{{ review.monthly_bills }}</p>
+                                            </li>
+                                        </ul>
+                                        <p class="reviewComment">{{ review.affordability_comment|default_if_none:"" }}</p>
+                                    </section>
+
                                 </div>
-                            </header>
-
-                            <div class="reviewContent">
-                                <section class="reviewCategory landlord">
-                                    <h4 class="reviewCategoryName"><i class="far fa-id-card"></i> Landlord</h4>
-                                    <ul class="reviewPoints">
-                                        <li class="reviewPoint">
-                                            <p class="label">Landlord Responsiveness</p>
-                                            <p class="value createStars">{{ review.landlord_responsiveness }} ★</p>
-                                        </li>
-
-                                        <li class="reviewPoint">
-                                            <p class="label">Repair Quality</p>
-                                            <p class="value createStars">{{ review.repair_quality }}</p>
-                                        </li>
-                                    </ul>
-                                    <p class="reviewComment">{{ review.landlord_comment|default_if_none:"" }}</p>
-                                </section>
-
-                                <section class="reviewCategory construction">
-                                    <h4 class="reviewCategoryName"><i class="far fa-wrench"></i> Construction Quality
-                                    </h4>
-                                    <ul class="reviewPoints">
-                                        <li class="reviewPoint">
-                                            <p class="label">Water Pressure</p>
-                                            <p class="value createStars">{{ review.water_pressure }}</p>
-                                        </li>
-                                        <li class="reviewPoint">
-                                            <p class="label">Utility Quality</p>
-                                            <p class="value createStars">{{ review.utilities }}</p>
-                                        </li>
-                                        <li class="reviewPoint">
-                                            <p class="label">Furniture Quality</p>
-                                            <p class="value createStars">{{ review.furniture_quality }}</p>
-                                        </li>
-                                        <li class="reviewPoint">
-                                            <p class="label">Mattress Quality</p>
-                                            <p class="value createStars">{{ review.mattress_quality }}</p>
-                                        </li>
-                                        <li class="reviewPoint">
-                                            <p class="label">Build Quality</p>
-                                            <p class="value createStars">{{ review.build_quality }}</p>
-                                        </li>
-                                    </ul>
-                                    <p class="reviewComment">{{ review.construction_quality_comment|default_if_none:"" }}</p>
-                                </section>
-
-                                <section class="reviewCategory nuisances">
-                                    <h4 class="reviewCategoryName"><i class="far fa-exclamation-triangle"></i> Nuisances
-                                    </h4>
-                                    <ul class="reviewPoints">
-                                        <li class="reviewPoint">
-                                            <p class="label">Quietness</p>
-                                            <p class="value createStars">{{ review.quietness }}</p>
-                                        </li>
-                                        <li class="reviewPoint">
-                                            <p class="label">Pest/Insect-free</p>
-                                            <p class="value createStars">{{ review.pest_free }}</p>
-                                        </li>
-                                        <li class="reviewPoint">
-                                            <p class="label">Smells</p>
-                                            <p class="value createStars">{{ review.smells }}</p>
-                                        </li>
-                                        <li class="reviewPoint">
-                                            <p class="label">Damp/Mould-free</p>
-                                            <p class="value createStars">{{ review.damp_mould_free }}</p>
-                                        </li>
-                                    </ul>
-                                    <p class="reviewComment">{{ review.nuisances_comment|default_if_none:"" }}</p>
-                                </section>
-
-                                <section class="reviewCategory affordability">
-                                    <h4 class="reviewCategoryName"><i class="far fa-money-bill-alt"></i> Affordability
-                                    </h4>
-                                    <ul class="reviewPoints">
-                                        <li class="reviewPoint">
-                                            <p class="label">Monthly Rent</p>
-                                            <p class="value">£{{ review.monthly_rent }}</p>
-                                        </li>
-                                        <li class="reviewPoint">
-                                            <p class="label">Monthly Bills</p>
-                                            <p class="value createStars">£{{ review.monthly_bills }}</p>
-                                        </li>
-                                    </ul>
-                                    <p class="reviewComment">{{ review.affordability_comment|default_if_none:"" }}</p>
-                                </section>
-
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </section>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
             {% else %}
 
-            <p>To read full reviews by previous tenants for this house, please
-                <a href="{% url 'login' %}?next={{request.path}}">log in</a> or <a href="{% url 'sign-up' %}">create an account</a>.</p>
+                <p>To read full reviews by previous tenants for this house, please
+                    <a href="{% url 'login' %}?next={{ request.path }}">log in</a> or <a href="{% url 'sign-up' %}">create
+                        an account</a>.</p>
 
             {% endif %}
         </div>
@@ -252,48 +262,50 @@
             <div class="infoModules">
                 <span class="mapsHook"></span>
                 {% if user.is_authenticated %}
-                <section class="infoModule commuteTime {% if not profilepostcode %}noPostcode{% endif %}">
-                    <h3 class="title">Commute Times to <span class="postcode">{{ profilepostcode }}</span>
-                        <a href="{% url 'profile' %}#postcode" class="customisationIcon" title="Change your saved postcode">
-                            <i class="far fa-cog"></i>
-                        </a>
-                    </h3>
-                    <p class="description">Enter your university's postcode below to get commute times:</p>
-                    <form method="POST" class="postcodeForm" action="{% url 'profile' %}">{% csrf_token %}
-                        {{ postcodeForm.as_p }}
-                        <p class="submitWrap"><input class="button" id="postcodeSubmit" value="Save" type="submit"/></p>
-                    </form>
-                    <ul class="routes">
-                        <li class="route walking">
-                            <i class="far fa-walking"></i>
-                            <span>
+                    <section class="infoModule commuteTime {% if not profilepostcode %}noPostcode{% endif %}">
+                        <h3 class="title">Commute Times to <span class="postcode">{{ profilepostcode }}</span>
+                            <a href="{% url 'profile' %}#postcode" class="customisationIcon"
+                               title="Change your saved postcode">
+                                <i class="far fa-cog"></i>
+                            </a>
+                        </h3>
+                        <p class="description">Enter your university's postcode below to get commute times:</p>
+                        <form method="POST" class="postcodeForm" action="{% url 'profile' %}">{% csrf_token %}
+                            {{ postcodeForm.as_p }}
+                            <p class="submitWrap"><input class="button" id="postcodeSubmit" value="Save" type="submit"/>
+                            </p>
+                        </form>
+                        <ul class="routes">
+                            <li class="route walking">
+                                <i class="far fa-walking"></i>
+                                <span>
                                 <span class="timeValue"><i class="far fa-times-circle"></i></span>
                                 <strong>walk</strong>
                             </span>
-                        </li>
-                        <li class="route bicycling">
-                            <i class="far fa-bicycle"></i>
-                            <span>
+                            </li>
+                            <li class="route bicycling">
+                                <i class="far fa-bicycle"></i>
+                                <span>
                                 <span class="timeValue"><i class="far fa-times-circle"></i></span>
                                 <strong>cycle</strong>
                             </span>
-                        </li>
-                        <li class="route transit">
-                            <i class="far fa-subway"></i>
-                            <span>
+                            </li>
+                            <li class="route transit">
+                                <i class="far fa-subway"></i>
+                                <span>
                                 <span class="timeValue"><i class="far fa-times-circle"></i></span>
                                 on <strong>public transport</strong>
                             </span>
-                        </li>
-                        <li class="route driving">
-                            <i class="far fa-car"></i>
-                            <span>
+                            </li>
+                            <li class="route driving">
+                                <i class="far fa-car"></i>
+                                <span>
                                 <span class="timeValue"><i class="far fa-times-circle"></i></span>
                                 <strong>drive</strong>
                             </span>
-                        </li>
-                    </ul>
-                </section>
+                            </li>
+                        </ul>
+                    </section>
                 {% endif %}
                 <section class="infoModule nearbyShops">
                     <h3 class="title">Nearby Shops</h3>
