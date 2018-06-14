@@ -22,7 +22,7 @@ body {
 }
 
 h1, h2, h3, h4, h4 {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 ul {
@@ -40,6 +40,7 @@ ul {
   padding: 10px 15px;
   background: $buttonColour;
   color: #fff;
+  font-family: 'Circular Std';
   border: none;
   border-radius: $cornerRadius / 2;
   text-decoration: none;
@@ -269,6 +270,16 @@ $searchPadding: 20px;
     vertical-align: middle;
   }
 
+  .savedHouseAction {
+    margin-left: 6px;
+    font-size: 24px;
+    color: $mainTextColour;
+
+    &:hover {
+      color: $midText;
+    }
+  }
+
   .averageStars.noRatings {
     display: none;
   }
@@ -285,7 +296,7 @@ $searchPadding: 20px;
   }
 
   .br-theme-fontawesome-stars .br-widget a {
-  font: normal normal normal 23px/1 FontAwesome;
+    font: normal normal normal 23px/1 FontAwesome;
   }
 
   a {
@@ -559,34 +570,198 @@ $searchPadding: 20px;
 }
 
 /* New Report Page */
-.address {
-  margin-bottom: 20px;
-  padding-bottom: 30px;
-  font-size: 22px;
-  font-weight: bold;
-  color: #444;
-  border-bottom: solid 1px $borderColour;
+
+.newReview {
+  h1 {
+    padding-top: 20px;
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+  .address {
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding-bottom: 15px;
+    font-size: 22px;
+    font-weight: 400;
+    color: $midText;
+    // border-bottom: solid 1px $borderColour;
+  }
 }
 
-.form {
-  max-width: 400px;
+.newReview .warningMessage {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: $darkerBackgroundColour;
+  border-radius: $cornerRadius;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+
+  i {
+    font-size: 22px;
+  }
+
+  p {
+    margin: 0;
+    text-align: left;
+  }
+}
+
+.reviewForm {
+  max-width: 750px;
+  padding-top: 10px;
+  margin-bottom: 40px;
+  display: inline-block;
+  vertical-align: top;
+
+  .formSection {
+    padding: 30px 0;
+    border-bottom: solid 1px $borderColour;
+
+    &.roomInfo {
+      padding-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    &.images {
+      margin-bottom: 30px;
+    }
+  }
+
+  .reviewItem {
+    margin-bottom: 10px;
+  }
+
+  .reviewItem.stars {
+    width: 350px;
+    margin-right: 0;
+    display: inline-block;
+
+    &:nth-child(odd) {
+      margin-right: 30px;
+    }
+
+    .label {
+      margin-right: 15px;
+    }
+    .label, .br-wrapper {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .br-wrapper {
+      float: right;
+    }
+  }
+
+  .reviewItem.image {
+    display: none;
+    &:first-child {
+      display: block;
+    }
+    input {
+      margin: 0 0 10px -3px;
+    }
+  }
+
+  h3 {
+    max-width: 300px;
+    margin-bottom: 30px;
+    i {
+      margin-right: 12px;
+    }
+  }
+
+  i {
+    margin-right: 5px;
+  }
+
+  div.label {
+    margin-bottom: 10px;
+    color: $midText
+  }
 
   label {
     margin-bottom: 10px;
-    font-weight: bold;
-    display: block;
+    font-weight: 500;
   }
 
   textarea {
-    height: 70px;
+    width: 100%;
+    height: 120px;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: none;
   }
 
-  input[type=text], input[type=number], button {
-    // padding: 10px;
+  .addComment {
+    width: 100%;
+    padding: 10px 0;
+    cursor: pointer;
+    display: block;
+    // color: $mainTextColour;
+    text-align: center;
+  }
+
+  .addImage {
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .commentWrapper {
+    display: none;
+
+    input {
+      width: 100%;
+      max-width: 400px;
+      font-size: 14px;
+    }
+  }
+
+  .roomInfo, .movingDates, .affordability {
+    width: 100%;
+
+    .reviewItem {
+      margin-right: 30px;
+      display: inline-block;
+    }
+
+    .reviewItem:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .roomInfo input {
+    width: 70px;
+  }
+
+  .movingDates input {
+    width: 120px;
+  }
+
+  .affordability input {
+    width: 70px
+  }
+
+  .save.button {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    display: block;
   }
 }
 
-input[type=email], input[type=text], input[type=number], input[type=password] {
+.edit {
+  .images.formSection, .addComment {
+    display: none;
+  }
+  .commentWrapper {
+    display: block;
+  }
+}
+
+input[type=email], input[type=text], input[type=number], input[type=password], textarea {
   @include textInput(20px);
 }
 
@@ -681,6 +856,14 @@ form.accounts {
 }
 
 .savedHouse {
+    overflow: hidden;
+    display: inline-block;
+    background: #f9fafc;
+    border-radius: $cornerRadius;
+    vertical-align: top;
+    width: 30%;
+    margin: 10px;
+    transition: box-shadow 0.15s ease-in-out;
     img {
         width: 100%;
     };
@@ -695,27 +878,23 @@ form.accounts {
         margin-bottom: 8px;
     }
     .houseLink { height: 100% }
-    overflow: hidden;
-    display: inline-block;
-    background: #f9fafc;
-    border-radius: $cornerRadius;
-    vertical-align: top;
-    width: 30%;
-    margin: 10px;
+    &:hover { box-shadow: 0px 5px 10px rgba($shadowColour, 0.15); }
 }
 
 .myReport {
-    .house { padding: 10px 10px 3px 10px; }
-    .dates { padding: 3px 10px 10px 10px; font-size:0.7em; }
-    .reportLink { width: 100%; height: 100%; }
     display: inline-block;
     vertical-align: top;
     width: 20%;
     background: #f9fafc;
     border-radius: $cornerRadius;
     margin: 7px;
+    transition: box-shadow 0.15s ease-in-out;
+    &:hover { box-shadow: 0px 5px 10px rgba($shadowColour, 0.15); }
+    .house { padding: 10px 10px 3px 10px; }
+    .dates { padding: 3px 10px 10px 10px; font-size:0.7em; }
+    .reportLink { width: 100%; height: 100%; }
 }
 
 .settings#account {
-    .button { margin: 20px; }
+    .button { margin: 20px 0px 20px 20px; }
 }

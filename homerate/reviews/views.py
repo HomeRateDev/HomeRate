@@ -192,6 +192,7 @@ def edit_report(request, id):
             'house_details_form': house_details_form,
             'new_report_form': review_form,
             'house': house,
+            'edit_page': True
         })
 
 @login_required

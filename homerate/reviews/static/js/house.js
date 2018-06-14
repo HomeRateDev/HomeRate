@@ -107,13 +107,18 @@ function initPostcodeForm() {
     });
 }
 
+/* Hijack on-click behaviour for the save house link
+ * in House view */
 function initSavedHouseActions() {
 
+    /* When the save/unsave link is clicked */
     $(".savedHouseAction").click(function () {
         const action = $(this),
-              saved = action.data('issaved') == 'True';
+              saved = action.data('issaved') === 'True';
         let url = action.data('saveurl');
 
+        /* Pick the correct URL based on if the house
+         * is currently saved or not */
         if (saved) {
             url = action.data('unsaveurl');
         }
@@ -122,13 +127,14 @@ function initSavedHouseActions() {
             type: "GET",
             url: url,
             success: function () {
-                /* Was saved, we've just removed it. */
                 if (saved) {
+                    /* House was saved before, and we've just removed it. */
                     action.data('issaved', 'False');
-                    action.html('Save House');
+                    action.find('i').removeClass('fas').addClass('far');
                 } else {
-                    action.data('issaved', 'True')
-                    action.html('Remove Saved House');
+                    /* House was not saved before, we've just saved it. */
+                    action.data('issaved', 'True');
+                    action.find('i').removeClass('far').addClass('fas');
                 }
             },
             error: function (data) {
