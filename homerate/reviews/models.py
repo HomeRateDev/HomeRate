@@ -32,6 +32,9 @@ class House(models.Model):
             'postcode': components[-1][:-3] + " " + components[-1][-3:]
         }
 
+    def get_address(self):
+        return self.address[:-3] + " " + self.address[-3:]
+
     def general_star_rating(self):
         reports = HouseReport.objects.filter(house_filed=self).order_by('-moved_out_date')
         time_dependant_rating_weight = 1
