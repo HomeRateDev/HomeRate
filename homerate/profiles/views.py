@@ -96,6 +96,9 @@ def profile(request):
         saved_houses = Profile.objects.get(user=request.user).saved_houses.all()
         reports = HouseReport.objects.filter(author=request.user)
 
+        for house in saved_houses:
+            house.personal_star_rating(Profile.objects.get(user=request.user))
+
         return render(request, 'profiles/profile.html', {
             'reports': reports,
             'saved_houses': saved_houses,

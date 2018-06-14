@@ -665,4 +665,27 @@ form.accounts {
   }
 }
 
+.savedHouse {
+    img {
+        width: 100%;
+    };
+    .caption {
+        padding: 15px 20px;
+        * {
+        margin-bottom: 4px;
+        }
+    };
+    .postcode {
+        opacity: 0.7;
+        margin-bottom: 8px;
+    }
+    .houseLink { height: 100% }
+    overflow: hidden;
+    display: inline-block;
+    background: #f9fafc;
+    border-radius:$cornerRadius;
+    vertical-align: top;
+    width: 30%;
+    margin: 10px;
+}
 
