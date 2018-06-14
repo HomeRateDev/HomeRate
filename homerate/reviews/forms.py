@@ -28,5 +28,11 @@ class HouseReportForm(forms.ModelForm):
         self.fields['build_quality'].required = False
         self.fields['smells'].required = False
         self.fields['damp_mould_free'].required = False
+        self.fields['moved_in_date'].widget = forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD'})
+        self.fields['moved_out_date'].widget = forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD'})
+        self.fields['landlord_comment'].widget = forms.Textarea()
+        self.fields['construction_quality_comment'].widget = forms.Textarea()
+        self.fields['nuisances_comment'].widget = forms.Textarea()
+        self.fields['affordability_comment'].widget = forms.Textarea()
 
 
