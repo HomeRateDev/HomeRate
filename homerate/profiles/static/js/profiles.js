@@ -23,5 +23,12 @@
     });
 
     createVisualStars();
+    $('#firstNameForm').hide()
 
 })(jQuery);
+
+
+$("#changeFirst").click(function() {
+    $('#firstNameForm').slideDown(300)
+    $('html, body').animate({scrollTop: $(document).height()}, 'slow');
+})

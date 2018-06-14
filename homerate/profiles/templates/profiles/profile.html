@@ -91,7 +91,7 @@ Your Account
                 </form>
             </div>
 
-            <div class="settings" id="postcode1">
+            <div class="settings" id="postcode">
                 <h3> University postcode </h3>
                 <p> Get travel times to and from your university. </p>
                 <form method="POST" class="form postcode" action="{% url 'profile' %}#postcode">{% csrf_token %}
@@ -100,6 +100,25 @@ Your Account
                         <button type="submit" class="button" id="postcodeSubmit">Save</button>
                     </div>
                 </form>
+            </div>
+
+            <div class="settings" id="account">
+                <h3> Account Settings </h3>
+                <div class="accountSection">
+                    <div class="buttons">
+                        <button class="button" id="changeFirst">Change First Name</button>
+                        <button class="button">Change Password</button>
+                        <button class="button">Delete Account</button>
+                    </div>
+                    <div class="forms">
+                        <form method="POST" class="form firstName" id="firstNameForm" action="{% url 'profile' %}#account">{% csrf_token %}
+                        {{ first_name_form.as_p }}
+                        <div>
+                            <button type="submit" class="button" id="firstNameSubmit">Save</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
         </div>

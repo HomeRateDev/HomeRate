@@ -51,3 +51,11 @@ class CommutePostcode(forms.ModelForm):
         widgets = {
             'postcode': forms.TextInput(attrs={'placeholder': 'Enter a postcode (e.g. SW7 2AZ)'})
         }
+
+class FirstNameChange(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'Change Your Name'})
+        }

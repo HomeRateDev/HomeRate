@@ -714,3 +714,7 @@ form.accounts {
     border-radius: $cornerRadius;
     margin: 7px;
 }
+
+.settings#account {
+    .button { margin: 20px; }
+}
