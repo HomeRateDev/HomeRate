@@ -67,7 +67,7 @@ def house(request, id):
     profilepostcode = None
     if request.user.is_authenticated:
         postcode_form = CommutePostcode(instance=Profile.objects.get(user=request.user))
-        profilepostcode = user_profile.postcode
+        profilepostcode = user_profile.getPostcode()
 
     if profilepostcode is not None:
         profilepostcode = profilepostcode.upper()
