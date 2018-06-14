@@ -270,9 +270,11 @@
                             </a>
                         </h3>
                         <p class="description">Enter your university's postcode below to get commute times:</p>
-                        <form method="POST" class="postcodeForm" action="{% url 'profile' %}">{% csrf_token %}
+                        <form method="POST" class="postcodeForm" action="{% url 'profile' %}/#postcode">{% csrf_token %}
                             {{ postcodeForm.as_p }}
-                            <p class="submitWrap"><input class="button" id="postcodeSubmit" value="Save" type="submit"/>
+                            <input type="hidden" name="submitPostcode" value="1"/>
+                            <p class="submitWrap">
+                                <button type="submit" class="button" id="postcodeSubmit">Save</button>
                             </p>
                         </form>
                         <ul class="routes">
