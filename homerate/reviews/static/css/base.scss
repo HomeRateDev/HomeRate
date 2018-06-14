@@ -269,7 +269,12 @@ $searchPadding: 20px;
     vertical-align: middle;
   }
 
+  .averageStars.noRatings {
+    display: none;
+  }
+
   .houseLocation {
+    margin-top: 15px;
     margin-top: 15px;
     color: $lightestText;
   }
