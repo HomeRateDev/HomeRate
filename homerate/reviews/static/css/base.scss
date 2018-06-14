@@ -270,6 +270,16 @@ $searchPadding: 20px;
     vertical-align: middle;
   }
 
+  .savedHouseAction {
+    margin-left: 6px;
+    font-size: 24px;
+    color: $mainTextColour;
+
+    &:hover {
+      color: $midText;
+    }
+  }
+
   .averageStars.noRatings {
     display: none;
   }

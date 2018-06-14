@@ -130,11 +130,11 @@ function initSavedHouseActions() {
                 if (saved) {
                     /* House was saved before, and we've just removed it. */
                     action.data('issaved', 'False');
-                    action.html('Save House');
+                    action.find('i').removeClass('fas').addClass('far');
                 } else {
                     /* House was not saved before, we've just saved it. */
                     action.data('issaved', 'True');
-                    action.html('Remove Saved House');
+                    action.find('i').removeClass('far').addClass('fas');
                 }
             },
             error: function (data) {
