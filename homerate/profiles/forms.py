@@ -52,6 +52,10 @@ class CommutePostcode(forms.ModelForm):
             'postcode': forms.TextInput(attrs={'placeholder': 'Enter a postcode (e.g. SW7 2AZ)'})
         }
 
+        def __init__(self, *args, **kwargs):
+            super(CommutePostcode, self).__init__(*args, **kwargs)
+            self.fields['postcode'].required = True
+
 class FirstNameChange(forms.ModelForm):
     class Meta:
         model = User

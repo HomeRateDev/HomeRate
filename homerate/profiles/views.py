@@ -76,42 +76,53 @@ def account_activation_sent(request):
 def profile(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            weights_form = StarRatingWeighting(request.POST, instance=Profile.objects.get(user=request.user))
-            postcode_form = CommutePostcode(request.POST, instance=Profile.objects.get(user=request.user))
-            first_name_form = FirstNameChange(request.POST, instance=request.user)
+            if request.POST.get('submitWeights'):
+                weights_form = StarRatingWeighting(request.POST, instance=Profile.objects.get(user=request.user))
+                if weights_form.is_valid():
+                    print('weights')
+                    profile = weights_form.save(commit=False)
+                    profile.user = request.user
+                    profile.save()
 
-            if weights_form.is_valid():
-                profile = weights_form.save(commit=False)
-                profile.user = request.user
-                profile.save()
-            elif postcode_form.is_valid():
-                profile = postcode_form.save(commit=False)
-                profile.save(update_fields=["postcode"])
-            else:
-                print("Form Error")
-                print(weights_form.errors)
+            elif request.POST.get('submitPostcode'):
+                postcode_form = CommutePostcode(request.POST, instance=Profile.objects.get(user=request.user))
+                if postcode_form.is_valid():
+                    print('postcode')
+                    profile = postcode_form.save(commit=False)
+                    profile.save(update_fields=["postcode"])
 
-            if first_name_form.is_valid():
-                form = first_name_form.save(commit=False)
-                form.save(update_fields=["first_name"])
+            elif request.POST.get('submitFirstName'):
+                first_name_form = FirstNameChange(request.POST, instance=request.user)
+                if first_name_form.is_valid():
+                    print('first name')
+                    form = first_name_form.save(commit=False)
+                    form.save(update_fields=["first_name"])
 
+            elif request.POST.get('submitPassword'):
+                password_form = PasswordChangeForm(request.user, request.POST)
+                if password_form.is_valid():
+                    print('password')
+                    user = password_form.save()
+                    update_session_auth_hash(request, user)
 
-        weights_form = StarRatingWeighting(instance=Profile.objects.get(user=request.user))
-        postcode_form = CommutePostcode(instance=Profile.objects.get(user=request.user))
         saved_houses = Profile.objects.get(user=request.user).saved_houses.all()
         reports = HouseReport.objects.filter(author=request.user)
+        weights_form = StarRatingWeighting(instance=Profile.objects.get(user=request.user))
+        postcode_form = CommutePostcode(instance=Profile.objects.get(user=request.user))
+        first_name_form = FirstNameChange(instance=request.user)
+        password_form = PasswordChangeForm(request.user)
 
         for house in saved_houses:
             house.personal_star_rating(Profile.objects.get(user=request.user))
 
-        first_name_form = FirstNameChange(instance=request.user)
 
         return render(request, 'profiles/profile.html', {
             'reports': reports,
             'saved_houses': saved_houses,
             'weights_form': weights_form,
             'postcode_form':postcode_form,
-            'first_name_form': first_name_form
+            'first_name_form': first_name_form,
+            'password_form': password_form
         })
     else:
         return render(request, 'profiles/signin_to_view.html')
@@ -131,3 +142,7 @@ def change_password(request):
     return render(request, 'accounts/change_password.html', {
         'form': form
     })
+
+def delete_account(request):
+    User.objects.get(username=request.user.username).delete()
+    return render(request, 'registration/sorry_to_see_you_go.html')

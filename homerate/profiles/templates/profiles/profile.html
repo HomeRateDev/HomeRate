@@ -86,7 +86,7 @@ Your Account
                 <form method="POST" class="form", action="{% url 'profile' %}#weightings">{% csrf_token %}
                     {{ weights_form.as_p }}
                     <div>
-                        <button type="submit" class="button">Save</button>
+                        <button type="submit" class="button" name="submitWeights" value="1">Save</button>
                     </div>
                 </form>
             </div>
@@ -97,7 +97,7 @@ Your Account
                 <form method="POST" class="form postcode" action="{% url 'profile' %}#postcode">{% csrf_token %}
                     {{ postcode_form.as_p }}
                     <div>
-                        <button type="submit" class="button" id="postcodeSubmit">Save</button>
+                        <button type="submit" class="button" id="postcodeSubmit" name="submitPostcode" value="1">Save</button>
                     </div>
                 </form>
             </div>
@@ -107,16 +107,26 @@ Your Account
                 <div class="accountSection">
                     <div class="buttons">
                         <button class="button" id="changeFirst">Change First Name</button>
-                        <button class="button">Change Password</button>
-                        <button class="button">Delete Account</button>
+                        <button class="button" id="changePassword">Change Password</button>
+                        <button class="button" id="deleteAccount">Delete Account</button>
                     </div>
                     <div class="forms">
                         <form method="POST" class="form firstName" id="firstNameForm" action="{% url 'profile' %}#account">{% csrf_token %}
                         {{ first_name_form.as_p }}
                         <div>
-                            <button type="submit" class="button" id="firstNameSubmit">Save</button>
+                            <button type="submit" class="button" id="firstNameSubmit" name="submitFirstName" value="1">Save</button>
                         </div>
                         </form>
+                        <form method="POST" class="form password" id="passwordForm" action="{% url 'profile' %}#account">
+                        {% csrf_token %}
+                        {{ password_form }}
+                            <button type="submit" class="button" id="passwordSubmit" name="submitPassword" value="1">Save</button>
+                        </form>
+                        <div class="confirmDelete">
+                            <p>Are you sure you want to delete your account?</p>
+                            <a class="button" href="{% url 'delete_account' %}" name="submitDelete">Yes</a>
+                            <button class="button" id="noDeleteButton">No</button>
+                        </div>
                     </div>
                 </div>
             </div>

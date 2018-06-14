@@ -1,0 +1,22 @@
+
+{% extends "homepage/base.html" %}
+
+{% block title %}
+Goodbye
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <p class="message">Sorry to see you go!</p>
+        <p>You will be redirected in <span id="counter">5</span> seconds.</p>
+    <script>
+        setInterval(function() {
+            var div = document.querySelector("#counter");
+            var count = div.textContent * 1 - 1;
+            div.textContent = count;
+            if (count <= 0) {
+                window.location.replace("/");
+            }
+        }, 1000);
+    </script>
+{% endblock %}
