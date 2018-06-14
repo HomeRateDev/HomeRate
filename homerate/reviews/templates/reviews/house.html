@@ -251,7 +251,11 @@
                 <span class="mapsHook"></span>
                 {% if user.is_authenticated %}
                 <section class="infoModule commuteTime {% if not profilepostcode %}noPostcode{% endif %}">
-                    <h3 class="title">Commute Times to <span class="postcode">{{ profilepostcode }}</span></h3>
+                    <h3 class="title">Commute Times to <span class="postcode">{{ profilepostcode }}</span>
+                        <a href="{% url 'profile' %}#postcode" class="customisationIcon" title="Change your saved postcode">
+                            <i class="far fa-cog"></i>
+                        </a>
+                    </h3>
                     <p class="description">Enter your university's postcode below to get commute times:</p>
                     <form method="POST" class="postcodeForm" action="{% url 'profile' %}">{% csrf_token %}
                         {{ postcodeForm.as_p }}

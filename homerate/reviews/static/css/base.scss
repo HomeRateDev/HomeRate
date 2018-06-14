@@ -283,10 +283,6 @@ $searchPadding: 20px;
   font: normal normal normal 23px/1 FontAwesome;
   }
 
-  .customisationIcon {
-    vertical-align: middle;
-  }
-
 }
 
 .averageStars {
@@ -337,6 +333,12 @@ $searchPadding: 20px;
   .unavailable {
     font-size: 16px;
   }
+}
+
+
+.customisationIcon {
+  vertical-align: middle;
+  font-size: 16px;
 }
 
 /* House Page: Gallery */
