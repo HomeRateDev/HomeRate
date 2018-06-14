@@ -1,50 +1,263 @@
 {% extends 'homepage/base.html' %}
-{% load staticfiles%}
+{% load staticfiles %}
 {% load sass_tags %}
 
 {% block title %}
-New Report
+    New Report
 {% endblock %}
 {% block head %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-<link rel="stylesheet" href="{% sass_src 'css/stars.scss' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-oi8o31xSQq8S0RpBcb4FaLB8LJi9AT8oIdmS1QldR8Ui7KUQjNAnDlJjp55Ba8FG" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% sass_src 'css/stars.scss' %}">
 {% endblock %}
 {% block content %}
 
-<div class="container">
-    <h1>Add New Review</h1>
-    <p class="address">{{ house.address }}</p>
-    <form method="POST" enctype="multipart/form-data" class="reviewForm form">{% csrf_token %}
-        {{ house_details_form.as_p }}
-        {{ new_report_form.as_p }}
-        {{ image_formset.as_p}}
-        <button type="submit" class="save btn btn-default">Submit</button>
-    </form>
-</div>
+    <div class="container newReview {% if edit_page %}edit{% endif %}">
+        <h1>Add New Review</h1>
+        <p class="address">{{ house.address }}</p>
+
+        <form method="POST" enctype="multipart/form-data" class="reviewForm form">{% csrf_token %}
+
+            <div class="warningMessage">
+                <p><i class="fa fa-warning"></i> Please do not add images or information that may affect the house's security</p>
+            </div>
+
+            <section class="roomInfo formSection">
+                <div class="reviewItem rooms">
+                    <div class="label">
+                        <i class="far fa-bed"></i>
+                        <label>Bedrooms</label>
+                    </div>
+                    {{ house_details_form.bedrooms }}
+                </div>
+                <div class="reviewItem rooms">
+                    <div class="label">
+                        <i class="far fa-bath"></i>
+                        <label>Bathrooms</label>
+                    </div>
+                    {{ house_details_form.bathrooms }}
+                </div>
+                <div class="reviewItem rooms">
+                    <div class="label">
+                        <i class="far fa-couch"></i>
+                        <label>Living Rooms</label>
+                    </div>
+                    {{ house_details_form.living_rooms }}
+                </div>
+            </section>
+
+            <section class="movingDates formSection">
+                <div class="reviewItem dates">
+                    <div class="label">
+                        <i class="far fa-truck-couch"></i>
+                        <label>Move In Date</label>
+                    </div>
+                    {{ new_report_form.moved_in_date }}
+                </div>
+                <div class="reviewItem dates">
+                    <div class="label">
+                        <i class="far fa-truck-couch"></i>
+                        <label>Move Out Date</label>
+                    </div>
+                    {{ new_report_form.moved_out_date }}
+                </div>
+            </section>
+
+            <section class="landlord formSection">
+                <h3><i class="far fa-id-card"></i>Landlord</h3>
+
+                <div class="reviewItems">
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-clock"></i>
+                            <label>{{ new_report_form.landlord_responsiveness.label }}</label>
+                        </div>
+                        {{ new_report_form.landlord_responsiveness }}
+                    </div>
+
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-wrench"></i>
+                            <label>{{ new_report_form.repair_quality.label }}</label>
+                        </div>
+                        {{ new_report_form.repair_quality }}
+                    </div>
+                </div>
+                <a class="addComment"><i class="fas fa-plus-circle"></i>Add a comment</a>
+                <div class="commentWrapper">
+                    {{ new_report_form.landlord_comment }}
+                </div>
+            </section>
+
+            <section class="construction formSection">
+                <h3><i class="far fa-id-card"></i>Construction Quality</h3>
+                <div class="reviewItems">
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-shower"></i>
+                            <label>{{ new_report_form.water_pressure.label }}</label>
+                        </div>
+                        {{ new_report_form.water_pressure }}
+                    </div>
+
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-inventory"></i>
+                            <label>{{ new_report_form.utilities.label }}</label>
+                        </div>
+                        {{ new_report_form.utilities }}
+                    </div>
+
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-couch"></i>
+                            <label>{{ new_report_form.furniture_quality.label }}</label>
+                        </div>
+                        {{ new_report_form.utilities }}
+                    </div>
+
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-bed"></i>
+                            <label>{{ new_report_form.mattress_quality.label }}</label>
+                        </div>
+                        {{ new_report_form.utilities }}
+                    </div>
+
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-toolbox"></i>
+                            <label>{{ new_report_form.build_quality.label }}</label>
+                        </div>
+                        {{ new_report_form.utilities }}
+                    </div>
+                </div>
+                <a class="addComment"><i class="fas fa-plus-circle"></i>Add a comment</a>
+                <div class="commentWrapper">
+                    {{ new_report_form.construction_quality_comment }}
+                </div>
+            </section>
+
+            <section class="nuisances formSection">
+                <h3><i class="far fa-warning"></i>Nuisances</h3>
+                <div class="reviewItems">
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-volume-up"></i>
+                            <label>{{ new_report_form.quietness.label }}</label>
+                        </div>
+                        {{ new_report_form.quietness }}
+                    </div>
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-bug"></i>
+                            <label>{{ new_report_form.pest_free.label }}</label>
+                        </div>
+                        {{ new_report_form.pest_free }}
+                    </div>
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-poo"></i>
+                            <label>{{ new_report_form.smells.label }}</label>
+                        </div>
+                        {{ new_report_form.smells }}
+                    </div>
+                    <div class="reviewItem stars">
+                        <div class="label">
+                            <i class="far fa-tint"></i>
+                            <label>Damp/Mould-free</label>
+                        </div>
+                        {{ new_report_form.smells }}
+                    </div>
+                </div>
+                <a class="addComment"><i class="fas fa-plus-circle"></i>Add a comment</a>
+                <div class="commentWrapper">
+                    {{ new_report_form.nuisances_comment }}
+                </div>
+            </section>
+
+            <section class="affordability formSection">
+                <h3><i class="far fa-money-check-alt"></i>Affordability</h3>
+                <div class="reviewItem">
+                    <div class="label">
+                        <i class="far fa-money-bill-alt"></i>
+                        <label>{{ new_report_form.monthly_rent.label }}</label>
+                    </div>
+                    {{ new_report_form.monthly_rent }}
+                </div>
+                <div class="reviewItem">
+                    <div class="label">
+                        <i class="far fa-bug"></i>
+                        <label>{{ new_report_form.monthly_bills.label }}</label>
+                    </div>
+                    {{ new_report_form.monthly_bills }}
+                </div>
+                <a class="addComment"><i class="fas fa-plus-circle"></i>Add a comment</a>
+                <div class="commentWrapper">
+                    {{ new_report_form.affordability_comment }}
+                </div>
+            </section>
+
+            <section data-imagelimit="{{ image_formset.total_form_count }}" class="images formSection">
+                <h3><i class="far fa-images"></i>Upload Images</h3>
+                {{ image_formset.management_form }}
+                <div class="reviewItems">
+                    {% for form in image_formset %}
+                        <div class="reviewItem image">
+                            {{ form.image }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="addImage"><i class="fas fa-plus-circle"></i>Add another image</a>
+            </section>
+
+            <button type="submit" class="save button">
+                <i class="far fa-check-circle"></i> Submit
+            </button>
+
+        </form>
+
+    </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="{% static 'js/jquery.barrating.min.js' %}"></script>
-<script type="text/javascript">
-   (function($) {
-     $(function() {
-      $('.starRating').barrating({
-        theme: 'fontawesome-stars',
-        allowEmpty: true,
-        initialRating: 0,
-        showSelectedRating: true,
-        deselectable: true
-      });
-     });
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
+    <script type="text/javascript">
+        const imageLimit = $('.images.formSection').data('imagelimit');
+        let imagesAttached = 1;
 
-      $(function() {
-      $('.starRatingMandatory').barrating({
-        theme: 'fontawesome-stars',
-      });
-     });
-   })(jQuery);
+        function initAddComments() {
+            $('.addComment').click(function () {
+                $(this).fadeOut(300).next().delay(100).show(300);
+            })
+        }
 
-</script>
+        function initAddImages() {
+            $('.addImage').click(function() {
+                if (imagesAttached === imageLimit - 1) {
+                    $(this).hide();
+                }
+                imagesAttached++;
+                $('.reviewItem:nth-child(' + imagesAttached + ')').fadeIn(300);
+            });
+        }
+
+        $('.starRating').barrating({
+            theme: 'fontawesome-stars',
+            allowEmpty: true,
+            initialRating: 0,
+            showSelectedRating: true,
+            deselectable: true
+        });
+
+        $('.starRatingMandatory').barrating({
+            theme: 'fontawesome-stars',
+        });
+
+        initAddComments();
+        initAddImages();
+    </script>
 
 
 {% endblock %}
