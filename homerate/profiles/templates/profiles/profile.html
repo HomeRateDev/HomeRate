@@ -30,8 +30,8 @@ Your Account
                 <a class="houseLink" href="{% url 'house' id=house.id %}">
 
                 <img src="https://maps.googleapis.com/maps/api/staticmap?
-                          center={{ house.split_address.line1 }} {{ house.split_address.postcode }}
-                          &markers=color:red|{{ house.split_address.line1 }} {{ house.split_address.postcode }}
+                          center={{ house.split_address.postcode }}
+                          &markers=color:red|{{ house.split_address.postcode }}
                           &zoom=14
                           &size=336x215
                           &key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o">
