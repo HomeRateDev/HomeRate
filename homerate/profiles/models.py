@@ -44,3 +44,10 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.first_name
+
+    def getPostcode(self):
+        if not self.postcode is None:
+            p = self.postcode.replace(" ", "")
+            return p[:-3] + " " + p[-3:]
+        else:
+            return None

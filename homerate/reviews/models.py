@@ -29,7 +29,7 @@ class House(models.Model):
         return {
             'line1': components[0],
             'line2': components[-2] + ", " + components[-3],
-            'postcode': components[-1]
+            'postcode': components[-1][:-3] + " " + components[-1][-3:]
         }
 
     def general_star_rating(self):
