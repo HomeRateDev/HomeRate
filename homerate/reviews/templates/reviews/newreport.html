@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-oi8o31xSQq8S0RpBcb4FaLB8LJi9AT8oIdmS1QldR8Ui7KUQjNAnDlJjp55Ba8FG" crossorigin="anonymous">
     <link rel="stylesheet" href="{% sass_src 'css/stars.scss' %}">
+    <link rel="stylesheet" href="{% static 'css/datepicker.min.css' %}">
 {% endblock %}
 {% block content %}
 
@@ -114,7 +115,7 @@
                             <i class="far fa-couch"></i>
                             <label>{{ new_report_form.furniture_quality.label }}</label>
                         </div>
-                        {{ new_report_form.utilities }}
+                        {{ new_report_form.furniture_quality }}
                     </div>
 
                     <div class="reviewItem stars">
@@ -122,7 +123,7 @@
                             <i class="far fa-bed"></i>
                             <label>{{ new_report_form.mattress_quality.label }}</label>
                         </div>
-                        {{ new_report_form.utilities }}
+                        {{ new_report_form.mattress_quality }}
                     </div>
 
                     <div class="reviewItem stars">
@@ -130,7 +131,7 @@
                             <i class="far fa-toolbox"></i>
                             <label>{{ new_report_form.build_quality.label }}</label>
                         </div>
-                        {{ new_report_form.utilities }}
+                        {{ new_report_form.build_quality }}
                     </div>
                 </div>
                 <a class="addComment"><i class="fas fa-plus-circle"></i>Add a comment</a>
@@ -168,7 +169,7 @@
                             <i class="far fa-tint"></i>
                             <label>Damp/Mould-free</label>
                         </div>
-                        {{ new_report_form.smells }}
+                        {{ new_report_form.damp_mould_free }}
                     </div>
                 </div>
                 <a class="addComment"><i class="fas fa-plus-circle"></i>Add a comment</a>
@@ -223,6 +224,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
+    <script src="{% static 'js/datepicker.min.js' %}"></script>
     <script type="text/javascript">
         const imageLimit = $('.images.formSection').data('imagelimit');
         let imagesAttached = 1;
@@ -255,6 +257,9 @@
             theme: 'fontawesome-stars',
         });
 
+        $('[data-toggle="datepicker"]').datepicker({
+            format: 'yyyy-mm-dd'
+        });
         initAddComments();
         initAddImages();
     </script>
