@@ -683,9 +683,19 @@ form.accounts {
     overflow: hidden;
     display: inline-block;
     background: #f9fafc;
-    border-radius:$cornerRadius;
+    border-radius: $cornerRadius;
     vertical-align: top;
     width: 30%;
     margin: 10px;
 }
 
+.myReport {
+    .house { padding: 10px 10px 3px 10px; }
+    .dates { padding: 3px 10px 10px 10px; font-size:0.7em; }
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    background: #f9fafc;
+    border-radius: $cornerRadius;
+    margin: 7px;
+}

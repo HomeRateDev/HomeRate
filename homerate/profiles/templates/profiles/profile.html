@@ -18,7 +18,7 @@ Your Account
 {% block content %}
 
 <div class="container">
-    <h1>HomeRate</h1>
+    <h1>Your Profile</h1>
 
     <div>
         <div class="settings">
@@ -66,8 +66,10 @@ Your Account
         <ul>
         {% for report in reports %}
 
-            <li><a href="{% url 'house' id=report.house_filed.id %}#{{report.pk}}">{{ report.house_filed.split_address.line1 }}:
-                {{ report.moved_in_date }} to {{ report.moved_out_date }}</a></li>
+            <li class="myReport"><a href="{% url 'house' id=report.house_filed.id %}#{{report.pk}}">
+                <p class="house">{{ report.house_filed.split_address.line1 }}</p>
+                <p class="dates">{{ report.moved_in_date }} to {{ report.moved_out_date }}</p>
+            </a></li>
 
         {% endfor %}
         </ul>
