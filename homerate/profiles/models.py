@@ -13,7 +13,7 @@ class Profile(models.Model):
 
     is_suspicious = models.BooleanField(default=False)
 
-    saved_houses = models.ManyToManyField(House)
+    saved_houses = models.ManyToManyField(House, blank=True)
 
     # Landlord
     landlord_responsiveness = RatingField(mandatory=True, weighting=True, default=2)
