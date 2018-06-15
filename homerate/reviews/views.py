@@ -142,6 +142,8 @@ def new_report(request, id):
 
             if Profile.objects.get(user=request.user).is_suspicious:
                 report.visible = False
+            else:
+                report.visible = True
 
             # Commit review to database
             report.save()
@@ -196,6 +198,8 @@ def edit_report(request, id):
 
             if Profile.objects.get(user=request.user).is_suspicious:
                 report.visible = False
+            else:
+                report.visible = True
 
             # Save house details
             house_details_form.save()
