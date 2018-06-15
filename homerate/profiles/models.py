@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 from core.ratings import RatingField
-from reviews.models import House
+from reviews.models import House, HouseReport
 
 
 class Profile(models.Model):

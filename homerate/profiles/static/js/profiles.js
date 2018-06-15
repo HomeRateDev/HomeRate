@@ -34,13 +34,13 @@ $("#changeFirst").click(function() {
     $('#passwordForm').slideUp(300)
     $('#firstNameForm').slideDown(300)
     $('html, body').animate({scrollTop: $(document).height()}, 'slow');
-})
+});
 
 $("#changePassword").click(function() {
     $('#firstNameForm').slideUp(300)
     $('#passwordForm').slideDown(300)
     $('html, body').animate({scrollTop: $(document).height()}, 'slow');
-})
+});
 
 $('#deleteAccount').click(function() {
     $('.buttons').slideUp(300)
@@ -48,9 +48,15 @@ $('#deleteAccount').click(function() {
     $('#passwordForm').slideUp(300)
     $('.confirmDelete').slideDown(300)
     $('html, body').animate({scrollTop: $(document).height()}, 'slow');
-})
+});
 
 $('#noDeleteButton').click(function() {
     $('.confirmDelete').slideUp(300)
     $('.buttons').slideDown(300)
-})
+});
+
+const is_reported = 0;
+
+$('.reportReview').click(funtion() {
+    $('.reportReview').toggle()
+});

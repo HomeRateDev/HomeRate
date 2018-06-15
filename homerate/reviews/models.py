@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
@@ -94,6 +95,7 @@ class HouseReport(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     moved_in_date = models.DateField(blank=True, null=True)
     moved_out_date = models.DateField(blank=True, null=True)
+    reported_by = models.ManyToManyField('auth.User', blank=True, related_name='users_who_reported')
 
     # Landlord
     landlord_responsiveness = RatingField(mandatory=True)

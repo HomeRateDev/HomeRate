@@ -145,6 +145,42 @@ function initSavedHouseActions() {
     });
 }
 
+function initFlaggedReportActions() {
+
+    /* When the flag/unflag link is clicked */
+    $(".flaggedReportAction").click(function () {
+        const action = $(this),
+              flagged = action.data('isflagged') === 'True';
+        let url = action.data('flagurl');
+
+        /* Pick the correct URL based on if the house
+         * is currently saved or not */
+        if (flagged) {
+            url = action.data('unflagurl');
+        }
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function () {
+                if (flagged) {
+                    /* House was flagged before, and we've just unflagged it. */
+                    action.data('isflagged', 'False');
+                    action.find('.message').html("Report This Review");
+                } else {
+                    /* House was not flagged before, we've just flagged it. */
+                    action.data('isflagged', 'True');
+                    action.find('.message').html("Unreport This Review");
+                }
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+        return false;
+    });
+}
+
 (function ($) {
 
     /* Initialise slick gallery */
@@ -153,6 +189,7 @@ function initSavedHouseActions() {
     createVisualStars();
     initPostcodeForm();
     initSavedHouseActions();
+    initFlaggedReportActions();
 
     /* After a key is typed in the postcode box try and valdate */
     $('.postcodeForm').keyup(function (event) {
