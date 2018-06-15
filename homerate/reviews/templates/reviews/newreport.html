@@ -20,8 +20,14 @@
 
         <form method="POST" enctype="multipart/form-data" class="reviewForm form">{% csrf_token %}
 
+            {% if is_suspicious %}
             <div class="warningMessage">
-                <p><i class="fa fa-warning"></i> Please do not add images or information that may affect the house's security</p>
+                <p><i class="fa fa-user-check"></i> Your review will be validated by a member of the team before being posted. </p>
+            </div>
+            {% endif %}
+
+            <div class="warningMessage">
+                <p><i class="fa fa-warning"></i> Please do not add images or information that may affect the house's security. </p>
             </div>
 
             <section class="roomInfo formSection">
