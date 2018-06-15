@@ -237,6 +237,23 @@
                                     </section>
 
                                 </div>
+                                <a data-isflagged="{% if review.pk in flagged_reports %} true {% else %} false {% endif %}"
+                                   data-unflagurl="{% url 'unflag' id=review.pk %}"
+                                   data-flagurl="{% url 'flag' id=review.pk %}"
+                                   title="Flag this review"
+                                   class="flaggedReportAction">
+                                    <i class="fas fa-flag"></i>
+                                    <span class="message">
+                                        {% if review.pk in flagged_reports %}
+                                        Unreport This Review
+                                        {% else %}
+                                        Report This Review
+                                        {% endif %}
+                                    </span>
+                                </a>
+
+
+
                             </li>
                         {% endfor %}
                     </ul>

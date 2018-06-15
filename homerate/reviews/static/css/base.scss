@@ -481,6 +481,15 @@ $searchPadding: 20px;
   }
 }
 
+.review .flaggedReportAction {
+    padding-bottom: 20px;
+    cursor: pointer;
+
+    .message {
+        margin-left: 7px;
+    }
+}
+
 /* House Page: Information Modules */
 .map img {
   width: 100%;
