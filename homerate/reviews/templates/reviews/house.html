@@ -56,17 +56,17 @@
                 <ul class="basicInfo">
                     <li class="infoItem">
                         <i class="far fa-bed"></i>
-                        <span class="value">{{ house.bedrooms }}</span>
+                        <span class="value">{{ house.bedrooms|default_if_none:"-" }}</span>
                         <span class="label">bed</span>
                     </li>
                     <li class="infoItem">
                         <i class="far fa-bath"></i>
-                        <span class="value">{{ house.bathrooms }}</span>
+                        <span class="value">{{ house.bathrooms|default_if_none:"-" }}</span>
                         <span class="label">bath</span>
                     </li>
                     <li class="infoItem">
                         <i class="far fa-couch"></i>
-                        <span class="value">{{ house.living_rooms }}</span>
+                        <span class="value">{{ house.living_rooms|default_if_none:"-" }}</span>
                         <span class="label">living room</span>
                     </li>
                 </ul>

@@ -18,9 +18,9 @@ def round2sf(num):
 class House(models.Model):
     address = models.CharField(max_length=200)
     date_created = models.DateTimeField(default=timezone.now)
-    bedrooms = models.IntegerField(default=0)
-    bathrooms = models.IntegerField(default=0)
-    living_rooms = models.IntegerField(default=0)
+    bedrooms = models.IntegerField(blank=True, null=True)
+    bathrooms = models.IntegerField(blank=True, null=True)
+    living_rooms = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.address

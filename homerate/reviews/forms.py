@@ -14,6 +14,12 @@ class HouseDetailsForm(forms.ModelForm):
         model = House
         exclude = ['address', 'date_created']
 
+    def __init__(self, *args, **kwargs):
+        super(HouseDetailsForm, self).__init__(*args, **kwargs)
+        self.fields['bedrooms'].required = True
+        self.fields['bathrooms'].required = True
+        self.fields['living_rooms'].required = True
+
 
 class HouseReportForm(forms.ModelForm):
     class Meta:
