@@ -262,7 +262,6 @@
                           &key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o"/>
             </div>
             <div class="infoModules">
-                <span class="mapsHook"></span>
                 {% if user.is_authenticated %}
                     <section class="infoModule commuteTime {% if not profilepostcode %}noPostcode{% endif %}">
                         <h3 class="title">Commute Times to <span class="postcode">{{ profilepostcode }}</span>
@@ -311,6 +310,7 @@
                         </ul>
                     </section>
                 {% endif %}
+                <span class="mapsHook"></span>
                 <section class="infoModule nearbyShops">
                     <h3 class="title">Nearby Shops</h3>
                     <ul class="shops">
