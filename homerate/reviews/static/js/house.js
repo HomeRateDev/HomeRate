@@ -1,6 +1,7 @@
 function initMapping() {
     getCommuteTimes();
     getNearestShops();
+    getNearestStations();
 }
 
 /* Returns the postcode for the current house */
@@ -33,6 +34,10 @@ function getCommuteTimes() {
 
 function getNearestShops() {
     geocodeAddress(getPostcode(), insertNearestShops);
+}
+
+function getNearestStations() {
+    geocodeAddress(getPostcode(), insertNearestStations);
 }
 
 /* Takes an address, converts it to LatLng and passes it to callback */
@@ -69,6 +74,35 @@ function insertNearestShops(location) {
             }
         }
     });
+}
+
+function insertNearestStations(location) {
+    const service = new google.maps.places.PlacesService(document.querySelector('.mapsHook'));
+    service.nearbySearch({
+        location: new google.maps.LatLng(location),
+        radius: 1000,
+        type: ['subway_station']
+    }, function (response) {
+        window.rspst = response;
+        if (response.length === 0) {
+            const noStations = $("<li/>").addClass('station'),
+                icon = $("<i class='far fa-subway'></i>");
+            noStations.appendTo('.stations');
+            icon.appendTo(noStations);
+            noStations.append("No Stations Nearby");
+            return;
+        }
+        const max = response.length < 3 ? response.length : 3;
+        for (let i = 0; i < max; i++) {
+            let place = response[i];
+            const station = $("<li/>").addClass('station'),
+                icon = $("<i class='far fa-subway'></i>"),
+                stationName = $("<span/>").addClass('stationName').html(place.name);
+            station.appendTo('.stations');
+            icon.appendTo(station);
+            stationName.appendTo(station);
+        }
+     });
 }
 
 /* Parses commute time response and injects it into the DOM */
@@ -114,7 +148,7 @@ function initSavedHouseActions() {
     /* When the save/unsave link is clicked */
     $(".savedHouseAction").click(function () {
         const action = $(this),
-              saved = action.data('issaved') === 'True';
+            saved = action.data('issaved') === 'True';
         let url = action.data('saveurl');
 
         /* Pick the correct URL based on if the house
