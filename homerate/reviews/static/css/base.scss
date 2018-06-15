@@ -242,6 +242,7 @@ $searchPadding: 20px;
 .mainContent {
   max-width: 0.62 * $containerWidth;
   width: 100%;
+  margin-right: 15px;
 }
 
 .extraContent {
@@ -311,9 +312,14 @@ $searchPadding: 20px;
   border-radius: $cornerRadius / 2;
 }
 
-.reviews h2 {
-  margin-right: 5px;
-  margin-bottom: 0;
+.overallRatings {
+  padding-bottom: 10px;
+  border-bottom: solid 1px $borderColour;
+}
+
+.overallRatings h2 {
+  margin-right: 10px;
+  margin-bottom: 20px;
   font-weight: 500;
   display: inline-block;
 }
@@ -441,7 +447,7 @@ $searchPadding: 20px;
 }
 
 .reviewPoint {
-  width: 320px;
+  width: 280px;
   margin-bottom: 5px;
   display: inline-block;
   vertical-align: middle;

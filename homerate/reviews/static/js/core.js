@@ -18,6 +18,10 @@ function createVisualStars() {
             return;
         }
 
+        if (value === 0) {
+            select.append($("<option/>").html(""));
+        }
+
         /* Append <option> tags with values 1-5 to the select field */
         for (let i = 1; i <= 5; i++) {
             const option = $("<option/>").html(i);
@@ -39,7 +43,8 @@ function createVisualStars() {
          * for the select field */
         select.barrating({
             theme: 'fontawesome-stars',
-            readonly: true
+            readonly: true,
+            allowEmpty: true
         })
     })
 }

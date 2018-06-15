@@ -70,12 +70,17 @@
                         <span class="label">living room</span>
                     </li>
                 </ul>
+            </section>
+
+            <header class="overallRatings">
+                <h2>{{ reviews.count }} Reviews</h2>
+                <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
 
                 <ul class="basicInfo">
                     <li class="ratingItem">
                         <p>Landlord Overall</p>
                         {% if aggregate.landlord_overall == 0 %}
-                            <p class="unavailable">Unavailable</p>
+                            <p>–</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.landlord_overall }}</p>
                         {% endif %}
@@ -83,15 +88,15 @@
                     <li class="ratingItem">
                         <p>Utilities</p>
                         {% if aggregate.utilities == 0 %}
-                            <p class="unavailable">Unavailable</p>
+                            <p>–</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.utilities }}</p>
                         {% endif %}
                     </li>
                     <li class="ratingItem">
-                        <p>Damp and Mould Free</p>
+                        <p>Damp/Mould-free</p>
                         {% if aggregate.damp_mould_free == 0 %}
-                            <p class="unavailable">Unavailable</p>
+                            <p>–</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.damp_mould_free }}</p>
                         {% endif %}
@@ -99,7 +104,7 @@
                     <li class="ratingItem">
                         <p>Water Pressure</p>
                         {% if aggregate.water_pressure == 0 %}
-                            <p class="unavailable">Unavailable</p>
+                            <p>–</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.water_pressure }}</p>
                         {% endif %}
@@ -107,7 +112,7 @@
                     <li class="ratingItem">
                         <p>Quietness</p>
                         {% if aggregate.quietness == 0 %}
-                            <p class="unavailable">Unavailable</p>
+                            <p>–</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.quietness }}</p>
                         {% endif %}
@@ -115,18 +120,15 @@
                     <li class="ratingItem">
                         <p>Pest Free</p>
                         {% if aggregate.pest_free == 0 %}
-                            <p class="unavailable">Unavailable</p>
+                            <p>–</p>
                         {% else %}
                             <p class="value createStars">{{ aggregate.pest_free }}</p>
                         {% endif %}
                     </li>
                 </ul>
-            </section>
-
-            {% if user.is_authenticated %}
-                <section class="reviews">
-                    <h2>Reviews</h2>
-                    <a class="addReview button" href="{% url 'new_report' house.id %}">+ Add a review</a>
+            </header>
+            <section class="reviews">
+                {% if user.is_authenticated %}
                     <ul class="reviewList">
                         {% for review in reviews %}
                             <li class="review" id="{{ review.pk }}">
@@ -153,7 +155,7 @@
                                         <h4 class="reviewCategoryName"><i class="far fa-id-card"></i> Landlord</h4>
                                         <ul class="reviewPoints">
                                             <li class="reviewPoint">
-                                                <p class="label">Landlord Responsiveness</p>
+                                                <p class="label">Responsiveness</p>
                                                 <p class="value createStars">{{ review.landlord_responsiveness }} ★</p>
                                             </li>
 
@@ -240,14 +242,14 @@
                             </li>
                         {% endfor %}
                     </ul>
-                </section>
-            {% else %}
+                {% else %}
 
-                <p>To read full reviews by previous tenants for this house, please
-                    <a href="{% url 'login' %}?next={{ request.path }}">log in</a> or <a href="{% url 'sign-up' %}">create
-                        an account</a>.</p>
+                    <p>To read full reviews by previous tenants for this house, please
+                        <a href="{% url 'login' %}?next={{ request.path }}">log in</a> or <a href="{% url 'sign-up' %}">create
+                            an account</a>.</p>
 
-            {% endif %}
+                {% endif %}
+            </section>
         </div>
 
         <div class="extraContent">
