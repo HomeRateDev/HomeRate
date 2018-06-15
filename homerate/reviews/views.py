@@ -194,6 +194,9 @@ def edit_report(request, id):
             # Insert foreign key from House model
             report.house_filed = house
 
+            if Profile.objects.get(user=request.user).is_suspicious:
+                report.visible = False
+
             # Save house details
             house_details_form.save()
 
@@ -214,7 +217,8 @@ def edit_report(request, id):
             'house_details_form': house_details_form,
             'new_report_form': review_form,
             'house': house,
-            'edit_page': True
+            'edit_page': True,
+            'is_suspicious': Profile.objects.get(user=request.user).is_suspicious
         })
 
 @login_required
