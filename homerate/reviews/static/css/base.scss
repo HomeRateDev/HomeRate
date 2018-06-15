@@ -637,7 +637,7 @@ $searchPadding: 20px;
   }
 
   .reviewItem {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 
   .reviewItem.stars {
@@ -669,6 +669,18 @@ $searchPadding: 20px;
     input {
       margin: 0 0 10px -3px;
     }
+  }
+
+  .reviewItem .text, .reviewItem i {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .reviewItem .text .optional {
+    margin: 10px 0 0 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: $lightestText;
   }
 
   h3 {

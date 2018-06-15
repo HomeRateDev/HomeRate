@@ -27,22 +27,28 @@
             <section class="roomInfo formSection">
                 <div class="reviewItem rooms">
                     <div class="label">
-                        <i class="far fa-bed"></i>
-                        <label>Bedrooms</label>
+                        <div class="text">
+                            <i class="far fa-bed"></i>
+                            <label>Bedrooms</label>
+                        </div>
                     </div>
                     {{ house_details_form.bedrooms }}
                 </div>
                 <div class="reviewItem rooms">
                     <div class="label">
-                        <i class="far fa-bath"></i>
-                        <label>Bathrooms</label>
+                        <div class="text">
+                            <i class="far fa-bath"></i>
+                            <label>Bathrooms</label>
+                        </div>
                     </div>
                     {{ house_details_form.bathrooms }}
                 </div>
                 <div class="reviewItem rooms">
                     <div class="label">
-                        <i class="far fa-couch"></i>
-                        <label>Living Rooms</label>
+                        <div class="text">
+                            <i class="far fa-couch"></i>
+                            <label>Living Rooms</label>
+                        </div>
                     </div>
                     {{ house_details_form.living_rooms }}
                 </div>
@@ -51,15 +57,19 @@
             <section class="movingDates formSection">
                 <div class="reviewItem dates">
                     <div class="label">
-                        <i class="far fa-truck-couch"></i>
-                        <label>Move In Date</label>
+                        <div class="text">
+                            <i class="far fa-truck-couch"></i>
+                            <label>Move In Date</label>
+                        </div>
                     </div>
                     {{ new_report_form.moved_in_date }}
                 </div>
                 <div class="reviewItem dates">
                     <div class="label">
-                        <i class="far fa-truck-couch"></i>
-                        <label>Move Out Date</label>
+                        <div class="text">
+                            <i class="far fa-truck-couch"></i>
+                            <label>Move Out Date</label>
+                        </div>
                     </div>
                     {{ new_report_form.moved_out_date }}
                 </div>
@@ -71,16 +81,21 @@
                 <div class="reviewItems">
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-clock"></i>
-                            <label>{{ new_report_form.landlord_responsiveness.label }}</label>
+                            <div class="text">
+                                <i class="far fa-clock"></i>
+                                <label>{{ new_report_form.landlord_responsiveness.label }}</label>
+                            </div>
                         </div>
                         {{ new_report_form.landlord_responsiveness }}
                     </div>
 
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-wrench"></i>
-                            <label>{{ new_report_form.repair_quality.label }}</label>
+                            <div class="text">
+                                <i class="far fa-wrench"></i>
+                                <label>{{ new_report_form.repair_quality.label }}</label>
+                                <p class="optional">Optional</p>
+                            </div>
                         </div>
                         {{ new_report_form.repair_quality }}
                     </div>
@@ -96,40 +111,53 @@
                 <div class="reviewItems">
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-shower"></i>
-                            <label>{{ new_report_form.water_pressure.label }}</label>
+                            <div class="text">
+                                <i class="far fa-shower"></i>
+                                <label>{{ new_report_form.water_pressure.label }}</label>
+                            </div>
                         </div>
                         {{ new_report_form.water_pressure }}
                     </div>
 
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-inventory"></i>
-                            <label>{{ new_report_form.utilities.label }}</label>
+                            <div class="text">
+                                <i class="far fa-inventory"></i>
+                                <label>{{ new_report_form.utilities.label }}</label>
+                            </div>
                         </div>
                         {{ new_report_form.utilities }}
                     </div>
 
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-couch"></i>
-                            <label>{{ new_report_form.furniture_quality.label }}</label>
+                            <div class="text">
+                                <i class="far fa-couch"></i>
+                                <label>{{ new_report_form.furniture_quality.label }}</label>
+                                <p class="optional">Optional</p>
+                            </div>
                         </div>
                         {{ new_report_form.furniture_quality }}
                     </div>
 
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-bed"></i>
-                            <label>{{ new_report_form.mattress_quality.label }}</label>
+                            <div class="text">
+                                <i class="far fa-bed"></i>
+                                <label>{{ new_report_form.mattress_quality.label }}</label>
+                                <p class="optional">Optional</p>
+                            </div>
                         </div>
                         {{ new_report_form.mattress_quality }}
                     </div>
 
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-toolbox"></i>
-                            <label>{{ new_report_form.build_quality.label }}</label>
+                            <div class="text">
+                                <i class="far fa-toolbox"></i>
+                                <label>{{ new_report_form.build_quality.label }}</label>
+                                <p class="optional">Optional</p>
+                            </div>
                         </div>
                         {{ new_report_form.build_quality }}
                     </div>
@@ -145,29 +173,39 @@
                 <div class="reviewItems">
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-volume-up"></i>
-                            <label>{{ new_report_form.quietness.label }}</label>
+                            <div class="text">
+                                <i class="far fa-volume-up"></i>
+                                <label>{{ new_report_form.quietness.label }}</label>
+                            </div>
                         </div>
                         {{ new_report_form.quietness }}
                     </div>
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-bug"></i>
-                            <label>{{ new_report_form.pest_free.label }}</label>
+                            <div class="text">
+                                <i class="far fa-bug"></i>
+                                <label>{{ new_report_form.pest_free.label }}</label>
+                            </div>
                         </div>
                         {{ new_report_form.pest_free }}
                     </div>
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-poo"></i>
-                            <label>{{ new_report_form.smells.label }}</label>
+                            <div class="text">
+                                <i class="far fa-poo"></i>
+                                <label>{{ new_report_form.smells.label }}</label>
+                                <p class="optional">Optional</p>
+                            </div>
                         </div>
                         {{ new_report_form.smells }}
                     </div>
                     <div class="reviewItem stars">
                         <div class="label">
-                            <i class="far fa-tint"></i>
-                            <label>Damp/Mould-free</label>
+                            <div class="text">
+                                <i class="far fa-tint"></i>
+                                <label>Damp/Mould-free</label>
+                                <p class="optional">Optional</p>
+                            </div>
                         </div>
                         {{ new_report_form.damp_mould_free }}
                     </div>
@@ -182,15 +220,19 @@
                 <h3><i class="far fa-money-check-alt"></i>Affordability</h3>
                 <div class="reviewItem">
                     <div class="label">
-                        <i class="far fa-money-bill-alt"></i>
-                        <label>{{ new_report_form.monthly_rent.label }}</label>
+                        <div class="text">
+                            <i class="far fa-money-bill-alt"></i>
+                            <label>{{ new_report_form.monthly_rent.label }}</label>
+                        </div>
                     </div>
                     {{ new_report_form.monthly_rent }}
                 </div>
                 <div class="reviewItem">
                     <div class="label">
-                        <i class="far fa-lightbulb"></i>
-                        <label>{{ new_report_form.monthly_bills.label }}</label>
+                        <div class="text">
+                            <i class="far fa-lightbulb"></i>
+                            <label>{{ new_report_form.monthly_bills.label }}</label>
+                        </div>
                     </div>
                     {{ new_report_form.monthly_bills }}
                 </div>
