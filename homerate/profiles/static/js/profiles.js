@@ -54,9 +54,3 @@ $('#noDeleteButton').click(function() {
     $('.confirmDelete').slideUp(300)
     $('.buttons').slideDown(300)
 });
-
-const is_reported = 0;
-
-$('.reportReview').click(funtion() {
-    $('.reportReview').toggle()
-});

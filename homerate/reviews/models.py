@@ -96,6 +96,7 @@ class HouseReport(models.Model):
     moved_in_date = models.DateField(blank=True, null=True)
     moved_out_date = models.DateField(blank=True, null=True)
     reported_by = models.ManyToManyField('auth.User', blank=True, related_name='users_who_reported')
+    visible = models.BooleanField(default=True)
 
     # Landlord
     landlord_responsiveness = RatingField(mandatory=True)

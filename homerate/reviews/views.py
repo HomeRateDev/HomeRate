@@ -51,7 +51,7 @@ def house(request, id):
         return render(request, 'reviews/nohouse.html', {})
 
     house = houses[0]
-    reviews = HouseReport.objects.filter(house_filed=house).order_by('-moved_out_date')
+    reviews = HouseReport.objects.filter(house_filed=house).filter(visible=True).order_by('-moved_out_date')
     aggregate = HouseReport.make_aggregate(reviews)
     flagged_reports = set()
 
@@ -138,13 +138,14 @@ def new_report(request, id):
             # Insert foreign key from House model
             report.house_filed = house
 
-            # Save house details
-            house_details_form.save()
-
             report.author = request.user
+
+            if Profile.objects.get(user=request.user).is_suspicious:
+                report.visible = False
 
             # Commit review to database
             report.save()
+            house_details_form.save()
 
             for img in image_formset:
                 try:
@@ -171,6 +172,7 @@ def new_report(request, id):
                       'new_report_form': review_form,
                       'house': house,
                       'image_formset': image_formset,
+                      'is_suspicious': Profile.objects.get(user=request.user).is_suspicious
                   })
 
 
