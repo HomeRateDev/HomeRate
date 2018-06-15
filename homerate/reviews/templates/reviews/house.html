@@ -247,13 +247,12 @@
                                     <i class="fas fa-flag"></i>
                                     <span class="message">
                                         {% if review.pk in flagged_reports %}
-                                        Unreport This Review
+                                            Unreport This Review
                                         {% else %}
-                                        Report This Review
+                                            Report This Review
                                         {% endif %}
                                     </span>
                                 </a>
-
 
 
                             </li>
@@ -328,6 +327,12 @@
                     </section>
                 {% endif %}
                 <span class="mapsHook"></span>
+                <section class="infoModule nearbyStations">
+                    <h3 class="title">Nearest Stations</h3>
+                    <ul class="stations">
+
+                    </ul>
+                </section>
                 <section class="infoModule nearbyShops">
                     <h3 class="title">Nearby Shops</h3>
                     <ul class="shops">
