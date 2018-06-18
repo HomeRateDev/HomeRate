@@ -1,0 +1,21 @@
+{% extends "homepage/base.html" %}
+
+{% block title %}
+Activation Successful
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <p class="message">Your review has been flagged for suspicious images and will be reviewed before submission.</p>
+        <p>You will be redirected in <span id="counter">10</span> seconds.</p>
+    <script>
+        setInterval(function() {
+            var div = document.querySelector("#counter");
+            var count = div.textContent * 1 - 1;
+            div.textContent = count;
+            if (count <= 0) {
+                window.location.replace("{% url 'house' id=id %}");
+            }
+        }, 1000);
+    </script>
+{% endblock %}
