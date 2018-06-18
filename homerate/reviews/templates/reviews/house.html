@@ -7,6 +7,13 @@
 {% endblock %}
 
 {% block head %}
+    {% if images.0 != None %}
+        <meta property="og:image" content="{{ images.0.image.url}}" />
+    {% else %}
+        <meta property="og:image" content="{% static 'img/logo.svg' %}" />
+    {% endif %}
+    <meta name="description" content="HomeRate Review" />
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% sass_src 'css/stars.scss' %}">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.0.13/css/all.css"
