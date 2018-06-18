@@ -63,12 +63,20 @@ ul {
 }
 
 $logoHeight: 30px;
-$barHeight: $logoHeight + 15px;
+$barHeight: 38px;
+
+.content {
+  padding-top: $barHeight + 25px;
+}
 
 .topBar {
+  width: 100%;
+  position: fixed;
+  top: 0;
   height: $barHeight;
-  padding: 15px 0;
+  padding: 8px 0;
   background: #fff;
+  z-index: 100;
 
   $searchFontSize: 14px;
 
@@ -80,7 +88,8 @@ $barHeight: $logoHeight + 15px;
     display: inline-block;
 
     input {
-      padding: 14px 10px;
+      margin-top: 0;
+      padding: 10px 10px;
       background: $darkerBackgroundColour;
       font-size: $searchFontSize;
       box-shadow: none;
@@ -97,7 +106,7 @@ $barHeight: $logoHeight + 15px;
 }
 
 .logoWrap {
-  margin-top: 6px;
+  margin-top: 4px;
   float: left;
   display: block;
 }
@@ -113,7 +122,7 @@ $barHeight: $logoHeight + 15px;
 }
 
 .topBarUser {
-  margin-top: 13px;
+  margin-top: 9px;
   float: right;
 
   a {
@@ -146,14 +155,9 @@ a {
   text-align: center;
 
   .topBar {
-    height: 30px;
 
     .logoWrap {
-      margin-top: 0;
-    }
-
-    .topBarUser {
-      margin-top: 6px;
+      margin-left: -7px;
     }
 
   }
