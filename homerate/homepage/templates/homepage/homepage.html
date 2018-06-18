@@ -4,9 +4,16 @@
 {% block title %}
 HomeRate | Surprise-free Renting
 {% endblock %}
+
+{% block bodyClass %}homepage{% endblock %}
+
 {% block content %}
 
+{% block universalSearchBar %}
+{% endblock %}
+
 <div class="container homepage">
+
     <header class="homepageHeader">
         <h1 class="title">Surprise-free Renting</h1>
         <p class="tagline">Read reviews of student houses, written by previous tenants.</p>
@@ -20,7 +27,8 @@ HomeRate | Surprise-free Renting
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+{% block scripts %}
 <script src="{% static 'js/homepage.js' %}"></script>
+{% endblock %}
 
 {% endblock %}

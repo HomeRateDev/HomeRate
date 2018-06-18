@@ -269,8 +269,9 @@
 
     </div>
 
+{% endblock %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+{% block scripts %}
     <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
     <script src="{% static 'js/datepicker.min.js' %}"></script>
     <script type="text/javascript">
@@ -311,6 +312,4 @@
         initAddComments();
         initAddImages();
     </script>
-
-
 {% endblock %}

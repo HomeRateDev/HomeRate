@@ -62,14 +62,41 @@ ul {
 }
 
 $logoHeight: 30px;
+$barHeight: $logoHeight + 15px;
 
 .topBar {
-  height: $logoHeight;
+  height: $barHeight;
   padding: 15px 0;
   background: #fff;
+
+  $searchFontSize: 14px;
+
+  .searchWrap {
+    max-width: 50%;
+    min-width: 240px;
+    margin: 0 10px;
+    font-size: $searchFontSize;
+    display: inline-block;
+
+    input {
+      padding: 14px 10px;
+      background: $darkerBackgroundColour;
+      font-size: $searchFontSize;
+      box-shadow: none;
+
+      &:hover, &:focus {
+        box-shadow: 0 0 0 1px $borderColour;
+      }
+
+      &:focus {
+        background: darken($darkerBackgroundColour, 1%);
+      }
+    }
+  }
 }
 
 .logoWrap {
+  margin-top: 6px;
   float: left;
   display: block;
 }
@@ -81,11 +108,11 @@ $logoHeight: 30px;
 
 .topBarLogo {
   height: $logoHeight;
-  margin: 0 5px;
+  margin: 0;
 }
 
 .topBarUser {
-  margin-top: 5px;
+  margin-top: 13px;
   float: right;
 
   a {
@@ -116,6 +143,19 @@ a {
 /* Site homepage */
 .homepage {
   text-align: center;
+
+  .topBar {
+    height: 30px;
+
+    .logoWrap {
+      margin-top: 0;
+    }
+
+    .topBarUser {
+      margin-top: 6px;
+    }
+
+  }
 
   .homepageHeader {
     margin-top: 100px;
@@ -180,8 +220,8 @@ $searchPadding: 20px;
 
 .autocomplete {
   width: 100%;
+  position: relative;
   max-height: 210px;
-  // visibility: hidden;
   margin: 20px auto 30px auto;
   box-sizing: border-box;
   border-radius: $cornerRadius;
@@ -189,6 +229,7 @@ $searchPadding: 20px;
   overflow-y: auto;
   box-shadow: 0 5px 8px rgba($shadowColour, 0.1);
   transition: opacity 0.1s ease-in-out;
+  z-index: 1000;
 
   .entry {
     width: 100%;
@@ -201,9 +242,8 @@ $searchPadding: 20px;
     }
 
     &:hover {
-      background-color: rgba(#fff, 0.5);
+      background-color: $darkerBackgroundColour;
       font-weight: 600;
-      font-size: 16px;
     }
 
     a {
