@@ -183,10 +183,10 @@ def new_report(request, id):
             print(review_form.errors)
             print(house_details_form.errors)
             print(image_formset.errors)
-
-    house_details_form = HouseDetailsForm(instance=house)
-    review_form = HouseReportForm()
-    image_formset = image_formset_factory(queryset=ReviewImage.objects.none())
+    else:
+        house_details_form = HouseDetailsForm(instance=house)
+        review_form = HouseReportForm()
+        image_formset = image_formset_factory(queryset=ReviewImage.objects.none())
 
     return render(request, 'reviews/newreport.html', {
                       'house_details_form': house_details_form,
@@ -229,19 +229,17 @@ def edit_report(request, id):
             report.save()
 
             return redirect('house', id=house.id)
-        else:
-            print("Form Error")
-            print(review_form.errors)
+
     else:
         house_details_form = HouseDetailsForm(instance=house)
         review_form = HouseReportForm(instance=report)
 
-        return render(request, 'reviews/newreport.html', {
+    return render(request, 'reviews/newreport.html', {
             'house_details_form': house_details_form,
             'new_report_form': review_form,
             'house': house,
             'edit_page': True,
-            'is_suspicious': Profile.objects.get(user=request.user).is_suspicious
+            'is_suspicious': Profile.objects.get(user=request.user).is_suspicious,
         })
 
 @login_required
