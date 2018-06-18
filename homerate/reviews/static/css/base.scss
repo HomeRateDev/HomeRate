@@ -188,7 +188,19 @@ a {
     position: relative;
   }
 
+  .autocomplete {
+    position: absolute;
+  }
+
   .siteDetails {
+    margin-top: 80px;
+
+    h2 {
+      margin-bottom: 30px;
+    }
+  }
+
+  .detailModules {
     display: flex;
     justify-content: space-between;
   }
@@ -197,7 +209,7 @@ a {
     width: 30%;
     vertical-align: top;
     text-align: left;
-    box-shadow: 0 5px 7px rgba($shadowColour, 0.15);
+    box-shadow: 0 5px 15px rgba($shadowColour, 0.15);
 
     img {
       width: 100%;
