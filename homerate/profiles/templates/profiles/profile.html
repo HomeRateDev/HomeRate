@@ -4,142 +4,156 @@
 {% load sass_tags %}
 
 {% block title %}
-Your Account
+    Your Account
 {% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-<link rel="stylesheet" href="{% sass_src 'css/stars.scss' %}">
-<link rel="stylesheet" href="{% sass_src 'css/boxes.scss' %}">
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.0.13/css/all.css"
-      integrity="sha384-oi8o31xSQq8S0RpBcb4FaLB8LJi9AT8oIdmS1QldR8Ui7KUQjNAnDlJjp55Ba8FG" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% sass_src 'css/stars.scss' %}">
+    <link rel="stylesheet" href="{% sass_src 'css/boxes.scss' %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-oi8o31xSQq8S0RpBcb4FaLB8LJi9AT8oIdmS1QldR8Ui7KUQjNAnDlJjp55Ba8FG" crossorigin="anonymous">
 {% endblock %}
 
 {% block content %}
 
-<div class="container">
-    <h1>Your Profile</h1>
+    <div class="container">
+        <h1>Your Profile</h1>
 
-    <div>
-        <div class="settings">
-        <h3>Saved Houses</h3>
-        <ul>
-        {% for house in saved_houses %}
+        <div>
+            <div class="settings">
+                <h3>Saved Houses</h3>
+                <ul>
+                    {% for house in saved_houses %}
 
-            <li class="savedHouse">
-                <a class="houseLink" href="{% url 'house' id=house.id %}">
+                        <li class="savedHouse">
+                            <a class="houseLink" href="{% url 'house' id=house.id %}">
 
-                <img src="https://maps.googleapis.com/maps/api/staticmap?
-                          center={{ house.split_address.postcode }}
-                          &markers=color:red|{{ house.split_address.postcode }}
-                          &zoom=14
-                          &size=336x215
-                          &key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o">
-                    <div class="caption"><p>{{ house.split_address.line1 }}</p> <p class="postcode">{{ house.split_address.postcode }}</p>
-                        <p class="createStars">{{ house.average_rating }}</p>
-                <ul class="basicInfo">
-                    <li class="infoItem">
-                        <i class="far fa-bed"></i>
-                        <span class="value">{{ house.bedrooms }}</span>
-                    </li>
-                    <li class="infoItem">
-                        <i class="far fa-bath"></i>
-                        <span class="value">{{ house.bathrooms }}</span>
-                    </li>
-                    <li class="infoItem">
-                        <i class="far fa-couch"></i>
-                        <span class="value">{{ house.living_rooms }}</span>
-                    </li>
+                                <img src="https://maps.googleapis.com/maps/api/staticmap?
+                                          center={{ house.split_address.postcode }}
+                                          &markers=color:red|{{ house.split_address.postcode }}
+                                          &zoom=14
+                                          &size=336x215
+                                          &key=AIzaSyCeg3FfKnxKsmzfrn52Hpl4ppcrj1WEB4o"/>
+                                <div class="caption">
+                                    <p>{{ house.split_address.line1 }}</p>
+                                    <p class="postcode">{{ house.split_address.postcode }}</p>
+                                    <p class="createStars">{{ house.average_rating }}</p>
+
+                                    {% if house.bedrooms %}
+                                    <ul class="basicInfo">
+                                        <li class="infoItem">
+                                            <i class="far fa-bed"></i>
+                                            <span class="value">{{ house.bedrooms }}</span>
+                                        </li>
+                                        <li class="infoItem">
+                                            <i class="far fa-bath"></i>
+                                            <span class="value">{{ house.bathrooms }}</span>
+                                        </li>
+                                        <li class="infoItem">
+                                            <i class="far fa-couch"></i>
+                                            <span class="value">{{ house.living_rooms }}</span>
+                                        </li>
+                                    </ul>
+                                    {% endif %}
+                                </div>
+                            </a>
+                        </li>
+
+                    {% endfor %}
                 </ul>
-                    </div>
-                </a>
-            </li>
-
-        {% endfor %}
-        </ul>
-        </div>
-    </div>
-
-    <div>
-        <div class="settings">
-        <h3>My Reviews</h3>
-        <ul>
-        {% for report in reports %}
-
-            <li class="myReport"><a class='reportLink' href="{% url 'house' id=report.house_filed.id %}#{{report.pk}}">
-                <p class="house">{{ report.house_filed.split_address.line1 }}</p>
-                <p class="dates">{{ report.moved_in_date }} to {{ report.moved_out_date }}</p>
-            </a></li>
-
-        {% endfor %}
-        </ul>
-        </div>
-    </div>
-
-    <div> <!-- settings area-->
-        <h2> Settings and Preferences</h2>
-        <div class="settingsContainer">
-
-            <div class="settings" id="weightings">
-                <h3> Star Rating Weightings</h3>
-                <p> Customise the overall star ratings based on their importance to you.</p>
-                <form method="POST" class="form", action="{% url 'profile' %}#weightings">{% csrf_token %}
-                    {{ weights_form.as_p }}
-                    <div>
-                        <button type="submit" class="button" name="submitWeights" value="1">Save</button>
-                    </div>
-                </form>
             </div>
+        </div>
 
-            <div class="settings" id="postcode">
-                <h3> University postcode </h3>
-                <p> Get travel times to and from your university. </p>
-                <form method="POST" class="form postcode" action="{% url 'profile' %}#postcode">{% csrf_token %}
-                    {{ postcode_form.as_p }}
-                    <div>
-                        <button type="submit" class="button" id="postcodeSubmit" name="submitPostcode" value="1">Save</button>
-                    </div>
-                </form>
+        <div>
+            <div class="settings">
+                <h3>My Reviews</h3>
+                <ul>
+                    {% for report in reports %}
+
+                        <li class="myReport"><a class='reportLink'
+                                                href="{% url 'house' id=report.house_filed.id %}#{{ report.pk }}">
+                            <p class="house">{{ report.house_filed.split_address.line1 }}</p>
+                            <p class="dates">{{ report.moved_in_date }} to {{ report.moved_out_date }}</p>
+                        </a></li>
+
+                    {% endfor %}
+                </ul>
             </div>
+        </div>
 
-            <div class="settings" id="account">
-                <h3> Account Settings </h3>
-                <div class="accountSection">
-                    <div class="buttons">
-                        <button class="button" id="changeFirst">Change First Name</button>
-                        <button class="button" id="changePassword">Change Password</button>
-                        <button class="button" id="deleteAccount">Delete Account</button>
-                    </div>
-                    <div class="forms">
-                        <form method="POST" class="form firstName" id="firstNameForm" action="{% url 'profile' %}#account">{% csrf_token %}
-                        {{ first_name_form.as_p }}
+        <div> <!-- settings area-->
+            <h2> Settings and Preferences</h2>
+            <div class="settingsContainer">
+
+                <div class="settings" id="weightings">
+                    <h3>Star Rating Weightings</h3>
+                    <p>Each house's overall rating is personalised for you based on your preferences below.</p>
+                    <form method="POST" class="form" , action="{% url 'profile' %}#weightings">{% csrf_token %}
+                        {{ weights_form.as_p }}
                         <div>
-                            <button type="submit" class="button" id="firstNameSubmit" name="submitFirstName" value="1">Save</button>
+                            <button type="submit" class="button" name="submitWeights" value="1">Save</button>
                         </div>
-                        </form>
-                        <form method="POST" class="form password" id="passwordForm" action="{% url 'profile' %}#account">
-                        {% csrf_token %}
-                        {{ password_form }}
-                            <button type="submit" class="button" id="passwordSubmit" name="submitPassword" value="1">Save</button>
-                        </form>
-                        <div class="confirmDelete">
-                            <p>Are you sure you want to delete your account?</p>
-                            <a class="button" href="{% url 'delete_account' %}" name="submitDelete">Yes</a>
-                            <a class="button" id="noDeleteButton">No</a>
+                    </form>
+                </div>
+
+                <div class="settings" id="postcode">
+                    <h3> University postcode </h3>
+                    <p> Get travel times to and from your university. </p>
+                    <form method="POST" class="form postcode" action="{% url 'profile' %}#postcode">{% csrf_token %}
+                        {{ postcode_form.as_p }}
+                        <div>
+                            <button type="submit" class="button" id="postcodeSubmit" name="submitPostcode" value="1">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="settings" id="account">
+                    <h3> Account Settings </h3>
+                    <div class="accountSection">
+                        <div class="buttons">
+                            <button class="button" id="changeFirst">Change First Name</button>
+                            <button class="button" id="changePassword">Change Password</button>
+                            <button class="button" id="deleteAccount">Delete Account</button>
+                        </div>
+                        <div class="forms">
+                            <form method="POST" class="form firstName" id="firstNameForm"
+                                  action="{% url 'profile' %}#account">{% csrf_token %}
+                                {{ first_name_form.as_p }}
+                                <div>
+                                    <button type="submit" class="button" id="firstNameSubmit" name="submitFirstName"
+                                            value="1">Save
+                                    </button>
+                                </div>
+                            </form>
+                            <form method="POST" class="form password" id="passwordForm"
+                                  action="{% url 'profile' %}#account">
+                                {% csrf_token %}
+                                {{ password_form }}
+                                <button type="submit" class="button" id="passwordSubmit" name="submitPassword"
+                                        value="1">Save
+                                </button>
+                            </form>
+                            <div class="confirmDelete">
+                                <p>Are you sure you want to delete your account?</p>
+                                <a class="button" href="{% url 'delete_account' %}" name="submitDelete">Yes</a>
+                                <a class="button" id="noDeleteButton">No</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-
         </div>
-    </div>
 
-</div>
+    </div>
 
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'js/jquery.barrating.min.js' %}"></script>
-<script src="{% static 'js/profilePostcode.js' %}"></script>
-<script src="{% static 'js/profiles.js' %}"></script>
+    <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
+    <script src="{% static 'js/profilePostcode.js' %}"></script>
+    <script src="{% static 'js/profiles.js' %}"></script>
 {% endblock %}
