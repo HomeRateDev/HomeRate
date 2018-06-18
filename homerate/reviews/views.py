@@ -9,6 +9,7 @@ from requests import auth
 
 from profiles.forms import CommutePostcode
 from profiles.models import Profile
+from reviews.imageSafeSearch import is_adult_content
 from .forms import HouseForm, HouseReportForm, HouseDetailsForm
 from .models import House, HouseReport, ReviewImage
 # Create your views here.
@@ -154,6 +155,11 @@ def new_report(request, id):
                     # Save the reviews to the database
                     photo = ReviewImage(house_report=report, image=img.cleaned_data['image'])
                     photo.save()
+
+                    # If the image is adult content then delete the file and remove the database entry
+                    if is_adult_content(photo.image.url):
+                        ReviewImage.objects.get(pk=photo.pk).delete()
+
                 except Exception as e:
                     # Users may not insert photos in order. Try remaining photos.
                     continue
