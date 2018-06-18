@@ -218,7 +218,9 @@ function initFlaggedReportActions() {
 (function ($) {
 
     /* Initialise slick gallery */
-    $('.galleryWrapper').slick();
+    $('.galleryWrapper').slick({
+        //centerMode: true
+    });
 
     createVisualStars();
     initPostcodeForm();
