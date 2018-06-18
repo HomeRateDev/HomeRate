@@ -4,3 +4,4 @@ django-compressor==2.2
 django-sass-processor==0.7
 Pillow==5.1.0
 requests==2.18.4
+google-cloud-vision==0.32.0
