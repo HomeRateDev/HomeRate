@@ -194,6 +194,7 @@ a {
 
   .siteDetails {
     margin-top: 80px;
+    padding-bottom: 40px;
 
     .sectionHeading {
       margin-bottom: 30px;
@@ -202,13 +203,16 @@ a {
 
   .detailModules {
     display: flex;
+    align-items: flex-start;
     justify-content: space-between;
   }
 
   .detailModule {
     width: 30%;
+    min-width: 200px;
     vertical-align: top;
     text-align: left;
+    border-radius: $cornerRadius;
     box-shadow: 0 5px 15px rgba($shadowColour, 0.15);
 
     img {
@@ -216,6 +220,7 @@ a {
     }
 
     .text {
+      margin-top: -4px;
       padding: 20px 25px 30px 25px;
       background: #fff;
       box-sizing: border-box;
@@ -223,10 +228,11 @@ a {
 
     .heading {
       margin-top: 0;
+      margin-bottom: 5px;
     }
 
     .explanation {
-      margin-bottom: 0;
+      margin: 0;
       line-height: 150%;
       color: $midText;
     }
