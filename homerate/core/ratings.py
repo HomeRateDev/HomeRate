@@ -5,7 +5,6 @@ from django.db import models
 class RatingField(models.CharField):
     description = ""
 
-
     def __init__(self, mandatory=False, weighting=False, *args, min_rating = 1,
                  max_rating = 5, **kwargs):
         if weighting:
@@ -22,6 +21,8 @@ class RatingField(models.CharField):
             kwargs['blank'] = True
             kwargs['null'] = True
         else:
+            if not weighting:
+               self.choices = [("", 0)] + self.choices
             if not 'default' in kwargs:
                 kwargs['default'] = (max_rating + min_rating) / 2
 
@@ -44,9 +45,7 @@ class RatingField(models.CharField):
             class_string = "weighting"
         else:
             class_string = "starRating"
-
-        if self.mandatory:
-            class_string += "Mandatory"
+            kwargs['required'] = False
 
         return forms.ChoiceField(widget=forms.Select(attrs={'class': class_string}), **kwargs)
 

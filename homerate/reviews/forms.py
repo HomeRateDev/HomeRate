@@ -40,6 +40,7 @@ class HouseReportForm(forms.ModelForm):
         model = HouseReport
         exclude = ['house_filed', 'author']
 
+
     def __init__(self, *args, **kwargs):
         super(HouseReportForm, self).__init__(*args, **kwargs)
         self.fields['repair_quality'].required = False
@@ -80,5 +81,23 @@ class HouseReportForm(forms.ModelForm):
                 'placeholder': "Add your comment about the house's affordability..."
             }
         )
+
+    def is_valid(self):
+        self.fields['landlord_responsiveness'].required = True
+        self.fields['water_pressure'].required = True
+        self.fields['utilities'].required = True
+        self.fields['quietness'].required = True
+        self.fields['pest_free'].required = True
+
+        valid =  super(HouseReportForm, self).is_valid()
+
+        self.fields['landlord_responsiveness'].required = False
+        self.fields['water_pressure'].required = False
+        self.fields['utilities'].required = False
+        self.fields['quietness'].required = False
+        self.fields['pest_free'].required = False
+
+        return valid
+
 
 
