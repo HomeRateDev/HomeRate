@@ -898,17 +898,31 @@ form.accounts {
   border-radius: 8px;
   text-align: left;
 
-  h3, p {
-    margin: 0px;
+  h3 {
+    margin: 0 0 5px 0;
   }
+
+  & > p {
+    margin: 0 0 20px 0;
+    padding-bottom: 20px;
+    border-bottom: solid 1px $borderColour;
+  }
+
+  label {
+    padding-bottom: 10px;
+    display: block;
+  }
+
   form {
     width: 100%;
     max-width: 100%;
     margin-top: 4px;
     p {
-      margin: 4px;
       width: 48%;
+      min-width: 220px;
+      margin-top: 10px;
       display: inline-block;
+      border-bottom: none;
     }
     div {
       text-align: right;
@@ -917,22 +931,31 @@ form.accounts {
 }
 
 .savedHouse {
+  width: 30%;
+  min-width: 230px;
+  margin: 10px;
   overflow: hidden;
   display: inline-block;
   background: #f9fafc;
   border-radius: $cornerRadius;
   vertical-align: top;
-  width: 30%;
-  margin: 10px;
   transition: box-shadow 0.15s ease-in-out;
   img {
     width: 100%;
   }
-;
+
   .caption {
-    padding: 15px 20px;
-    * {
-      margin-bottom: 4px;
+    padding: 15px 20px 20px 20px;
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .postcode {
+      margin-top: 6px;
+      margin-bottom: 12px;
+    }
+    .br-wrapper {
+      margin-bottom: 10px;
     }
   }
 ;
