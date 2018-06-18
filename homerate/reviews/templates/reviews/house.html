@@ -28,7 +28,7 @@
     <div class="container">
 
         <section class="gallery">
-            <div class="galleryWrapper">
+            <div class="galleryWrapper {% if not images %}empty{% endif %}">
                 {% for img in images %}
                     <img src="{{ img.image.url }}"/>
                 {% endfor %}

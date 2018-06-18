@@ -411,7 +411,7 @@ $searchPadding: 20px;
 /* House Page: Gallery */
 
 .slick-initialized .slick-track {
-  height: 500px;
+  max-height: 500px;
   display: flex;
   align-items: center;
 }
@@ -420,6 +420,10 @@ $searchPadding: 20px;
   max-width: 960px;
   width: 100%;
   margin: 30px auto;
+
+  &.empty {
+    margin: 15px;
+  }
 
   .slick-prev:before, .slick-next:before {
     color: $mainTextColour;
