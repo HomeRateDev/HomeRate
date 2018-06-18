@@ -1,3 +1,15 @@
+$backgroundColour: #f6f8fa;
+$darkerBackgroundColour: #f0f3f7;
+$mainTextColour: #313951;
+$midText: #657180;
+$lightestText: #8b9bb1;
+$cornerRadius: 8px;
+$shadowColour: #576f92;
+$borderColour: #d8e4ea;
+$buttonColour: $mainTextColour;
+$containerWidth: 960px;
+$errorText: darkred;
+
 .br-theme-bars-square .br-widget {
   height: 15px;
   white-space: nowrap;
@@ -7,21 +19,21 @@
   width: 30px;
   height: 30px;
   float: left;
-  border: 2px solid #bbcefb;
-  background-color: white;
-  margin: 2px;
+  background: $lightestText;
+  border: 2px solid $lightestText;
+  color: lighten($lightestText, 25%);
+  margin: 0;
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
   line-height: 2;
   text-align: center;
-  color: #bbcefb;
-  font-weight: 600;
 }
 .br-theme-bars-square .br-widget a.br-active,
 .br-theme-bars-square .br-widget a.br-selected {
-  border: 2px solid #4278f5;
-  color: #4278f5;
+  background: $mainTextColour;
+  border: 2px solid $mainTextColour;
+  color: #fff;
 }
 .br-theme-bars-square .br-widget .br-current-rating {
   clear: both;
@@ -37,8 +49,9 @@
 }
 .br-theme-bars-square .br-readonly a.br-active,
 .br-theme-bars-square .br-readonly a.br-selected {
-  border: 2px solid #729bf8;
-  color: #729bf8;
+  background: $lightestText;
+  border: 2px solid $lightestText;
+  color: lighten($lightestText, 25%);
 }
 @media print {
   .br-theme-bars-square .br-widget a {

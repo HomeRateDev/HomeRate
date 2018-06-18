@@ -972,9 +972,10 @@ form.accounts {
 }
 
 .myReport {
+  width: 20%;
+  padding: 20px;
   display: inline-block;
   vertical-align: top;
-  width: 20%;
   background: #f9fafc;
   border-radius: $cornerRadius;
   margin: 7px;
@@ -983,10 +984,11 @@ form.accounts {
     box-shadow: 0px 1px 10px rgba($shadowColour, 0.15);
   }
   .house {
-    padding: 10px 10px 3px 10px;
+    margin-top: 0;
+    margin-bottom: 5px;
   }
   .dates {
-    padding: 3px 10px 10px 10px;
+    margin-bottom: 0;
     font-size: 0.7em;
   }
   .reportLink {
