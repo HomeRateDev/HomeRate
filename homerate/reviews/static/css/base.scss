@@ -16,7 +16,7 @@ $errorText: darkred;
 body {
   background: $backgroundColour;
   color: $mainTextColour;
-  font-family: 'Circular Std', sans-serif;
+  font-family: 'Circular Std', 'Source Sans Pro', Arial, sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -40,7 +40,7 @@ ul {
   padding: 10px 15px;
   background: $buttonColour;
   color: #fff;
-  font-family: 'Circular Std';
+  font-family: 'Circular Std', 'Source Sans Pro', Arial, sans-serif;
   border: none;
   border-radius: $cornerRadius / 2;
   text-decoration: none;
@@ -48,6 +48,7 @@ ul {
   transition: opacity 0.1s ease-in-out;
 
   &:hover {
+    color: #fff;
     opacity: 0.7;
   }
 
@@ -928,6 +929,18 @@ form.accounts {
       text-align: right;
     }
   }
+
+  button {
+    font-size: 16px;
+
+    i {
+      margin-right: 5px;
+    }
+  }
+}
+
+.button.red {
+  background: #ff4444;
 }
 
 .savedHouse {

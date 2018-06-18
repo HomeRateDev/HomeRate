@@ -92,7 +92,9 @@
                     <form method="POST" class="form" , action="{% url 'profile' %}#weightings">{% csrf_token %}
                         {{ weights_form.as_p }}
                         <div>
-                            <button type="submit" class="button" name="submitWeights" value="1">Save</button>
+                            <button type="submit" class="button" name="submitWeights" value="1">
+                                <i class="far fa-check-circle"></i>Save
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -104,7 +106,7 @@
                         {{ postcode_form.as_p }}
                         <div>
                             <button type="submit" class="button" id="postcodeSubmit" name="submitPostcode" value="1">
-                                Save
+                                <i class="far fa-check-circle"></i>Save
                             </button>
                         </div>
                     </form>
@@ -124,7 +126,8 @@
                                 {{ first_name_form.as_p }}
                                 <div>
                                     <button type="submit" class="button" id="firstNameSubmit" name="submitFirstName"
-                                            value="1">Save
+                                            value="1">
+                                        <i class="far fa-check-circle"></i>Save
                                     </button>
                                 </div>
                             </form>
@@ -133,13 +136,16 @@
                                 {% csrf_token %}
                                 {{ password_form }}
                                 <button type="submit" class="button" id="passwordSubmit" name="submitPassword"
-                                        value="1">Save
+                                        value="1">
+                                    <i class="far fa-check-circle"></i>Save
                                 </button>
                             </form>
                             <div class="confirmDelete">
                                 <p>Are you sure you want to delete your account?</p>
-                                <a class="button" href="{% url 'delete_account' %}" name="submitDelete">Yes</a>
-                                <a class="button" id="noDeleteButton">No</a>
+                                <a class="button red" href="{% url 'delete_account' %}" name="submitDelete">
+                                    Delete
+                                </a>
+                                <a class="button" id="noDeleteButton">Back to safety</a>
                             </div>
                         </div>
                     </div>
