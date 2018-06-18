@@ -522,12 +522,12 @@ $searchPadding: 20px;
 }
 
 .review .flaggedReportAction {
-    padding: 25px 0 30px 0;
-    cursor: pointer;
+  padding: 25px 0 30px 0;
+  cursor: pointer;
 
-    .message {
-        margin-left: 7px;
-    }
+  .message {
+    margin-left: 7px;
+  }
 }
 
 /* House Page: Information Modules */
@@ -917,45 +917,63 @@ form.accounts {
 }
 
 .savedHouse {
-    overflow: hidden;
-    display: inline-block;
-    background: #f9fafc;
-    border-radius: $cornerRadius;
-    vertical-align: top;
-    width: 30%;
-    margin: 10px;
-    transition: box-shadow 0.15s ease-in-out;
-    img {
-        width: 100%;
-    };
-    .caption {
-        padding: 15px 20px;
-        * {
-        margin-bottom: 4px;
-        }
-    };
-    .postcode {
-        opacity: 0.7;
-        margin-bottom: 8px;
+  overflow: hidden;
+  display: inline-block;
+  background: #f9fafc;
+  border-radius: $cornerRadius;
+  vertical-align: top;
+  width: 30%;
+  margin: 10px;
+  transition: box-shadow 0.15s ease-in-out;
+  img {
+    width: 100%;
+  }
+;
+  .caption {
+    padding: 15px 20px;
+    * {
+      margin-bottom: 4px;
     }
-    .houseLink { height: 100% }
-    &:hover { box-shadow: 0px 5px 10px rgba($shadowColour, 0.15); }
+  }
+;
+  .postcode {
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+  .houseLink {
+    height: 100%
+  }
+  &:hover {
+    box-shadow: 0px 5px 10px rgba($shadowColour, 0.15);
+  }
 }
 
 .myReport {
-    display: inline-block;
-    vertical-align: top;
-    width: 20%;
-    background: #f9fafc;
-    border-radius: $cornerRadius;
-    margin: 7px;
-    transition: box-shadow 0.15s ease-in-out;
-    &:hover { box-shadow: 0px 1px 10px rgba($shadowColour, 0.15); }
-    .house { padding: 10px 10px 3px 10px; }
-    .dates { padding: 3px 10px 10px 10px; font-size:0.7em; }
-    .reportLink { width: 100%; height: 100%; }
+  display: inline-block;
+  vertical-align: top;
+  width: 20%;
+  background: #f9fafc;
+  border-radius: $cornerRadius;
+  margin: 7px;
+  transition: box-shadow 0.15s ease-in-out;
+  &:hover {
+    box-shadow: 0px 1px 10px rgba($shadowColour, 0.15);
+  }
+  .house {
+    padding: 10px 10px 3px 10px;
+  }
+  .dates {
+    padding: 3px 10px 10px 10px;
+    font-size: 0.7em;
+  }
+  .reportLink {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .settings#account {
-    .button { margin: 20px 0px 20px 20px; }
+  .button {
+    margin: 20px 0px 20px 20px;
+  }
 }
