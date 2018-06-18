@@ -183,6 +183,42 @@ a {
   .errorMessage {
     display: none;
   }
+
+  .searchWrap {
+    position: relative;
+  }
+
+  .siteDetails {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .detailModule {
+    width: 30%;
+    vertical-align: top;
+    text-align: left;
+    box-shadow: 0 5px 7px rgba($shadowColour, 0.15);
+
+    img {
+      width: 100%;
+    }
+
+    .text {
+      padding: 20px 25px 30px 25px;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
+    .heading {
+      margin-top: 0;
+    }
+
+    .explanation {
+      margin-bottom: 0;
+      line-height: 150%;
+      color: $midText;
+    }
+  }
 }
 
 @mixin textInput($padding) {
