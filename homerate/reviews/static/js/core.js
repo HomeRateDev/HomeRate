@@ -201,7 +201,7 @@ function createVisualStars() {
        so we can use it to simulate "clicking" on an autocomplete
        link before the autocomplete box disappears due to blur()
      */
-    $('.entry').mousedown(function() {
+    $('.autocomplete .entry').mousedown(function() {
         window.location.href = $(this).attr('href');
     });
 
