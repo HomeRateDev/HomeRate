@@ -16,9 +16,23 @@ class HouseDetailsForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(HouseDetailsForm, self).__init__(*args, **kwargs)
+
+        room_range = {'min': 0, 'max': 100}
+
         self.fields['bedrooms'].required = True
+        self.fields['bedrooms'].widget = forms.NumberInput(
+            attrs=room_range
+        )
+
         self.fields['bathrooms'].required = True
+        self.fields['bathrooms'].widget = forms.NumberInput(
+            attrs=room_range
+        )
+
         self.fields['living_rooms'].required = True
+        self.fields['living_rooms'].widget = forms.NumberInput(
+            attrs=room_range
+        )
 
 
 class HouseReportForm(forms.ModelForm):
