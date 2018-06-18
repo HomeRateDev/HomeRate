@@ -150,19 +150,32 @@ def new_report(request, id):
             report.save()
             house_details_form.save()
 
+            # By default profiles don't need review
+            needs_review = False
+
             for img in image_formset:
                 try:
                     # Save the reviews to the database
                     photo = ReviewImage(house_report=report, image=img.cleaned_data['image'])
                     photo.save()
 
-                    # If the image is adult content then delete the file and remove the database entry
+                    # If the image is adult content then delete the file, remove the database entry
                     if is_adult_content(photo.image.url):
+                        # Delete the image from the database
                         ReviewImage.objects.get(pk=photo.pk).delete()
+
+                        # Flag for review and nake the report no longer visible
+                        needs_review = True
+                        report.visible = False
+                        report.save(update_fields=["visible"])
 
                 except Exception as e:
                     # Users may not insert photos in order. Try remaining photos.
                     continue
+
+            # If needs a manual review then render a warning
+            if needs_review :
+                return render(request, 'reviews/suspicious_report.html', {'id': house.pk})
 
             return redirect('house', id=house.id)
         else:
