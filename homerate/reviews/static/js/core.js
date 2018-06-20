@@ -211,12 +211,15 @@ function createVisualStars() {
     function toggleAutocomplete(hide) {
         const ac = $('.autocomplete');
         if (hide) {
-            ac.stop().css('opacity', '0').delay(1000).queue(function(next) {
-                $(this).css('visibility', 'hidden');
+            ac.stop().css('opacity', '0').delay(700).queue(function(next) {
+                $(this).css('visibility', 'hidden').css('display', 'none');
                 next();
             });
         } else {
-            ac.stop().css('visibility', 'visible').css('opacity', '1');
+            ac.stop().css('display', 'block').css('visibility', 'visible').delay(50).queue(function(next) {
+                $(this).css('opacity', '1');
+                next();
+            });
         }
     }
 

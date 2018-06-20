@@ -87,6 +87,14 @@ $barHeight: 38px;
     font-size: $searchFontSize;
     display: inline-block;
 
+    .errorMessage {
+      padding: 20px;
+      background: #fff;
+      border-radius: $cornerRadius;
+      box-shadow: 0 5px 7px rgba($shadowColour, 0.05);
+      display: none;
+    }
+
     input {
       margin-top: 0;
       padding: 10px 10px;
